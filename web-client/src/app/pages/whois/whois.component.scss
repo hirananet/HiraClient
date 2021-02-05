@@ -200,3 +200,9 @@ main {
     }
   }
 }
+
+@media(max-width: 1024px) {
+  main {
+    width: calc(100vw - 55px);
+  }
+}
