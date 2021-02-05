@@ -60,6 +60,7 @@ export class WhoisComponent implements OnInit {
     this.currentWho = allWhos[this.currentWhoNick];
     this.currentImage = environment.hiranaTools + '/avatar?usr=' + this.currentWho.username;
     this.channels = [];
+    console.log(allWhos[this.currentWhoNick]);
     if(allWhos[this.currentWhoNick].channelList) {
       allWhos[this.currentWhoNick].channelList.forEach((chnl: Channel) => {
         this.channels.push({
