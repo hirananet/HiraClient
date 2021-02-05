@@ -46,7 +46,8 @@
           <span>{{currentWho.getLastLogin()}}</span>
         </div>
       </section>
-      <footer>
+      <footer *ngIf="channels">
+        <app-menu-list title="Canales" [elements]="channels" path="/chat/"  type="chat"></app-menu-list>
         <!-- lista de canales conectados: -->
       </footer>
     </article>

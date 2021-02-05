@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WhoIsData, WhoIsHandler } from 'ircore';
+import { Channel, WhoIsData, WhoIsHandler } from 'ircore';
 import { Subscription } from 'rxjs';
+import { ListElement } from 'src/app/sections/list/list.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,6 +18,7 @@ export class WhoisComponent implements OnInit {
   private routeSubscription: Subscription;
 
   public currentWhoNick;
+  public channels: ListElement[];
 
   constructor(
     private router: Router,
@@ -33,6 +35,17 @@ export class WhoisComponent implements OnInit {
     if(this.currentWhoNick && allWhos[this.currentWhoNick]) {
       this.currentWho = allWhos[this.currentWhoNick];
       this.currentImage = environment.hiranaTools + '/avatar?usr=' + this.currentWho.username;
+      this.channels = [];
+      if(allWhos[this.currentWhoNick].channelList) {
+        allWhos[this.currentWhoNick].channelList.forEach((chnl: Channel) => {
+          this.channels.push({
+            name: chnl.name,
+            active: false,
+            notify: false,
+            warn: false
+          });
+        });
+      }
     } else {
       this.currentWho = undefined;
     }
