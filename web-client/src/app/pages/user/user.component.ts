@@ -1,14 +1,10 @@
 import { ParamParse } from '../../utils/ParamsParse';
-import { IRCoreService } from 'src/app/IRCore/IRCore.service';
-import { AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core'
-import { ConnectionStatus, ConnectionStatusData, WebSocketUtil } from 'src/app/IRCore/utils/WebSocket.util';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core'
 import { Subscription } from 'rxjs';
-import { StatusHandler } from 'src/app/IRCore/handlers/Status.handler';
-import { MotdHandler } from 'src/app/IRCore/handlers/Motd.handler';
-import { IRCMessage } from 'src/app/IRCore/utils/IRCMessage.util';
 import { Router } from '@angular/router';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { Title } from '@angular/platform-browser';
+import { IRCoreService, StatusHandler, MotdHandler, IRCMessage, ConnectionStatus, ConnectionStatusData, WebSocketUtil } from 'ircore';
 
 @Component({
   selector: 'app-user',

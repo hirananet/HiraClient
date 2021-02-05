@@ -1,7 +1,7 @@
-import { WebSocketUtil } from 'src/app/IRCore/utils/WebSocket.util';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { WebSocketUtil } from 'ircore';
 
 @Injectable({
   providedIn: 'root'

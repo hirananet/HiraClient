@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { GenericMessage, Quote } from './../../../IRCore/services/ChannelData';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { GenericMessage, Quote } from 'ircore';
 
 @Component({
   selector: 'app-message-item',

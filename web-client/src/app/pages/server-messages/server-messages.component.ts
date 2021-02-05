@@ -1,10 +1,8 @@
 import { Subscription } from 'rxjs';
-import { IRCoreService } from 'src/app/IRCore/IRCore.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ServerMsgService } from 'src/app/IRCore/services/server-msg.service';
-import { IRCMessage } from 'src/app/IRCore/utils/IRCMessage.util';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { Title } from '@angular/platform-browser';
+import { IRCMessage, ServerMsgService, IRCoreService } from 'ircore';
 
 @Component({
   selector: 'app-server-messages',

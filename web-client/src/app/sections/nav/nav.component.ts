@@ -1,9 +1,8 @@
 import { AudioService } from 'src/app/utils/audio.service';
-import { IRCoreService } from 'src/app/IRCore/IRCore.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConnectionStatus, ConnectionStatusData, WebSocketUtil } from 'src/app/IRCore/utils/WebSocket.util';
-import { UserInfoService } from 'src/app/IRCore/services/user-info.service';
+
+import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil } from 'ircore';
 
 @Component({
   selector: 'app-nav',

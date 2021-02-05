@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { EmoteList } from 'src/app/IRCore/utils/EmoteList';
+import { EmoteList } from 'ircore';
 
 @Component({
   selector: 'app-emote-list',

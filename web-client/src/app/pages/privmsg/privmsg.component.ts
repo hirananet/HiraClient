@@ -1,20 +1,12 @@
-import { GmodeHandler } from './../../IRCore/handlers/Gmode.handler';
-import { UserInfoService } from './../../IRCore/services/user-info.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IRCoreService } from 'src/app/IRCore/IRCore.service';
-import { PrivmsgService } from 'src/app/IRCore/services/privmsg.service';
-import { PrivmsgData } from 'src/app/IRCore/services/PrivmsgData';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { HistoryMessageCursorService } from '../utils/history-message-cursor.service';
-import { GenericMessage, Quote } from 'src/app/IRCore/services/ChannelData';
 import { VcardGetterService } from 'src/app/sections/chat-parts/message-item/link-vcard/vcard-getter.service';
 import { environment } from 'src/environments/environment';
-import { AwayHandler } from 'src/app/IRCore/handlers/Away.handler';
-import { Away } from 'src/app/IRCore/dto/Away';
-import { IgnoreHandler } from 'src/app/IRCore/handlers/Ignore.Handler';
 import { Title } from '@angular/platform-browser';
+import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, PrivmsgService, IRCoreService, UserInfoService } from 'ircore';
 
 @Component({
   selector: 'app-privmsg',

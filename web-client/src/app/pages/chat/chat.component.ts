@@ -1,15 +1,13 @@
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { IRCoreService } from 'src/app/IRCore/IRCore.service';
-import { Component, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChannelData, GenericMessage, Quote } from 'src/app/IRCore/services/ChannelData';
-import { ChannelsService } from 'src/app/IRCore/services/channels.service';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { HistoryMessageCursorService } from '../utils/history-message-cursor.service';
 import { InfoPanelComponent } from 'src/app/sections/chat-parts/info-panel/info-panel.component';
 import { VcardGetterService } from 'src/app/sections/chat-parts/message-item/link-vcard/vcard-getter.service';
 import { Title } from '@angular/platform-browser';
+import { ChannelsService, IRCoreService, ChannelData, GenericMessage, Quote } from 'ircore';
 
 @Component({
   selector: 'app-chat',

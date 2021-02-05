@@ -1,10 +1,8 @@
 import { Subscription } from 'rxjs';
-import { ChannelsService } from 'src/app/IRCore/services/channels.service';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { User } from 'src/app/IRCore/dto/User';
-import { UModes } from 'src/app/IRCore/utils/UModes.utils';
 import { ListElement } from 'src/app/sections/list/list.component';
 import { environment } from 'src/environments/environment';
+import { User, UModes, ChannelsService } from 'ircore';
 
 @Component({
   selector: 'app-info-panel',

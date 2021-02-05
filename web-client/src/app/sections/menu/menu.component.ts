@@ -1,16 +1,9 @@
-import { PrivmsgService } from 'src/app/IRCore/services/privmsg.service';
-import { IRCoreService } from './../../IRCore/IRCore.service';
+import { ChannelsService, UserInfoService, IRCoreService, PrivmsgService, ValidRegex, JoinHandler, Join, ChannelData } from 'ircore';
 import { MenuElement, MenuSelectorEvent, MenuType } from './menu-selector.event';
 import { Subscription } from 'rxjs';
-import { UserInfoService } from './../../IRCore/services/user-info.service';
-import { ChannelData } from './../../IRCore/services/ChannelData';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ChannelsService } from 'src/app/IRCore/services/channels.service';
 import { ListElement } from '../list/list.component';
-import { JoinHandler } from 'src/app/IRCore/handlers/Join.handler';
-import { Join } from 'src/app/IRCore/dto/Join';
 import { Router } from '@angular/router';
-import { ValidRegex } from 'src/app/IRCore/utils/validRegex';
 import { environment } from 'src/environments/environment';
 import { Title } from '@angular/platform-browser';
 import { AudioService } from 'src/app/utils/audio.service';

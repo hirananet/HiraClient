@@ -1,9 +1,7 @@
-import { GmodeHandler } from './IRCore/handlers/Gmode.handler';
 import { environment } from './../environments/environment';
 import { Component } from '@angular/core';
-import { ServerMsgService } from './IRCore/services/server-msg.service';
-import { IRCoreService } from './IRCore/IRCore.service';
 import { ParamParse } from './utils/ParamsParse';
+import { GmodeHandler, ServerMsgService, IRCoreService } from 'ircore';
 
 @Component({
   selector: 'app-root',

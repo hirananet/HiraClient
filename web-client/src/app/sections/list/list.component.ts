@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { WhoStatusService } from 'src/app/IRCore/services/who-status.service';
+import { WhoStatusService } from 'ircore';
 
 @Component({
   selector: 'app-menu-list',
