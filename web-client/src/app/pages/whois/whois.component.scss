@@ -51,6 +51,22 @@ main {
       text-align: center;
       font-family: Helvetica;
       height: fit-content;
+      max-height: calc(100vh - 13% - 75px);
+      overflow-y: auto;
+      &::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb-bg);
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover);
+      }
+      &::-webkit-scrollbar-track {
+        background: var(--scrollbar-track-bg);
+        border-left: 1px solid var(--scrollbar-track-border-left);
+        border-right: 1px solid var(--scrollbar-track-border-right);
+      }
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
       header {
         padding: 15px;
         border-bottom: 1px solid #dcdcdc;
