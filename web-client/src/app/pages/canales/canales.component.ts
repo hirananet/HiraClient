@@ -8,7 +8,9 @@ import { Title } from '@angular/platform-browser';
 })
 export class CanalesComponent implements OnInit {
 
-  constructor(private titleSrv: Title) { }
+  constructor(private titleSrv: Title) {
+
+  }
 
   ngOnInit(): void {
     this.titleSrv.setTitle('Lista de canales | HiraClient');

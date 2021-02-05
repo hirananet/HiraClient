@@ -2,7 +2,7 @@ import { AudioService } from 'src/app/utils/audio.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil } from 'ircore';
+import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil, WhoIsHandler, WhoIsData } from 'ircore';
 
 @Component({
   selector: 'app-nav',
@@ -43,6 +43,9 @@ export class NavComponent implements OnInit {
     } else {
       this.skin = 'light';
     }
+    WhoIsHandler.onWhoisResponse.subscribe((d: WhoIsData) => {
+      this.router.navigateByUrl('/whois/' + d.username);
+    });
   }
 
   openPopup() {
