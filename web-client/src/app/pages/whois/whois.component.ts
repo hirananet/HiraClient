@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Channel, WhoIsData, WhoIsHandler, IRCoreService } from 'ircore';
+import { Channel, WhoIsData, WhoIsHandler, IRCoreService, ChannelsService } from 'ircore';
 import { Subscription } from 'rxjs';
 import { ListElement } from 'src/app/sections/list/list.component';
 import { environment } from 'src/environments/environment';
@@ -27,7 +27,8 @@ export class WhoisComponent implements OnInit {
   constructor(
     private router: Router,
     route: ActivatedRoute,
-    private ircSrv: IRCoreService
+    private ircSrv: IRCoreService,
+    private cSrv: ChannelsService
   ) {
     this.routeSubscription = this.router.events.subscribe(d => {
       this.currentWhoNick = route.snapshot.params.nick;
@@ -74,7 +75,11 @@ export class WhoisComponent implements OnInit {
   }
 
   joinC(elem: ListElement) {
-    this.ircSrv.sendMessageOrCommand('/join #' + elem.name);
+    if(this.cSrv.getChannel(elem.name)) {
+      this.router.navigateByUrl('/chat/' + elem.name);
+    } else {
+      this.ircSrv.sendMessageOrCommand('/join #' + elem.name);
+    }
   }
 
   search(nick: string) {
