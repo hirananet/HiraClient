@@ -55,6 +55,7 @@ main {
         padding: 15px;
         border-bottom: 1px solid #dcdcdc;
         margin-bottom: 15px;
+        position: relative;
         img {
           width: 150px;
           border-radius: 50%;
@@ -67,6 +68,15 @@ main {
         span {
           display: block;
           color: #242b32;
+        }
+        svg {
+          width: 30px;
+          position: absolute;
+          right: 15px;
+          top: 15px;
+          color: #1c2229;
+          cursor: pointer;
+          display: block;
         }
       }
       section {

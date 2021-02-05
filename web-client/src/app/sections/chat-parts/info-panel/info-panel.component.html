@@ -7,6 +7,10 @@
     <span>{{members.length}} members</span>
   </header>
   <main>
-    <app-menu-list title="Miembros del canal" [elements]="members" path="priv/" type="members"></app-menu-list>
+    <app-menu-list title="Miembros del canal" [elements]="members" path="priv/" type="members" (contextMenu)="contextMenu($event)"></app-menu-list>
+
+    <ul class="context" *ngIf="menuElement" [style.top]="menuElement.posY + 'px'" [style.left]="menuElement.posX + 'px'" (click)="menuElement = undefined" (contextmenu)="menuElement = undefined; $event.preventDefault()">
+      <li (click)="whois(menuElement.target)">¿Quién es?</li>
+    </ul>
   </main>
 </aside>

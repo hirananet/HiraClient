@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
   @Input() selected: string;
   @Input() type: string;
   @Output() close: EventEmitter<ListElement> = new EventEmitter<ListElement>();
+  @Output() contextMenu: EventEmitter<{ctx: Event, elem: ListElement}> = new EventEmitter<{ctx: Event, elem: ListElement}>();
 
   constructor(private router: Router, public whoStatus: WhoStatusService) { }
 
@@ -30,6 +31,13 @@ export class ListComponent implements OnInit {
 
   doClose(elem: ListElement) {
     this.close.emit(elem);
+  }
+
+  ctxMenu(ctx: Event, elem: ListElement) {
+    this.contextMenu.emit({
+      ctx,
+      elem
+    });
   }
 
 }
