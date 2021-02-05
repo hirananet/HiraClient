@@ -45,8 +45,8 @@ main {
     article {
       width: 300px;
       margin: 3%;
-      background: white;
-      border: 1px solid #dcdcdc;
+      background: var(--whois-background);
+      border: 1px solid var(--whois-border);
       border-radius: 4px;
       text-align: center;
       font-family: Helvetica;
@@ -70,7 +70,7 @@ main {
       }
       header {
         padding: 15px;
-        border-bottom: 1px solid #dcdcdc;
+        border-bottom: 1px solid var(--whois-border);
         margin-bottom: 15px;
         position: relative;
         img {
@@ -84,14 +84,14 @@ main {
         }
         span {
           display: block;
-          color: #242b32;
+          color: var(--whois-svg-color);
         }
         svg {
           width: 30px;
           position: absolute;
           right: 15px;
           top: 15px;
-          color: #1c2229;
+          color: var(--whois-svg-color);
           cursor: pointer;
           display: block;
         }
@@ -104,23 +104,23 @@ main {
           justify-content: space-between;
           margin: 5px;
           padding: 5px;
-          border-bottom: 1px solid #dcdcdc;
+          border-bottom: 1px solid var(--whois-border);
           label {
             font-weight: bolder;
-            color: #1c2229;
+            color: var(--whois-svg-color);
           }
           span.label {
             padding: 2px 10px;
             border-radius: 3px;
             &.yes {
-              background: #d4f1c6;
-              border: 1px solid #329004;
-              color: #329004;
+              background: var(--whois-yes-bg);
+              border: 1px solid var(--whois-yes-color);
+              color: var(--whois-yes-color);
             }
             &.no {
-              background: #f1c6c6;
-              border: 1px solid #900404;
-              color: #900404;
+              background: var(--whois-no-bg);
+              border: 1px solid var(--whois-no-color);
+              color: var(--whois-no-color);
             }
           }
         }
@@ -134,14 +134,14 @@ main {
       vertical-align: top;
       width: 300px;
       margin: 3%;
-      background: white;
-      border: 1px solid #dcdcdc;
+      background: var(--whois-background);
+      border: 1px solid var(--whois-border);
       border-radius: 4px;
       margin-right: 0px;
       nav {
         position: relative;
         padding: 15px 0px;
-        border-bottom: 1px solid #dcdcdc;
+        border-bottom: 1px solid var(--whois-border);
         margin-bottom: 15px;
         svg {
           width: 18px;
@@ -195,7 +195,7 @@ main {
       p {
         text-align: center;
         font-family: Helvetica;
-        color: #7a7f83;
+        color: var(--whois-p-color);
       }
     }
   }
