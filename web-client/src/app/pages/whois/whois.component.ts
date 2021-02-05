@@ -73,6 +73,10 @@ export class WhoisComponent implements OnInit {
     }
   }
 
+  joinC(elem: ListElement) {
+    this.ircSrv.sendMessageOrCommand('/join #' + elem.name);
+  }
+
   search(nick: string) {
     this.ircSrv.sendMessageOrCommand('/whois ' + nick);
   }

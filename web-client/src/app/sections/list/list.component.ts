@@ -15,8 +15,10 @@ export class ListComponent implements OnInit {
   @Input() path: string;
   @Input() selected: string;
   @Input() type: string;
+
   @Output() close: EventEmitter<ListElement> = new EventEmitter<ListElement>();
   @Output() contextMenu: EventEmitter<{ctx: Event, elem: ListElement}> = new EventEmitter<{ctx: Event, elem: ListElement}>();
+  @Output() elemSelected: EventEmitter<ListElement> = new EventEmitter<ListElement>();
 
   constructor(private router: Router, public whoStatus: WhoStatusService) { }
 
@@ -26,7 +28,10 @@ export class ListComponent implements OnInit {
   open(elem: ListElement) {
     elem.notify = false;
     elem.warn = false;
-    this.router.navigateByUrl(this.path + elem.name);
+    this.elemSelected.emit(elem);
+    if(this.path) {
+      this.router.navigateByUrl(this.path + elem.name);
+    }
   }
 
   doClose(elem: ListElement) {
