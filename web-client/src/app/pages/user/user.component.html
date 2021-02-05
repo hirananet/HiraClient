@@ -1,0 +1,86 @@
+<main>
+  <section id="fullPopup">
+    <header>
+      Datos de conexión
+    </header>
+    <p class="error" *ngIf="error">
+      {{error}}
+    </p>
+    <div id="server">
+      <label>
+        Server
+      </label>
+      <input type="text" id="hostInput" placeholder="irc.hirana.net" [(ngModel)]="host"/>
+      <span>Websocket</span>
+      <input type="checkbox" name="ws" [(ngModel)]="isWS"/>
+    </div>
+    <div id="apodo">
+      <label>
+        Apodo
+        <span>Después se puede cambiar con /nick</span>
+      </label>
+      <input type="text" id="nickInput" [(ngModel)]="nick"/>
+    </div>
+    <div id="secundario">
+      <label>
+        Apodo secundario
+        <span>En caso de que el anterior esté en uso</span>
+      </label>
+      <input type="text" id="nickSecInput" [(ngModel)]="nickSecundario"/>
+    </div>
+    <div id="canales">
+      <label>Unirse a canales: <i>(opcional)</i></label>
+      <span>Agregar presionando enter</span>
+      <ul>
+        <li *ngFor="let canal of canales; let idx = index">
+          {{canal}}
+          <svg (click)="removeChannel(idx)" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" class="svg-inline--fa fa-times fa-w-11"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" class=""></path></svg>
+        </li>
+      </ul>
+      <input id="canalInput" type="text" [(ngModel)]="canalAgregar" (keypress)="kp($event)">
+      <button (click)="agregarCanal()">
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-plus fa-w-14"><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" class=""></path></svg>
+      </button>
+    </div>
+    <div id="auth">
+      <label>
+        Autenticación <i>(opcional)</i>
+      </label>
+      <span>
+        Tipo login:
+        <select [(ngModel)]="tipoLogin">
+          <option value="NONE">Ninguno</option>
+          <option value="NS">Nickserv (/ns identify)</option>
+          <option value="PASS">Bouncer ZNC (/pass)</option>
+        </select>
+      </span>
+      <input type="password" placeholder="password" [(ngModel)]="password" [disabled]="tipoLogin === 'NONE'"/>
+    </div>
+    <footer>
+      <button (click)="connect()" *ngIf="!error && !connected">Conectar</button>
+      <button (click)="connect()" *ngIf="error && !connected">Reconectar</button>
+      <button (click)="saveData()" *ngIf="connected">Actualizar</button>
+    </footer>
+  </section>
+
+  <section id="embeddedPopup">
+    <header>
+      Accede al chat ingresando tu nick
+    </header>
+    <p class="error" *ngIf="error">
+      {{error}}
+    </p>
+    <div id="apodo">
+      <label>
+        Tu nick
+        <span>Después se puede cambiar con /nick</span>
+      </label>
+      <input type="text" [(ngModel)]="nick"/>
+    </div>
+    <footer>
+      <button (click)="connect()" *ngIf="!error && !connected">Conectar</button>
+      <button (click)="connect()" *ngIf="error && !connected">Reconectar</button>
+      <button (click)="changeNick()" *ngIf="connected">Cambiar nick</button>
+    </footer>
+  </section>
+</main>

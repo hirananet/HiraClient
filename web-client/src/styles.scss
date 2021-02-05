@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'styles.default.scss';
+@import 'styles.dark.scss';
+body {
+  margin: 0px;
+
+  &.embedded {
+    app-menu {
+      display: none;
+    }
+    app-user {
+      main {
+        width: calc(100vw - 55px);;
+      }
+    }
+    app-about, app-server-messages {
+      main {
+        width: calc(100vw - 55px);;
+      }
+    }
+    app-chat {
+      main {
+        width: calc(100vw - 350px);
+      }
+    }
+    app-info-panel {
+      width: 293px;
+    }
+  }
+
+}
+body, html {
+  height: 100%;
+  overflow: hidden;
+}
+
+.cabritaEff {
+  position: fixed;
+}
+
+
+@font-face {
+  font-family: 'Chata Normal';
+  src: url(assets/fonts/chata-normal.otf);
+}
+
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.faceEmote {
+  width: 50px;
+  vertical-align: middle;
+  background: var(--face-emote-bg);
+  border-radius: 3px;
+  transition: width 1s;
+  &:hover {
+    width: 150px;
+  }
+  &.regla {
+    &:hover {
+      width: 400px;
+    }
+  }
+}
+
+.memeEmote {
+  max-width: 200px;
+  vertical-align: middle;
+  border-radius: 3px;
+  transition: max-width 1s;
+  &:hover {
+    max-width: 400px;
+  }
+}
+
+b.ping {
+  color: var(--ping-color);
+}

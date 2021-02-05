@@ -1,0 +1,22 @@
+<div class="emotePopup">
+  <nav>
+    <div class="tab" (click)="list = 1">
+      Emotes
+    </div>
+    <div class="tab" (click)="list = 2">
+      Memes
+    </div>
+  </nav>
+  <ul class="emotes" *ngIf="list === 1">
+    <li *ngFor="let face of faces" (click)="writeEmote.emit(':'+face+':')">
+      <span>:{{face}}:</span>
+      <img [src]="facesLocation+face+facesExtensions" class="{{face}}" alt=":{{face}}:"/>
+    </li>
+  </ul>
+  <ul class="memes" *ngIf="list === 2">
+    <li *ngFor="let meme of memes" (click)="writeEmote.emit(';'+meme+';')">
+      <span>;{{meme}};</span>
+      <img [src]="memesLocation+meme+memesExtensions" class="{{meme}}" alt=";{{meme}};"/>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,82 @@
+main {
+  width: calc(100vw - 55px);
+  float: right;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+app-nav {
+  float: left;
+  height: 100%;
+}
+app-menu {
+  height: 100%;
+}
+
+app-chat {
+  flex-grow: 1;
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  padding: 5px;
+  font-family: helvetica;
+  color: var(--footer-color);
+  background: var(--footer-bg);
+  box-shadow: 0px 0px 5px var(--footer-shadow);
+  font-size: 12px;
+  max-width: calc(18vw - 11px);
+  text-align: right;
+  a {
+    color: var(--footer-link-color);
+    text-decoration: none;
+  }
+}
+
+.popup {
+  position: fixed;
+  bottom: 75px;
+  right: 5px;
+  background: var(--popup-bg);
+  padding: 5px;
+  border: 1px solid var(--popup-border-color);
+  border-left: 3px solid var(--popup-border-left);
+  font-family: Helvetica;
+  color: var(--popup-color);
+  font-size: 1.1vw;
+  box-shadow: 0px 0px 5px var(--popup-box-shadow);
+  border-radius: 4px;
+  b {
+    color: var(--popup-nick-color);
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    background: var(--popup-button-color-bg);
+    vertical-align: middle;
+    margin: 0px 7px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px var(--popup-box-shadow-color);
+    font-weight: bolder;
+    color: var(--popup-color);
+    padding: 5px;
+    font-size: 1vw;
+    &.cancel {
+      background: var(--popup-cancel-button-bg);
+      color: var(--popup-cancel-button-color);
+    }
+  }
+}
+
+
+@media(max-width: 1024px) {
+  footer {
+    bottom: 50px;
+    display: none;
+  }
+}

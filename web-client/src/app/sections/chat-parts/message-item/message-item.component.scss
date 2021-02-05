@@ -1,0 +1,112 @@
+article {
+  margin: 5px 0px;
+  font-family: helvetica;
+  color: var(--message-color);
+  padding: 2px;
+  &.fromHistory {
+    opacity: 0.3;
+  }
+  aside {
+    width: 6%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    vertical-align: top;
+    img {
+      width: 80%;
+    }
+  }
+  section {
+    display: inline-block;
+    width: 93%;
+    position: relative;
+    p {
+      margin: 0px;
+    }
+    img.banner {
+      max-width: 15vw;
+      max-height: 20vh;
+    }
+    a.banner {
+      display: block;
+    }
+    app-link-vcard {
+      width: 90%;
+      display: block;
+    }
+    nav {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      svg {
+        width: 20px;
+        opacity: 0;
+        color: var(--message-quote-icon-color);
+        transition: opacity 0.3s;
+        cursor: pointer;
+      }
+    }
+    &:hover {
+      nav {
+        svg {
+          opacity: 1;
+        }
+      }
+    }
+    header {
+      span {
+        display: inline-block;
+        margin-left: 5px;
+        font-size: 11px;
+      }
+    }
+    q {
+      display: block;
+      background: var(--message-quote-bg);
+      border: 1px solid var(--message-quote-border);
+      border-radius: 3px;
+      padding: 5px;
+      margin: 5px 0;
+      font-size: 12px;
+      &::before {
+        content: '';
+      }
+      svg {
+        width: 20px;
+        color: var(--message-quote-svg-color);
+        margin-right: 5px;
+        vertical-align: middle;
+      }
+    }
+  }
+  &.me {
+    color: var(--message-me);
+    padding-left: 6%;
+    margin: 2vh 0px;
+    svg {
+      width: 15px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+  &.notify {
+    color: var(--message-notify);
+    padding-left: 6%;
+    svg {
+      width: 15px;
+      transform: rotate(45deg);
+      vertical-align: middle;
+    }
+  }
+}
+
+.nick {
+  font-size: 15px;
+  font-family: helvetica;
+  font-weight: bolder;
+  &:hover {
+    color: var(--message-nick-hover);
+    cursor: pointer;
+  }
+}

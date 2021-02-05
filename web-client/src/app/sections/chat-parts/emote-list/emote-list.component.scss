@@ -1,0 +1,102 @@
+.emotePopup {
+  position: absolute;
+  bottom: 65px;
+  right: 0px;
+  height: 50%;
+  width: 363px;
+  overflow-y: auto;
+  background: var(--emote-popup-bg);
+  border: 1px solid var(--emote-popup-border);
+  z-index: 1;
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-bg);
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg);
+    border-left: 1px solid var(--scrollbar-track-border-left);
+    border-right: 1px solid var(--scrollbar-track-border-right);
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  nav {
+    font-family: helvetica;
+    .tab {
+      display: inline-block;
+      float: left;
+      width: 50%;
+      text-align: center;
+      background: var(--emote-popup-nav-bg);
+      border-bottom: 1px solid var(--emote-popup-nav-border);
+      color: var(--emote-popup-nav-color);
+      cursor: pointer;
+      &:first-child {
+        width: calc(50% - 1px);
+        border-right: 1px solid var(--emote-popup-nav-separator);
+      }
+      &:hover {
+        background: var(--emote-popup-nav-hover);
+      }
+    }
+  }
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    &.memes {
+      li {
+        font-family: helvetica;
+        border-bottom: 1px dotted var(--emote-popup-list-item-border);
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+        color: var(--emote-popup-list-item-color);
+        cursor: pointer;
+        span {
+          display: block;
+          text-align: center;
+          margin-bottom: 5px;
+        }
+        img {
+          width: 300px;
+          margin: 0 auto;
+          display: block;
+        }
+        &:hover {
+          background: var(--emote-popup-list-item-hover);
+        }
+      }
+    }
+    &.emotes {
+      li {
+        font-family: helvetica;
+        width: 100px;
+        color: var(--emote-popup-list-item-color);
+        display: inline-block;
+        margin: 2px;
+        vertical-align: top;
+        border: 1px solid var(--emote-popup-list-item-border);
+        padding: 5px;
+        cursor: pointer;
+        img {
+          width: 50px;
+          height: 50px;
+          vertical-align: middle;
+          border-radius: 3px;
+          transition: width 1s;
+          margin: 0 auto;
+          display: block;
+        }
+        span {
+          display: block;
+          text-align: center;
+        }
+        &:hover {
+          background: var(--emote-popup-list-item-hover);
+        }
+      }
+    }
+  }
+}

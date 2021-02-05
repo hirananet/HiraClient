@@ -1,0 +1,13 @@
+<app-nav></app-nav>
+<main>
+  <app-menu></app-menu>
+  <router-outlet></router-outlet>
+  <div class="popup" *ngIf="requestNick">
+    El usuario <b>{{requestNick}}</b> desea hablar contigo
+    <button (click)="accept(requestNick)">Aceptar</button>
+    <button class="cancel" (click)="requestNick = undefined">Ignorar</button>
+  </div>
+</main>
+<footer>
+  HiraClient v{{version}} - <b><i>{{codename}}</i></b> | <a href="https://www.hirana.net" target="_blank">Hirana.net</a>
+</footer>
