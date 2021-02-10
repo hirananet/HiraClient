@@ -41,6 +41,98 @@ main {
     }
   }
   section {
-    height: calc(100vh - 75px - 65px);
+    height: calc(100vh - 77px);
+    font-family: helvetica;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    &::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb-bg);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-thumb-hover);
+    }
+    &::-webkit-scrollbar-track {
+      background: var(--scrollbar-track-bg);
+      border-left: 1px solid var(--scrollbar-track-border-left);
+      border-right: 1px solid var(--scrollbar-track-border-right);
+    }
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    nav {
+      background: var(--whois-background);
+      width: calc(33% - 10px);
+      display: inline-block;
+      margin: 5px;
+      position: relative;
+      padding: 15px 0px;
+      border: 1px solid var(--whois-border);
+      vertical-align: top;
+      box-sizing: border-box;
+      svg {
+        width: 18px;
+        position: absolute;
+        margin: 6px;
+        color: var(--menu-searcher-icon-color);
+        margin-left: 10px;
+        left: 5%;
+      }
+      input {
+        height: 30px;
+        width: 90%;
+        font-size: 18px;
+        border: none;
+        text-indent: 35px;
+        color: var(--menu-searcher-text-color);
+        outline: none;
+        background: transparent;
+        border-radius: 50px;
+        box-sizing: border-box;
+        margin-left: 5%;
+      }
+    }
+    article {
+      cursor: pointer;
+      background: var(--whois-background);
+      width: calc(33% - 10px);
+      display: inline-block;
+      margin: 5px;
+      position: relative;
+      padding: 10px 15px;
+      border: 1px solid var(--whois-border);
+      box-sizing: border-box;
+      &:hover {
+        background: var(--whois-background--hover);
+      }
+      h3 {
+        margin: 0px;
+        display: inline-block;
+        margin-right: 10px;
+        color: var(--menu-list-header-color);
+        svg {
+          width: 20px;
+          vertical-align: bottom;
+        }
+      }
+      span {
+        svg {
+          width: 15px;
+        }
+        margin-right: 5px;
+        border: 1px solid var(--whois-border);
+        border-radius: 3px;
+        padding: 0px 5px;
+      }
+      p {
+        color: var(--menu-list-item-color);
+        margin: 0px;
+        height: 16px;
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
   }
 }
