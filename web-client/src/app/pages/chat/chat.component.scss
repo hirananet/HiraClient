@@ -114,7 +114,7 @@ main {
         position: absolute;
         bottom: 0px;
         right: 15px;
-        color: #20262d;
+        color: var(--message-down-arrows);
         cursor: pointer;
       }
       ul {
