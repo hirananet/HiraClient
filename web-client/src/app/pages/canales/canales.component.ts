@@ -41,7 +41,7 @@ export class CanalesComponent implements OnInit, OnDestroy {
   }
 
   openChan(chan: string) {
-    if(chan === '*') return;
+    if(!chan || chan.length === 0) return;
     if(this.cSrv.getChannel(chan)) {
       this.router.navigateByUrl('/chat/' + chan);
     } else {
