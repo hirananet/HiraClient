@@ -15,11 +15,8 @@ import { AudioService } from 'src/app/utils/audio.service';
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
-  public channels: ListElement[];
   public activeChannel: string = undefined;
   public activePrivMsg: string = undefined;
-
-  public privMsg: ListElement[] = [];
 
   private joinSubscription: Subscription;
 
@@ -29,6 +26,13 @@ export class MenuComponent implements OnInit, OnDestroy {
   public pingsChannel: number = 0;
   public privPings: {[key:string]: number} = {};
   public chanPings: {[key:string]: number} = {};
+
+  public channels: ListElement[];
+  public privMsg: ListElement[] = [];
+
+  public filterString: string = '';
+  public _channels: ListElement[];
+  public _privMsg: ListElement[] = [];
 
   constructor(
     private cSrv: ChannelsService,
@@ -46,19 +50,19 @@ export class MenuComponent implements OnInit, OnDestroy {
     });
     MenuSelectorEvent.menuChange.subscribe(d => {
       if(this.lastSelected?.type === MenuType.CHANNEL) {
-        const fdn = this.channels.find(channel => channel.name == this.lastSelected.name);
+        const fdn = this._channels.find(channel => channel.name == this.lastSelected.name);
         if(fdn) {
           fdn.active = false;
         }
       } else if(this.lastSelected?.type === MenuType.PRIV_MSG) {
-        const fdn = this.privMsg.find(channel => channel.name == this.lastSelected.name);
+        const fdn = this._privMsg.find(channel => channel.name == this.lastSelected.name);
         if(fdn) {
           fdn.active = false;
         }
       }
       this.lastSelected = d;
       if(this.lastSelected?.type === MenuType.CHANNEL) {
-        this.channels.find(channel => channel.name == this.lastSelected.name).active = true;
+        this._channels.find(channel => channel.name == this.lastSelected.name).active = true;
         this.activeChannel = this.lastSelected.name;
         this.activePrivMsg = undefined;
         if(this.chanPings[d.name] && this.chanPings[d.name] > 0) {
@@ -66,7 +70,7 @@ export class MenuComponent implements OnInit, OnDestroy {
           this.chanPings[d.name] = 0;
         }
       } else if(this.lastSelected?.type === MenuType.PRIV_MSG) {
-        this.privMsg.find(channel => channel.name == this.lastSelected.name).active = true;
+        this._privMsg.find(channel => channel.name == this.lastSelected.name).active = true;
         this.activePrivMsg = this.lastSelected.name;
         this.activeChannel = undefined;
         if(this.privPings[d.name] && this.privPings[d.name] > 0) {
@@ -77,7 +81,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     });
     this.cSrv.messagesReceived.subscribe(d => {
       if(d.target !== this.activeChannel) {
-        const channel = this.channels.find(channel => channel.name == d.target);
+        const channel = this._channels.find(channel => channel.name == d.target);
         const regex = ValidRegex.getRegex(ValidRegex.pingRegex(this.userSrv.getNick()));
         const result = regex.exec(d.message);
         if(result) {
@@ -94,7 +98,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     });
     this.pmsgSrv.messagesReceived.subscribe(d => {
       if(d.author.user !== this.activePrivMsg && d.author.user != this.userSrv.getNick()) {
-        let chat = this.privMsg.find(pms => pms.name === d.author.user);
+        let chat = this._privMsg.find(pms => pms.name === d.author.user);
         const regex = ValidRegex.getRegex(ValidRegex.pingRegex(this.userSrv.getNick()));
         const result = regex.exec(d.message);
         if(result) {
@@ -124,36 +128,53 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.ircoreSrv.sendMessageOrCommand('/leave #' + elem.name);
   }
 
+  onSearch(evt) {
+    this.channels = this._channels.filter(d => d.name.toLowerCase().indexOf(evt.srcElement.value.toLowerCase().trim()) >= 0);
+    this.privMsg = this._privMsg.filter(d => d.name.toLowerCase().indexOf(evt.srcElement.value.toLowerCase().trim()) >= 0);
+    this.filterString = evt.srcElement.value.toLowerCase().trim();
+  }
+
+  getFiltered(le: ListElement[]) {
+    return le.filter(d => d.name.toLowerCase().indexOf(this.filterString) >= 0);
+  }
+
   ngOnInit(): void {
     this.cSrv.listChanged.subscribe((d: ChannelData[]) => {
+      console.log('List changed', d);
       // validamos la lista
-      this.channels = [];
+      this._channels = [];
       d.forEach(channel => {
         const elem = new ListElement();
         elem.active = this.activeChannel == channel.name;
         elem.name = channel.name[0] == '#' ? channel.name.substring(1) : channel.name;
-        this.channels.push(elem);
+        this._channels.push(elem);
       });
       // estoy en un canal que no existe?
-      if(this.channels.findIndex(chan => chan.name === this.activeChannel) == -1) {
+      if(this._channels.findIndex(chan => chan.name === this.activeChannel) == -1) {
         this.activeChannel = undefined;
         this.router.navigateByUrl('/chat');
       }
+      this.channels = this.getFiltered(this._channels);
     });
     this.pmsgSrv.newPrivOpened.subscribe((nick) => {
       const elem = new ListElement();
       elem.active = this.activePrivMsg == nick;
       elem.name = nick;
       elem.image = environment.hiranaTools + '/avatar?usr=' + nick;
-      this.privMsg.push(elem);
+      this._privMsg.push(elem);
+      this.privMsg = this.getFiltered(this._privMsg);
     });
     this.pmsgSrv.closedPriv.subscribe(nick => {
-      const pi = this.privMsg.findIndex(p => p == nick);
-      this.privMsg.splice(pi, 1);
+      const pi = this._privMsg.findIndex(p => p.name == nick);
+      if(pi < 0) {
+        return;
+      }
+      this._privMsg.splice(pi, 1);
       if(this.activePrivMsg == nick) {
         this.activePrivMsg = undefined;
         this.router.navigateByUrl('/chat');
       }
+      this.privMsg = this.getFiltered(this._privMsg);
     });
   }
 
