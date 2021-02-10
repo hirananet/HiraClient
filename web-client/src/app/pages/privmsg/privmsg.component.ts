@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
@@ -55,6 +55,7 @@ export class PrivmsgComponent implements OnInit {
   });
 }
 
+  @HostListener('window:resize', ['$event'])
   goDown() {
     const elem = document.getElementById('listMessages');
     this.autoDownLocked = false;

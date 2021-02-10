@@ -1,6 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { HistoryMessageCursorService } from '../utils/history-message-cursor.service';
@@ -54,6 +54,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     }, environment.intervalWHOX);
   }
 
+  @HostListener('window:resize', ['$event'])
   goDown() {
     console.log('GoDown');
     const elem = document.getElementById('listMessages');
