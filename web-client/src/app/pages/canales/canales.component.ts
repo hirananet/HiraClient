@@ -12,13 +12,19 @@ import { Router } from '@angular/router';
 export class CanalesComponent implements OnInit, OnDestroy {
 
   private listHandler: Subscription;
+
   public channels: ChannelInfo[];
+  public _channels: ChannelInfo[];
 
   constructor(private router: Router, private titleSrv: Title, private ircSrv: IRCoreService, private cSrv: ChannelsService) {
     this.listHandler = ListHandler.channelListCreated.subscribe(d => {
-      this.channels = d;
+      this.channels = this._channels = d;
     });
-    this.channels = ListHandler.getChannelList();
+    this.channels = this._channels = ListHandler.getChannelList();
+  }
+
+  onSearch(evt) {
+    this.channels = this._channels.filter(d => d.name.toLowerCase().indexOf(evt.srcElement.value.toLowerCase()) >= 0);
   }
 
   ngOnInit(): void {
