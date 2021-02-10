@@ -23,6 +23,10 @@ export class CanalesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.titleSrv.setTitle('Lista de canales | HiraClient');
+    this.refresh();
+  }
+
+  refresh() {
     this.ircSrv.sendMessageOrCommand('/list');
   }
 

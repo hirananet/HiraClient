@@ -77,6 +77,11 @@ main {
         color: var(--menu-searcher-icon-color);
         margin-left: 10px;
         left: 5%;
+        &.refresh {
+          right: 5%;
+          left: initial;
+          cursor: pointer;
+        }
       }
       input {
         height: 30px;
