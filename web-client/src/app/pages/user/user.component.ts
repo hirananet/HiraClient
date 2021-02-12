@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { Title } from '@angular/platform-browser';
 import { IRCoreService, StatusHandler, MotdHandler, IRCMessage, ConnectionStatus, ConnectionStatusData, WebSocketUtil } from 'ircore';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user',
@@ -78,6 +79,7 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
         const canales = JSON.parse(localStorage.getItem('cChannels'));
         this.canales = canales ? canales : [];
       }
+      this.isWS = localStorage.getItem('cIsWS') == 'yes';
     }
     document.getElementById('nickInput').focus();
   }
@@ -116,7 +118,6 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
           subscription_status_b.unsubscribe();
         })
         const subscription_nick = StatusHandler.nickAlreadyInUse.subscribe(d => {
-          console.log('Nick in use', d);
           this.ircSrv.setNick(this.nickSecundario);
           subscription_nick.unsubscribe();
         })
@@ -128,8 +129,29 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
           subscripion_motd.unsubscribe();
         })
       } else {
-        // TODO: conectar al gateway y enviar el host.
-        // el mismo que el anterior pero pasando el server gateway
+        this.ircSrv.connect(environment.webIRCGateway);
+        const subscription_status_b = WebSocketUtil.statusChanged.subscribe(d => {
+          this.ircSrv.handshake(this.nick, this.nick, this.host);
+          this.router.navigateByUrl('/server');
+          subscription_status_b.unsubscribe();
+        })
+        const subscription_nick = StatusHandler.nickAlreadyInUse.subscribe(d => {
+          this.ircSrv.setNick(this.nickSecundario);
+          subscription_nick.unsubscribe();
+        })
+        const subscription_motd_pass = MotdHandler.requirePasswordResponse.subscribe((d: IRCMessage) => {
+          if(this.tipoLogin === TiposLogin.PASS) {
+            this.ircSrv.serverPass(this.nick, this.password);
+          }
+        });
+        const subscripion_motd = MotdHandler.motdResponse.subscribe((d: IRCMessage) => {
+          subscription_motd_pass.unsubscribe();
+          // joineamos canales?
+          this.canales.forEach(canal => {
+            this.ircSrv.join(canal);
+          });
+          subscripion_motd.unsubscribe();
+        });
       }
     }
   }
@@ -157,6 +179,7 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
     localStorage.setItem('cAuthMethod', this.tipoLogin);
     localStorage.setItem('cChannels', JSON.stringify(this.canales));
     localStorage.setItem('cPassword', this.password);
+    localStorage.setItem('cIsWS', this.isWS ? 'yes' : 'no');
     return true;
   }
 
