@@ -60,22 +60,39 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
         chat
       ];
     }
+    // compatibilidad
+    if(ParamParse.parametria['autojoin']) {
+      const chat = ParamParse.parametria['autojoin'][0] != '#' ? '#' +ParamParse.parametria['autojoin'] : ParamParse.parametria['autojoin'];
+      this.canales = [
+        chat
+      ];
+    }
     if(ParamParse.parametria['nick']) {
       this.nick = ParamParse.parametria['nick'];
       this.nickSecundario = ParamParse.parametria['nick'] + '_';
+    }
+    // compatibilidad
+    if(ParamParse.parametria['apodo']) {
+      this.nick = ParamParse.parametria['apodo'];
+      this.nickSecundario = ParamParse.parametria['apodoSecundario'];
+    }
+    // compatibilidad
+    if(ParamParse.parametria['requestNick']) {
+      this.nick = ParamParse.parametria['requestNick'];
+      this.nickSecundario = ParamParse.parametria['apodoSecundario'];
     }
     if(ParamParse.parametria['connect'] && ParamParse.parametria['connect'] == 'yes') {
       this.connect();
     }
     if(localStorage.getItem('cHost')) {
       this.host = localStorage.getItem('cHost');
-      if(!ParamParse.parametria['nick']) {
+      if(!ParamParse.parametria['nick'] && !ParamParse.parametria['apodo'] && !ParamParse.parametria['requestNick']) {
         this.nick = localStorage.getItem('cNick');
         this.nickSecundario = localStorage.getItem('cNickAlt');
       }
       this.tipoLogin = localStorage.getItem('cAuthMethod') as TiposLogin;
       this.password = localStorage.getItem('cPassword');
-      if(!ParamParse.parametria['chat']) {
+      if(!ParamParse.parametria['chat'] && !ParamParse.parametria['autojoin']) {
         const canales = JSON.parse(localStorage.getItem('cChannels'));
         this.canales = canales ? canales : [];
       }

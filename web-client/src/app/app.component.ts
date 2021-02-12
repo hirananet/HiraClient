@@ -20,7 +20,7 @@ export class AppComponent {
       this.requestNick = d;
     });
     ParamParse.parseHash(window.location.hash.slice(1));
-    if(ParamParse.parametria['embedded'] && ParamParse.parametria['embedded'] == 'yes') {
+    if(ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true')) {
       document.body.classList.add('embedded');
     }
     if(!ParamParse.parametria['skin'] || ParamParse.parametria['skin'] === 'light') {
