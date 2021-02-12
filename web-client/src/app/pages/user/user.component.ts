@@ -109,50 +109,47 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   connect() {
     if(this.saveData()) {
       // establecer conexión
-      let host = this.host;
+
       if(this.isWS) {
         this.ircSrv.connect('wss://' + this.host);
-        const subscription_status_b = WebSocketUtil.statusChanged.subscribe(d => {
-          this.ircSrv.handshake(this.nick, this.nick);
-          this.router.navigateByUrl('/server');
-          subscription_status_b.unsubscribe();
-        })
-        const subscription_nick = StatusHandler.nickAlreadyInUse.subscribe(d => {
-          this.ircSrv.setNick(this.nickSecundario);
-          subscription_nick.unsubscribe();
-        })
-        const subscripion_motd = MotdHandler.motdResponse.subscribe((d: IRCMessage) => {
-          // joineamos canales?
-          this.canales.forEach(canal => {
-            this.ircSrv.join(canal);
-          });
-          subscripion_motd.unsubscribe();
-        })
       } else {
         this.ircSrv.connect(environment.webIRCGateway);
-        const subscription_status_b = WebSocketUtil.statusChanged.subscribe(d => {
-          this.ircSrv.handshake(this.nick, this.nick, this.host);
-          this.router.navigateByUrl('/server');
-          subscription_status_b.unsubscribe();
-        })
-        const subscription_nick = StatusHandler.nickAlreadyInUse.subscribe(d => {
-          this.ircSrv.setNick(this.nickSecundario);
-          subscription_nick.unsubscribe();
-        })
-        const subscription_motd_pass = MotdHandler.requirePasswordResponse.subscribe((d: IRCMessage) => {
-          if(this.tipoLogin === TiposLogin.PASS) {
-            this.ircSrv.serverPass(this.nick, this.password);
-          }
-        });
-        const subscripion_motd = MotdHandler.motdResponse.subscribe((d: IRCMessage) => {
-          subscription_motd_pass.unsubscribe();
-          // joineamos canales?
-          this.canales.forEach(canal => {
-            this.ircSrv.join(canal);
-          });
-          subscripion_motd.unsubscribe();
-        });
       }
+
+      const subscription_status_b = WebSocketUtil.statusChanged.subscribe(d => {
+        if(this.isWS) {
+          this.ircSrv.handshake(this.nick, this.nick);
+        } else {
+          this.ircSrv.handshake(this.nick, this.nick, this.host);
+        }
+        this.router.navigateByUrl('/server');
+        subscription_status_b.unsubscribe();
+      });
+
+      const subscription_nick = StatusHandler.nickAlreadyInUse.subscribe(d => {
+        this.ircSrv.setNick(this.nickSecundario);
+        subscription_nick.unsubscribe();
+      });
+
+      const subscription_motd_pass = MotdHandler.requirePasswordResponse.subscribe((d: IRCMessage) => {
+        if(this.tipoLogin === TiposLogin.PASS) {
+          this.ircSrv.serverPass(this.nick, this.password);
+        }
+      });
+
+      const subscripion_motd = MotdHandler.motdResponse.subscribe((d: IRCMessage) => {
+        // debemos loguearnos?
+        if(this.tipoLogin === TiposLogin.NS) {
+          this.ircSrv.identify(this.password);
+        }
+        // ya no tiene sentido que nos pida /PASS
+        subscription_motd_pass.unsubscribe();
+        // joineamos canales?
+        this.canales.forEach(canal => {
+          this.ircSrv.join(canal);
+        });
+        subscripion_motd.unsubscribe();
+      });
     }
   }
 

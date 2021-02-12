@@ -2,10 +2,10 @@
 *** Previo lanzamiento ***
 - chequear la compatibilidad de los parametros por url para insertar en underc0de.
 - en whois clickear nick para abrir privado.
-- no anda el ns identify?
 
 ================================================
 
+. znc bug en se marchó??
 . el ping pone una coma de más
 . Remover al quotear el quote previo
 . link del chat
@@ -13,5 +13,6 @@
 . probar canales con doble numeral
 . bug del imagen con emote.
 . undefined en user list
+- popup de quieres registrar tu nick? con interfaz visual, lo mismo con el identify
 
 ================================================
