@@ -1,7 +1,6 @@
 
 *** Previo lanzamiento ***
 - chequear la compatibilidad de los parametros por url para insertar en underc0de.
-- en whois clickear nick para abrir privado.
 
 ================================================
 
@@ -13,6 +12,7 @@
 . probar canales con doble numeral
 . bug del imagen con emote.
 . undefined en user list
-- popup de quieres registrar tu nick? con interfaz visual, lo mismo con el identify
+- popup de quieres registrar tu nick? con interfaz visual
+- al actualizar en popup de user dar feedback al usuario de que se guardó.
 
 ================================================

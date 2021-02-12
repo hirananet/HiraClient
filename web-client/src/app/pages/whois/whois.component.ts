@@ -82,6 +82,10 @@ export class WhoisComponent implements OnInit {
     }
   }
 
+  openPv(nick: string) {
+    this.router.navigateByUrl('/priv/' + nick)
+  }
+
   search(nick: string) {
     this.ircSrv.sendMessageOrCommand('/whois ' + nick);
   }

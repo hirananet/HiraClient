@@ -81,6 +81,11 @@ main {
         }
         h3 {
           margin: 0.4em;
+          color: var(--whois-yes-color);
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
         }
         span {
           display: block;
