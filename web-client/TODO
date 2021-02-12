@@ -1,6 +1,7 @@
 
 *** Previo lanzamiento ***
-- en modo embebido forzado al abrir un privado no se muestra la lista de canales
+- en whois y canales al achicarlo se buguea el diseño
+- embebido forzado privado se buguea el diseño (privado, whois y canales), no se ve el popup de nick
 
 ================================================
 
