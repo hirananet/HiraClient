@@ -27,10 +27,11 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   public connected: boolean;
 
   private subscription_status: Subscription;
+  public embedded: boolean;
 
 
   constructor(private ircSrv: IRCoreService, private router: Router, private titleSrv: Title) {
-
+    this.embedded = ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true');
   }
 
   ngOnInit(): void {

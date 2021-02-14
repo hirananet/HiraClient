@@ -7,6 +7,14 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  &.embedded {
+    #embeddedPopup {
+      display: block;
+    }
+    #fullPopup {
+      display: none;
+    }
+  }
   #embeddedPopup {
     display: none;
   }
