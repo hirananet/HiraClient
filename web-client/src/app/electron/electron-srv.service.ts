@@ -33,6 +33,7 @@ export class ElectronSrvService {
 
   @HostListener('document:logRoute', ['$event'])
   oglr(evt: CustomEvent) {
+    console.log('LogRoute', evt);
     this.onLogRoute.emit(evt.detail);
   }
 

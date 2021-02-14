@@ -55,6 +55,7 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
           this.messages.push({
             code: '00',
             message: 'HC: Log route: ' + _route,
+            body: 'HC: Log route: ' + _route,
             origin: {
               server: 'HiraClient'
             },
@@ -67,6 +68,7 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
         this.messages.push({
           code: '00',
           message: 'Setting Log route: ' + route,
+          body: 'Setting Log route: ' + route,
           origin: {
             server: 'HiraClient'
           },
@@ -74,6 +76,7 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
           target: 'SERVER'
         });
       }
+      this.serverCommand = '';
     } else {
       this.ircSrv.sendMessageOrCommand(this.serverCommand);
       this.serverCommand = '';
