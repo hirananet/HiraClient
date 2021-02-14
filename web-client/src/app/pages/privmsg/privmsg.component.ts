@@ -205,7 +205,7 @@ export class PrivmsgComponent implements OnInit {
       chat += msg.date + ' <' + msg.author.user + '> ' + msg.message + '\r\n';
     });
     navigator.clipboard.writeText(chat).then(d => {
-      console.log('copied');
+
     });
   }
 

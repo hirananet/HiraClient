@@ -29,16 +29,7 @@ if(HCCFG.logsSave) {
   logsSave = process.env['USERPROFILE'].toString() + '/hiraclient2-logs';
 }
 
-contextMenu({
-//   prepend: (params, browserWindow) => [
-//       {
-//         role: "zoomIn"
-//       },
-//       {
-//         role: "zoomOut"
-//       },
-//   ],
-});
+contextMenu({ });
 
 function createWindow () {
   autoUpdater.checkForUpdatesAndNotify();

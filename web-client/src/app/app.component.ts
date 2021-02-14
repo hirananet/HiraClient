@@ -2,6 +2,7 @@ import { environment } from './../environments/environment';
 import { Component } from '@angular/core';
 import { ParamParse } from './utils/ParamsParse';
 import { GmodeHandler, ServerMsgService, IRCoreService, AvatarHelper } from 'ircore';
+import { ElectronSrvService } from './electron/electron-srv.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   version = environment.version;
   requestNick = undefined;
 
-  constructor(private srvSrv: ServerMsgService, private ircoreSrv: IRCoreService) {
+  constructor(private srvSrv: ServerMsgService, private ircoreSrv: IRCoreService, private electronSrv: ElectronSrvService) {
     AvatarHelper.setAvatarURL(environment.hiranaTools + '/avatar?usr=');
     GmodeHandler.onPrivateRequest.subscribe(d => {
       this.requestNick = d;

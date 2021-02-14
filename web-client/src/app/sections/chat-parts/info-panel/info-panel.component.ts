@@ -89,7 +89,6 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
 
   contextMenu(evt) {
     evt.ctx.preventDefault();
-    console.log(evt.ctx);
     this.menuElement = {
       target: evt.elem.name,
       posX: evt.ctx.clientX - 130,
