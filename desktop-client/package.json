@@ -1,0 +1,58 @@
+{
+  "name": "hira-client-desktop",
+  "version": "2.0.0",
+  "description": "Hirana client ported to desktop",
+  "main": "index.js",
+  "dependencies": {
+    "electron-context-menu": "^2.3.0",
+    "electron-updater": "^4.3.5"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.8.0",
+    "electron": "^9.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder -p always"
+  },
+  "build": {
+    "appId": "net.hirana.client",
+    "productName": "Hirana Client",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "arch": [
+          "x64",
+          "ia32"
+      ],
+      "icon": "resources/icon.ico"
+    },
+    "mac": {
+      "category": "Network",
+      "target": [
+        "pkg"
+      ],
+      "icon": "resources/icon.icns"
+    },
+    "linux": {
+      "category": "Network",
+      "maintainer": "Alex <alexander171294@gmail.com>",
+      "target": [
+        "AppImage"
+      ],
+      "icon": "resources/256x256.png"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "hirananet",
+        "repo": "HiraClient"
+      }
+    ]
+  },
+  "author": "Alex@hirana.net",
+  "license": "ISC"
+}

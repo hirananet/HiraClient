@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=2.0
+Type=Application
+Name=HiraClient
+Exec=/home/maguito/tools/hirana/hiraclient2.AppImage
+Icon=/home/maguito/tools/hirana/icon.png
+

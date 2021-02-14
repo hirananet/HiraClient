@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  electron: false,
   version: '2.0.1',
   codename: 'B612',
   hiranaTools: 'https://thira.tandilserver.com',
