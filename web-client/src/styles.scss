@@ -8,12 +8,7 @@ body {
     app-menu {
       display: none;
     }
-    app-user {
-      main {
-        width: calc(100vw - 55px);;
-      }
-    }
-    app-about, app-server-messages {
+    app-user, app-about, app-server-messages, app-whois, app-canales, app-privmsg {
       main {
         width: calc(100vw - 55px);;
       }
@@ -26,6 +21,7 @@ body {
     app-info-panel {
       width: 293px;
     }
+
   }
 
 }
