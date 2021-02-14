@@ -76,7 +76,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.messageSubscription = this.chanSrv.messagesReceived.subscribe(d => {
       if(d.target === this.channelName) {
         this.newMessages = false;
-        console.log('NM', this.autoDownLocked);
         if(this.autoDownLocked) {
           this.newMessages = true;
           return;

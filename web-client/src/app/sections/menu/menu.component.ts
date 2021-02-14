@@ -140,7 +140,6 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cSrv.listChanged.subscribe((d: ChannelData[]) => {
-      console.log('List changed', d);
       // validamos la lista
       this._channels = [];
       d.forEach(channel => {

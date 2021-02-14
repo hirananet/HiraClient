@@ -24,10 +24,6 @@
       "target": [
         "nsis"
       ],
-      "arch": [
-        "x64",
-        "ia32"
-      ],
       "icon": "resources/icon.ico"
     },
     "mac": {

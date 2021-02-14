@@ -65,12 +65,6 @@ function createWindow () {
     e.preventDefault();
     require('electron').shell.openExternal(url);
   });
-  ipcMain.on('news', async (evt, data) => {
-    if(!win.isFocused()) {
-      win.flashFrame(true)
-      evt.reply('playSound', {});
-    }
-  });
   ipcMain.on('savelog', async (evt, data) => {
     const fname = data.target[0] == '#' ? ('channel-' + data.target.slice(1)) : ('privmsg-' + data.target);
     const flocation = logsSave + '/log-'+fname+'.txt';
