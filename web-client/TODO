@@ -1,5 +1,8 @@
 ================================================
 
+. Poder desactivar logs en el desktop
+. Autojoin-canales en desktop no anda
+. blink de notificaciones en desktop.
 . znc bug en se marchó??
 . el ping pone una coma de más
 . Remover al quotear el quote previo
@@ -10,6 +13,7 @@
 . undefined en user list
 - popup de quieres registrar tu nick? con interfaz visual
 - al actualizar en popup de user dar feedback al usuario de que se guardó.
+. sacar el emote list del IRCore
 
 ================================================
 
