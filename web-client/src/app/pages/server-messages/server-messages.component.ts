@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { Title } from '@angular/platform-browser';
 import { IRCMessage, ServerMsgService, IRCoreService } from 'ircore';
+import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
 
 @Component({
   selector: 'app-server-messages',
@@ -15,7 +16,7 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
   public serverCommand: string;
   public subscription: Subscription;
 
-  constructor(private srvSrv: ServerMsgService, private ircSrv: IRCoreService, private titleSrv: Title) {
+  constructor(private srvSrv: ServerMsgService, private ircSrv: IRCoreService, private titleSrv: Title, private electronSrv: ElectronSrvService) {
     this.messages = srvSrv.messages;
   }
 
@@ -46,9 +47,37 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
   }
 
   send() {
-    this.ircSrv.sendMessageOrCommand(this.serverCommand);
-    this.serverCommand = '';
-    document.getElementById('commandInput').focus();
+    if(this.serverCommand.indexOf('/log_route') === 0) {
+      const route = this.serverCommand.replace('/log_route', '');
+      if(route.length > 0) {
+        this.electronSrv.getLogRoute().then(_route => {
+          this.messages.push({
+            code: '00',
+            message: 'HC: Log route: ' + _route,
+            origin: {
+              server: 'HiraClient'
+            },
+            simplyOrigin: 'HiraClient',
+            target: 'SERVER'
+          });
+        })
+      } else {
+        this.electronSrv.setLogRoute(route);
+        this.messages.push({
+          code: '00',
+          message: 'Setting Log route: ' + route,
+          origin: {
+            server: 'HiraClient'
+          },
+          simplyOrigin: 'HiraClient',
+          target: 'SERVER'
+        });
+      }
+    } else {
+      this.ircSrv.sendMessageOrCommand(this.serverCommand);
+      this.serverCommand = '';
+      document.getElementById('commandInput').focus();
+    }
   }
 
   ngOnDestroy(): void {
