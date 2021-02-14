@@ -1,6 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { Title } from '@angular/platform-browser';
 import { IRCMessage, ServerMsgService, IRCoreService } from 'ircore';
@@ -47,10 +47,15 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
     }
   }
 
+  @HostListener('document:logRoute', ['$event'])
+  getLogRoute(evt) {
+    this.electronSrv.oglr(evt);
+  }
+
   send() {
     if(environment.electron && this.serverCommand.indexOf('/log_route') === 0) {
-      const route = this.serverCommand.replace('/log_route', '');
-      if(route.length > 0) {
+      const route = this.serverCommand.replace('/log_route', '').trim();
+      if(route.length == 0) {
         this.electronSrv.getLogRoute().then(_route => {
           this.messages.push({
             code: '00',
@@ -62,6 +67,7 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
             simplyOrigin: 'HiraClient',
             target: 'SERVER'
           });
+          this.goDown();
         })
       } else {
         this.electronSrv.setLogRoute(route);
@@ -75,6 +81,7 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
           simplyOrigin: 'HiraClient',
           target: 'SERVER'
         });
+        this.goDown();
       }
       this.serverCommand = '';
     } else {

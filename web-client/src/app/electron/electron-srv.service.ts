@@ -1,4 +1,4 @@
-import { EventEmitter, HostListener, Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { IndividualMessage, IndividualMessageTypes, MessageHandler } from 'ircore';
 import { environment } from 'src/environments/environment';
 
@@ -31,9 +31,7 @@ export class ElectronSrvService {
     }
   }
 
-  @HostListener('document:logRoute', ['$event'])
   oglr(evt: CustomEvent) {
-    console.log('LogRoute', evt);
     this.onLogRoute.emit(evt.detail);
   }
 
