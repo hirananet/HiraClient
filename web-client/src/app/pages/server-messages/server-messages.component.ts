@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
@@ -47,7 +48,7 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
   }
 
   send() {
-    if(this.serverCommand.indexOf('/log_route') === 0) {
+    if(environment.electron && this.serverCommand.indexOf('/log_route') === 0) {
       const route = this.serverCommand.replace('/log_route', '');
       if(route.length > 0) {
         this.electronSrv.getLogRoute().then(_route => {
