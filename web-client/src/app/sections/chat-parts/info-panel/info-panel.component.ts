@@ -3,6 +3,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ListElement } from 'src/app/sections/list/list.component';
 import { environment } from 'src/environments/environment';
 import { User, UModes, ChannelsService, IRCoreService } from 'ircore';
+import { MenuElementData } from '../../context-menu/context-menu.component';
 
 @Component({
   selector: 'app-info-panel',
@@ -15,9 +16,9 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
   @Input() channelName: string;
 
   private memberSubscription: Subscription;
-  public menuElement: {target: string, posX: number, posY: number};
+  public menuElement: MenuElementData;
 
-  constructor(private chanSrv: ChannelsService, private ircSrv: IRCoreService) {
+  constructor(chanSrv: ChannelsService) {
     this.memberSubscription = chanSrv.membersChanged.subscribe((d: {channel: string, users: User[]}) => {
       if(d.channel === this.channelName) {
         this.recalcUsers(d.users);
@@ -94,10 +95,6 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
       posX: evt.ctx.clientX - 130,
       posY: evt.ctx.clientY + 25
     };
-  }
-
-  whois(nick) {
-    this.ircSrv.sendMessageOrCommand('/whois ' + nick);
   }
 
 }

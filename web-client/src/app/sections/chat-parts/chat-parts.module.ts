@@ -1,3 +1,4 @@
+import { ContextMenuModule } from './../context-menu/context-menu.module';
 import { EmoteListComponent } from './emote-list/emote-list.component';
 import { InfoPanelComponent } from './info-panel/info-panel.component';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,8 @@ import { SafePipe } from './message-item/safe.pipe';
   imports: [
     CommonModule,
     ListModule,
-    FormsModule
+    FormsModule,
+    ContextMenuModule
   ],
   exports: [
     InfoPanelComponent,

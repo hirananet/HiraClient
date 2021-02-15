@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Title } from '@angular/platform-browser';
 import { AudioService } from 'src/app/utils/audio.service';
+import { MenuElementData } from '../context-menu/context-menu.component';
 
 @Component({
   selector: 'app-menu',
@@ -33,6 +34,8 @@ export class MenuComponent implements OnInit, OnDestroy {
   public filterString: string = '';
   public _channels: ListElement[];
   public _privMsg: ListElement[] = [];
+
+  public menuElement: MenuElementData;
 
   constructor(
     private cSrv: ChannelsService,
@@ -183,6 +186,15 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.joinSubscription.unsubscribe();
+  }
+
+  contextMenu(evt) {
+    evt.ctx.preventDefault();
+    this.menuElement = {
+      target: evt.elem.name,
+      posX: evt.ctx.clientX - 130,
+      posY: evt.ctx.clientY + 25
+    };
   }
 
 }

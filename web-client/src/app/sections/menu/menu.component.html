@@ -7,6 +7,7 @@
   </header>
   <div class="contentScrolleable">
     <app-menu-list title="Canales" [elements]="channels" path="/chat/"  type="chat" [closable]="true" (close)="closeChannel($event)"></app-menu-list>
-    <app-menu-list title="Mensajes privados" [elements]="privMsg" path="/priv/"  type="members" [closable]="true" (close)="closePrivmsg($event)"></app-menu-list>
+    <app-menu-list title="Mensajes privados" [elements]="privMsg" path="/priv/"  type="members" [closable]="true" (close)="closePrivmsg($event)" (contextMenu)="contextMenu($event)"></app-menu-list>
+    <app-context-menu *ngIf="menuElement" [posX]="menuElement.posX" [posY]="menuElement.posY" [target]="menuElement.target" [elements]="['whois']" (close)="menuElement = undefined"></app-context-menu>
   </div>
 </aside>

@@ -1,3 +1,4 @@
+import { ContextMenuModule } from './sections/context-menu/context-menu.module';
 import { FormsModule } from '@angular/forms';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ListModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ContextMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
