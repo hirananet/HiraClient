@@ -1,8 +1,10 @@
+import { globalData } from './version';
+
 export const environment = {
   production: true,
   electron: false,
-  version: '2.0.1',
-  codename: 'B612',
+  version: globalData.version,
+  codename: globalData.codename,
   hiranaTools: 'https://thira.tandilserver.com',
   maxCommandHistory: 50,
   intervalWHOX: 10000,
