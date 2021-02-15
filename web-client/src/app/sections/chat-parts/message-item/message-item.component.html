@@ -1,10 +1,10 @@
 <article class="user" *ngIf="!message.special && !message.notify" [class.fromHistory]="message.fromHistory">
   <aside>
-    <img [src]="message.author.image" />
+    <img [src]="message.author.image" (contextMenu)="contextMenu($event)"/>
   </aside>
   <section>
     <header>
-      <b class="nick" (click)="openPM(message.author.user)">{{message.author.user}}</b>
+      <b class="nick" (click)="openPM(message.author.user)" (contextMenu)="contextMenu($event)">{{message.author.user}}</b>
       <span>
         {{message.date}}
         <!-- 12/01/2021 17:26:47 -->
@@ -12,7 +12,7 @@
     </header>
     <q *ngIf="message.messageWithMetadata?.quote">
       <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="quote-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-quote-right fa-w-16"><path fill="currentColor" d="M464 32H336c-26.5 0-48 21.5-48 48v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48zm-288 0H48C21.5 32 0 53.5 0 80v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48z"></path></svg>
-      <b class="nick" (click)="openPM(message.author.user)">{{message.messageWithMetadata.quote.author}}</b>
+      <b class="nick" (click)="openPM(message.author.user)" (contextMenu)="contextMenu($event)">{{message.messageWithMetadata.quote.author}}</b>
       {{message.messageWithMetadata.quote.originalMessage}}
     </q>
     <p *ngIf="!message.messageWithMetadata">
@@ -41,3 +41,5 @@
   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bell" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-bell fa-w-14"><path fill="currentColor" d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z" class=""></path></svg>
   {{message.message}}
 </article>
+
+<app-context-menu *ngIf="menuElement" [posX]="menuElement.posX" [posY]="menuElement.posY" [target]="menuElement.target" [elements]="['whois']" (close)="menuElement = undefined"></app-context-menu>
