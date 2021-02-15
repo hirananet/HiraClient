@@ -82,6 +82,11 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
       this.nick = ParamParse.parametria['requestNick'];
       this.nickSecundario = ParamParse.parametria['apodoSecundario'];
     }
+    // compatibilidad
+    if(ParamParse.parametria['requestNick'] === '0') {
+      this.nick = 'Invitado' + Math.floor((Math.random() * 9999) + 1000);
+      this.nickSecundario = 'Invitado' + Math.floor((Math.random() * 9999) + 1000);
+    }
     if(ParamParse.parametria['connect'] && ParamParse.parametria['connect'] == 'yes') {
       this.connect();
     }
