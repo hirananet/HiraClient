@@ -32,12 +32,12 @@ export class MessageItemComponent implements OnInit {
   }
 
 
-  contextMenu(evt) {
-    evt.ctx.preventDefault();
+  contextMenu(evt, target) {
+    evt.preventDefault();
     this.menuElement = {
-      target: evt.elem.name,
-      posX: evt.ctx.clientX - 130,
-      posY: evt.ctx.clientY + 25
+      target: target,
+      posX: evt.clientX - 130,
+      posY: evt.clientY + 25
     };
   }
 
