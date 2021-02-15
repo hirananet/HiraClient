@@ -3,7 +3,7 @@ import { globalData } from './version';
 export const environment = {
   production: true,
   electron: true,
-  version: globalData.version,
+  version: globalData.version+'-e',
   codename: globalData.codename,
   hiranaTools: 'https://thira.tandilserver.com',
   maxCommandHistory: 50,
