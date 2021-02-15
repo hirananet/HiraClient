@@ -21,6 +21,9 @@ article {
     display: inline-block;
     width: 93%;
     position: relative;
+    &:hover {
+      background: #0000001a;
+    }
     p {
       margin: 0px;
     }
