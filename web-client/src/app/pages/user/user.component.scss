@@ -8,6 +8,7 @@ main {
   justify-content: center;
   align-items: center;
   &.embedded {
+    background: var(--user-background);
     #embeddedPopup {
       display: block;
     }

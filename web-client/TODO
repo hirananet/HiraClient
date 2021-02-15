@@ -1,6 +1,11 @@
 Requeridos:
 
 . Autojoin-canales en desktop no anda
+. al ser kickeado avisar, lo mismo que ser banneado.
+. al enviar mensaje a alguien que no existe avisar.
+. cambio de nick no afecta a la lista
+. cartel de solo con invitación
+. efecto gotita
 
 ================================================
 

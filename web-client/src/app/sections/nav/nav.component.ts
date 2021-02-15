@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil, WhoIsHandler, WhoIsData } from 'ircore';
+import { ParamParse } from 'src/app/utils/ParamsParse';
 
 @Component({
   selector: 'app-nav',
@@ -18,8 +19,11 @@ export class NavComponent implements OnInit {
   public popupOpened: boolean = false;
   public nick: string;
   public skin: string;
+  public embedded: boolean;
 
-  constructor(private router: Router, private ircSrv: IRCoreService, private uiSrv: UserInfoService, private audioSrv: AudioService) { }
+  constructor(private router: Router, private ircSrv: IRCoreService, private uiSrv: UserInfoService, private audioSrv: AudioService) {
+    this.embedded = ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true');
+  }
 
   ngOnInit(): void {
     WebSocketUtil.statusChanged.subscribe((status: ConnectionStatusData<any>) => {
