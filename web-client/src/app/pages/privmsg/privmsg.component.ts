@@ -29,6 +29,7 @@ export class PrivmsgComponent implements OnInit {
   public messageSubscription: Subscription;
   public awaySubscription: Subscription;
   public awayMessage: string;
+  public lastAway: string;
   public gmodeSubscription: Subscription;
   public gmodeMessage: boolean;
 
@@ -122,11 +123,12 @@ export class PrivmsgComponent implements OnInit {
     document.getElementById('messageInput').focus();
     this.autoGoDown();
     this.awaySubscription = AwayHandler.awayResponse.subscribe((d: Away) => {
-      if(d.author == this.nickTarget) {
+      if(d.author == this.nickTarget && d.message != this.lastAway) {
         this.awayMessage = d.message;
+        this.lastAway = d.message;
         setTimeout(d => {
           this.awayMessage = undefined;
-        }, 2500);
+        }, 5000);
       }
     });
     this.gmodeSubscription = IgnoreHandler.ignoreResponse.subscribe((nick: Away) => {
