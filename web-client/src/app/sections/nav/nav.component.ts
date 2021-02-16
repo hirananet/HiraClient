@@ -27,7 +27,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     StatusHandler.nickChanged.subscribe((nick: NickChange) => {
-      if(nick.old === this.uiSrv.getNick()) {
+      if(nick.oldNick === this.uiSrv.getNick()) {
         this.nick = nick.newNick;
       } else {
         this.nick = this.uiSrv.getNick();
