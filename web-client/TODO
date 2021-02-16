@@ -3,9 +3,7 @@ Requeridos:
 . Autojoin-canales en desktop no anda
 . al ser kickeado avisar, lo mismo que ser banneado.
 . al enviar mensaje a alguien que no existe avisar.
-. cambio de nick no afecta a la lista
 . cartel de solo con invitación
-. efecto gotita
 . achicar textos en embedded
 
 ================================================
@@ -23,6 +21,7 @@ Requeridos:
 - al actualizar en popup de user dar feedback al usuario de que se guardó.
 . sacar el emote list del IRCore
 . cuando se desconecta mostrar el ultimo mensaje de la pestaña servidor (por error con znc o algo de eso)
+. efecto gotita
 
 ================================================
 
