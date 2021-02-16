@@ -86,6 +86,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   writeEmote(emote: string) {
+    if(!this.message) {
+      this.message = '';
+    }
     this.message += ' ' + emote;
     this.emotePopupOpened = false;
   }
