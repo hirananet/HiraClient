@@ -154,8 +154,10 @@ export class ChatComponent implements OnInit, OnDestroy {
       const partial = this.message.substr(0, curPos).split(' ');
       const search = partial[partial.length-1];
       const user = this.channel.users.find(user => user.nick.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) == 0);
-      const startPos = curPos - search.length;
-      this.message = this.message.substr(0, startPos) + user.nick + this.message.substr(curPos) + ' ';
+      if(user) {
+        const startPos = curPos - search.length;
+        this.message = this.message.substr(0, startPos) + user.nick + this.message.substr(curPos) + ' ';
+      }
     }
     if(event.keyCode == 38) { // arrow up
       this.message = this.hmcSrv.prev();

@@ -76,6 +76,7 @@ export class PrivmsgComponent implements OnInit {
     }
     this.messageSubscription = this.pmsgSrv.messagesReceived.subscribe(d => {
 
+      console.log('AutoGoDown', d.author.user === this.nickTarget, this.newMessages);
       if(d.author.user === this.nickTarget) {
         this.newMessages = false;
         if(this.autoDownLocked) {
@@ -161,8 +162,10 @@ export class PrivmsgComponent implements OnInit {
       const partial = this.message.substr(0, curPos).split(' ');
       const search = partial[partial.length-1];
       const user = [this.privMsg.user, this.uis.getNick()].find(user => user.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) == 0);
-      const startPos = curPos - search.length;
-      this.message = this.message.substr(0, startPos) + user + this.message.substr(curPos) + ' ';
+      if(user) {
+        const startPos = curPos - search.length;
+        this.message = this.message.substr(0, startPos) + user + this.message.substr(curPos) + ' ';
+      }
     }
     if(event.keyCode == 38) { // arrow up
       this.message = this.hmcSrv.prev();
