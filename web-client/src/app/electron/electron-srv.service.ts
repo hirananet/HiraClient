@@ -18,13 +18,13 @@ export class ElectronSrvService {
           electronApi.log({
             type: 'privmsg',
             target: data.author,
-            message: data.date + ' <' +(data.privateAuthor ? data.privateAuthor : data.author) + '> ' + data.message + '\r\n'
+            message: data.date + ' ' + data.time + ' <' +(data.privateAuthor ? data.privateAuthor : data.author) + '> ' + data.message + '\r\n'
           });
         } else if (data.messageType == IndividualMessageTypes.CHANMSG) {
           electronApi.log({
             type: 'channel',
             target: data.channel,
-            message: data.date + ' <' + data.author + '> ' + data.message + '\r\n'
+            message: data.date + ' ' + data.time + ' <' + data.author + '> ' + data.message + '\r\n'
           });
         }
       });
