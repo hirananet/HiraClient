@@ -42,7 +42,7 @@
   </ul>
   <footer>
     <div class="activeBox" [class.active]="connected" [class.error]="error" (click)="openPopup()">
-      <img src="https://thira.tandilserver.com/avatar?usr=Alex" />
+      <img src="https://thira.tandilserver.com/avatar?usr={{nick}}" />
     </div>
     <div class="popup" *ngIf="popupOpened">
       <input type="text" placeholder="nick" [(ngModel)]="nick" (keypress)="kp($event)" id="popupNick"/>
