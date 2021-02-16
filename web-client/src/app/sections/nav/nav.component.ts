@@ -2,7 +2,7 @@ import { AudioService } from 'src/app/utils/audio.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil, WhoIsHandler, WhoIsData } from 'ircore';
+import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil, WhoIsHandler, WhoIsData, StatusHandler, NickChange } from 'ircore';
 import { ParamParse } from 'src/app/utils/ParamsParse';
 
 @Component({
@@ -26,6 +26,13 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    StatusHandler.nickChanged.subscribe((nick: NickChange) => {
+      if(nick.old === this.uiSrv.getNick()) {
+        this.nick = nick.newNick;
+      } else {
+        this.nick = this.uiSrv.getNick();
+      }
+    });
     WebSocketUtil.statusChanged.subscribe((status: ConnectionStatusData<any>) => {
       if(status.status == ConnectionStatus.CONNECTED) {
         this.connected = true;
