@@ -1,23 +1,26 @@
 Requeridos:
 
-. Autojoin-canales en desktop no anda
 . al ser kickeado avisar, lo mismo que ser banneado.
 . al enviar mensaje a alguien que no existe avisar.
 . cartel de solo con invitación
+
+. Autojoin-canales en desktop no anda
+- al actualizar en popup de user dar feedback al usuario de que se guardó.
+. sacar el emote list del IRCore
+/clear (borrar historico de canal)
+
 . achicar textos en embedded
 
 ================================================
 
+. tabular incluir canales.
 . Poder desactivar logs en el desktop
 . blink de notificaciones en desktop.
 . el ping pone una coma de más
 . Remover al quotear el quote previo
 . link del chat
-. cambiar de nick
 . probar canales con doble numeral
 - popup de quieres registrar tu nick? con interfaz visual
-- al actualizar en popup de user dar feedback al usuario de que se guardó.
-. sacar el emote list del IRCore
 . cuando se desconecta mostrar el ultimo mensaje de la pestaña servidor (por error con znc o algo de eso)
 . efecto gotita
 
@@ -43,9 +46,6 @@ borra el historico de un canal.
 
 /stop
 (para animación de evento)
-
-/nowhox
-(para el envio de mensajes que valida si hay away)
 
 /hc join #channel
 para unir el hira client a un canal.
