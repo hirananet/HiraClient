@@ -41,12 +41,11 @@ export class RockolaService {
       } else if(msg.action === 'PAUSE') {
         this.pause.emit();
       } else if(msg.action === 'TIME') {
-        this.pause.emit(msg.currentTime);
+        this.sync.emit(msg.currentTime);
       }
     });
     this.handlers();
     RockolaService.detectedPlaylist.subscribe(channel => {
-      console.log('Detected playlist: ', channel);
       this.getPlaylist(channel);
     });
   }
@@ -113,7 +112,8 @@ export class RockolaService {
 
 export class RockolaData {
   channel: string;
-  list: string[];
+  list: {id: string, title: string}[];
   playing: boolean;
   currentSong: string;
+  currentTitle: string;
 }

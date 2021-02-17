@@ -23,7 +23,7 @@ aside {
   position: fixed;
   bottom: 100px;
   right: 2vw;
-  svg {
+  svg.fa-times {
     position: absolute;
     top: -28px;
     right: 4px;
@@ -53,6 +53,12 @@ aside {
       margin: 2px;
       border-radius: 5px;
       cursor: pointer;
+      svg {
+        position: relative;
+        width: 13px;
+        vertical-align: middle;
+        display: inline-block;
+      }
       &:hover {
         background: var(--nav-background);
       }
@@ -60,6 +66,9 @@ aside {
         font-weight: bolder;
         text-decoration: underline;
       }
+      height: 13px;
+      overflow: hidden;
+      font-size: 13px;
     }
   }
 }

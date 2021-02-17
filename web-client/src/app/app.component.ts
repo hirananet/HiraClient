@@ -49,10 +49,11 @@ export class AppComponent implements AfterViewInit{
       this.kickedInfo = d;
     });
     this.rockola.list.subscribe((d: RockolaData) => {
-      console.log('Actualización lista de reproducción', d, this.rockola.getChannelWatching(), d?.playing, d?.channel !== this.rockola.getChannelWatching());
       if(d?.playing && d?.channel !== this.rockola.getChannelWatching()) {
         this.rockolaData = d;
         this.requestForPlay = true;
+      } else if(d?.channel === this.rockola.getChannelWatching()) {
+        this.rockolaData = d;
       }
     });
     this.rockola.play.subscribe((currentSong: string) => {
@@ -65,24 +66,20 @@ export class AppComponent implements AfterViewInit{
       this.playing = false;
     });
     this.rockola.sync.subscribe(time => {
-      console.log('RCK', this.playing, this.rockolaSync);
       if(this.playing && !this.rockolaSync) {
-        console.log('seeking to: ', time);
-        YTPlayer.seekTo(time, true);
-        // this.rockolaSync = true;
+        YTPlayer.seekTo(time / 1000, true);
+        this.rockolaSync = true;
       }
     });
   }
 
   joinRockola() {
-    this.rockola.watch(this.rockolaData.channel);
-    this.rockola.getTime(this.rockolaData.channel);
-    YTPlayer.loadVideoById(this.rockolaData.currentSong);
     this.requestForPlay = false;
+    this.rockola.watch(this.rockolaData.channel);
+    YTPlayer.loadVideoById(this.rockolaData.currentSong);
     this.playing = true;
     this.rockolaSync = false;
     YTPlayingCallback = () => {
-      // sincronizar:
       this.rockola.getTime(this.rockolaData.channel);
     }
   }

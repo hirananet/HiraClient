@@ -232,7 +232,7 @@ export class CustomEmoteList {
         }
         if (name === 'kz2') {
           startEventEffectKz2s();
-          return EmoteList.specialLocation + 'kiss' + EmoteList.facesExtension;
+          return EmoteList.facesLocation + 'kiss' + EmoteList.facesExtension;
         }
         return undefined;
       } else if (author === 'Alex' || author === 'Tulkalex' || author === 'Tulkalen') {
