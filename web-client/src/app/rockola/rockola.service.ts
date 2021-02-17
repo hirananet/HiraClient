@@ -46,6 +46,7 @@ export class RockolaService {
     });
     this.handlers();
     RockolaService.detectedPlaylist.subscribe(channel => {
+      console.log('Detected playlist: ', channel);
       this.getPlaylist(channel);
     });
   }

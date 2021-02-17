@@ -206,6 +206,7 @@ export class CustomEmoteList {
     EmoteList.effectChecker = (name: string, author: string, channel: string) => {
       if(name == 'playlist') {
         RockolaService.detectedPlaylist.emit(channel);
+        return EmoteList.specialLocation + 'playlist' + EmoteList.facesExtension;
       }
       if (author === 'Gabriela-') {
         if (name === 'magia') {
