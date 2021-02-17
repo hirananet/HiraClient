@@ -196,7 +196,8 @@ export class CustomEmoteList {
       'nopreguntas',
       'nopreguntas2',
       'topic',
-      'topic2'
+      'topic2',
+      'morido'
     ];
 
     EmoteList.effectChecker = (name: string, author: string) => {
