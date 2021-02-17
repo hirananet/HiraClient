@@ -30,8 +30,8 @@ export class RockolaService {
       this.connected = false;
     });
     this.wsSrv.onMessage.subscribe(d => {
-      console.log('rockola message: ', d);
       const msg = JSON.parse(d);
+      console.log('rockola message: ', msg);
       // procesar mensaje
       if(msg.action === 'PLAYLIST') {
         // this.onPlaylistGetted(msg.chann, msg.list);

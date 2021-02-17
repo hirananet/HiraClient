@@ -182,6 +182,10 @@ export class PrivmsgComponent implements OnInit {
     if(this.message?.trim().length == 0) {
       return;
     }
+    if(this.message === '/clear') {
+      this.privMsg.messages = [];
+      this.pmsgSrv.clearHistory(this.nickTarget);
+    }
     if(this.quote) {
       this.message = '<'+this.quote.author+'> '+this.quote.quote+' |' + this.message;
       this.quote = undefined;

@@ -174,6 +174,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     if(this.message?.trim().length == 0) {
       return;
     }
+    if(this.message === '/clear') {
+      this.channel.messages = [];
+      this.chanSrv.clearHistory(this.channelName);
+    }
     if(this.quote) {
       this.message = '<'+this.quote.author+'> '+this.quote.quote+' |' + this.message;
       this.quote = undefined;
