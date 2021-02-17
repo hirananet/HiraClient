@@ -81,6 +81,17 @@ function createWindow () {
       fs.writeFileSync(hiraClientCFG, JSON.stringify(HCCFG));
     }
   });
+  ipcMain.on('ping', async(evt, data) => {
+    if(!win.isFocused() || win.isMinimized() || !win.isVisible()) {
+      win.flashFrame(true);
+      evt.reply('playSound', {});
+    }
+  });
+  ipcMain.on('blink', async(evt, data) => {
+    if(!win.isFocused() || win.isMinimized() || !win.isVisible()) {
+      win.flashFrame(true);
+    }
+  });
 }
 
 app.whenReady().then(createWindow);

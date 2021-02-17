@@ -1,7 +1,8 @@
+import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
 import { ChannelsService, UserInfoService, IRCoreService, PrivmsgService, ValidRegex, JoinHandler, Join, ChannelData } from 'ircore';
 import { MenuElement, MenuSelectorEvent, MenuType } from './menu-selector.event';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Host, HostListener } from '@angular/core';
 import { ListElement } from '../list/list.component';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -44,7 +45,8 @@ export class MenuComponent implements OnInit, OnDestroy {
     private ircoreSrv: IRCoreService,
     private pmsgSrv: PrivmsgService,
     private titleSrv: Title,
-    private audioSrv: AudioService
+    private audioSrv: AudioService,
+    private electronSrv: ElectronSrvService
   ) {
     this.joinSubscription = JoinHandler.joinResponse.subscribe((data: Join) => {
       if (data.user.nick === this.userSrv.getNick()) {
@@ -83,19 +85,23 @@ export class MenuComponent implements OnInit, OnDestroy {
       }
     });
     this.cSrv.messagesReceived.subscribe(d => {
+      const channel = this._channels.find(channel => channel.name == d.target);
+      const regex = ValidRegex.getRegex(ValidRegex.pingRegex(this.userSrv.getNick()));
+      const result = regex.exec(d.message);
       if(d.target !== this.activeChannel) {
-        const channel = this._channels.find(channel => channel.name == d.target);
-        const regex = ValidRegex.getRegex(ValidRegex.pingRegex(this.userSrv.getNick()));
-        const result = regex.exec(d.message);
         if(result) {
           channel.warn = true;
           this.pingsChannel++;
           this.showPings();
           this.chanPings[d.target] = this.chanPings[d.target] ? this.chanPings[d.target]+1 : 1;
           this.audioSrv.playNotify();
+          this.electronSrv.sendBlink();
         } else if(!channel.warn) {
-          // ping en canal
           channel.notify = true;
+        }
+      } else {
+        if(result) {
+          this.electronSrv.sendPing();
         }
       }
     });
@@ -114,8 +120,16 @@ export class MenuComponent implements OnInit, OnDestroy {
         this.showPings();
         this.privPings[d.author.user] = this.privPings[d.author.user] ? this.privPings[d.author.user]+1 : 1;
         this.audioSrv.playNotify();
+        this.electronSrv.sendBlink();
+      } else {
+        this.electronSrv.sendPing();
       }
     });
+  }
+
+  @HostListener('document:playSound', ['$event'])
+  playSound(evt) {
+    this.audioSrv.playNotify();
   }
 
   showPings() {
