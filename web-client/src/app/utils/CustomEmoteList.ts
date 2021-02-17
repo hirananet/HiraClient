@@ -1,4 +1,5 @@
 import { EmoteList } from 'ircore';
+import { RockolaService } from '../rockola/rockola.service';
 
 declare var startEventEffect: any;
 declare var startEventEffectRegalo: any;
@@ -202,7 +203,10 @@ export class CustomEmoteList {
       'morido'
     ];
 
-    EmoteList.effectChecker = (name: string, author: string) => {
+    EmoteList.effectChecker = (name: string, author: string, channel: string) => {
+      if(name == 'playlist') {
+        RockolaService.detectedPlaylist.emit(channel);
+      }
       if (author === 'Gabriela-') {
         if (name === 'magia') {
           startEventEffect();

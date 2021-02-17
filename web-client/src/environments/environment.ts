@@ -12,7 +12,8 @@ export const environment = {
   hiranaTools: 'https://thira.tandilserver.com',
   maxCommandHistory: 50,
   intervalWHOX: 10000,
-  webIRCGateway: 'wss://wircg.tandilserver.com/webirc/websocket/'
+  webIRCGateway: 'wss://wircg.tandilserver.com/webirc/websocket/',
+  rockola: 'ws://127.0.0.1:3001'
 };
 
 /*

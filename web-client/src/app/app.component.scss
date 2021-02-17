@@ -19,6 +19,51 @@ app-chat {
   flex-grow: 1;
 }
 
+aside {
+  position: fixed;
+  bottom: 100px;
+  right: 2vw;
+  svg {
+    position: absolute;
+    top: -28px;
+    right: 4px;
+    width: 20px;
+    cursor: pointer;
+    color: var(--footer-color);
+    background: var(--menu-background);
+    padding: 0px 5px;
+    border-radius: 3px;
+  }
+  ul {
+    display: inline-block;
+    vertical-align: top;
+    background: var(--menu-background);
+    height: 200px;
+    margin: 0px;
+    padding: 0px;
+    width: 12vw;
+    border: 1px solid var(--menu-border-right);
+    color: var(--footer-color);
+    font-family: Helvetica;
+    border-radius: 0px 5px 5px 0px;
+    list-style: none;
+    overflow-y: auto;
+    li {
+      padding: 5px;
+      margin: 2px;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background: var(--nav-background);
+      }
+      &.current {
+        font-weight: bolder;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 footer {
   position: fixed;
   bottom: 0px;

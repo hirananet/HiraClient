@@ -6,6 +6,7 @@ import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector
 import { Title } from '@angular/platform-browser';
 import { IRCoreService, StatusHandler, MotdHandler, IRCMessage, ConnectionStatus, ConnectionStatusData, WebSocketUtil } from 'ircore';
 import { environment } from 'src/environments/environment';
+import { RockolaService } from 'src/app/rockola/rockola.service';
 
 @Component({
   selector: 'app-user',
@@ -30,7 +31,7 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   public embedded: boolean;
 
 
-  constructor(private ircSrv: IRCoreService, private router: Router, private titleSrv: Title) {
+  constructor(private ircSrv: IRCoreService, private router: Router, private titleSrv: Title, private rockolaSrv: RockolaService) {
     this.embedded = ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true');
   }
 
@@ -38,6 +39,7 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
     this.connected = WebSocketUtil.isConnected();
     this.subscription_status = WebSocketUtil.statusChanged.subscribe((status: ConnectionStatusData<any>) => {
       if(status.status == ConnectionStatus.CONNECTED) {
+        this.rockolaSrv.connect();
         this.connected = true;
         this.error = undefined;
       }
