@@ -4,6 +4,54 @@ const fs = require('fs');
 const contextMenu = require('electron-context-menu');
 const os = require('os');
 const { autoUpdater } = require("electron-updater");
+const { session } = require('electron')
+const path = require('path');
+const url = require("url");
+
+/// HTTP SERVER ///
+const runInHTTPServer = true;
+const localPort = process.env['EPORT'] ? process.env['EPORT'] : 60536;
+if(runInHTTPServer) {
+  var contentTypesByExtension = {
+    '.html': "text/html",
+    '.css':  "text/css",
+    '.js':   "text/javascript",
+    '.png':  "image/png",
+    '.jpg':  "image/jpg"
+  };
+  const http = require('http');
+  server = http.createServer((request, response) => {
+
+    const uri = url.parse(request.url).pathname, filename = path.join(process.cwd(), 'www', uri);
+
+    if(fs.existsSync(filename)) {
+      if (fs.statSync(filename).isDirectory()) filename += '/index.html';
+  
+      fs.readFile(filename, "binary", function(err, file) {
+        if(err) {        
+          response.writeHead(500, {"Content-Type": "text/plain"});
+          response.write(err + "\n");
+          response.end();
+          return;
+        }
+  
+        var headers = {};
+        var contentType = contentTypesByExtension[path.extname(filename)];
+        if (contentType) headers["Content-Type"] = contentType;
+        response.writeHead(200, headers);
+        response.write(file, "binary");
+        response.end();
+      });
+    } else {
+      response.writeHead(404, {"Content-Type": "text/plain"});
+      response.write("404 Not Found\n");
+      response.end();
+    }
+    if (request.url.includes('index.js'))
+        server.close();
+  }).listen(localPort);
+}
+
 
 let hiraClientCFG;
 if (os.platform() == 'linux') {
@@ -48,7 +96,12 @@ function createWindow () {
   });
 
   // and load the index.html of the app.
-  win.loadFile('www/index.html');
+  if(runInHTTPServer) {
+    win.loadURL('http://localhost:' + localPort + '/index.html');
+  } else {
+    win.loadFile('www/index.html');
+  }
+
   win.on('focus', () => win.flashFrame(false));
   win.removeMenu();
   // open windows on webbrowser
