@@ -50,7 +50,7 @@ export class RockolaService {
     });
   }
 
-  private clearChannelWatching() {
+  public clearChannelWatching() {
     this.channelWatching = undefined;
   }
 
