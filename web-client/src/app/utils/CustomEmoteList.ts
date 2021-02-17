@@ -28,7 +28,7 @@ export class CustomEmoteList {
       ]
     };
 
-    EmoteList.faces =  = [
+    EmoteList.faces = [
       'aaa',
       'break',
       'chaky',
@@ -118,7 +118,49 @@ export class CustomEmoteList {
       'batido',
       'fresas',
       'wizard',
-      'xane'
+      'xane',
+      'banana',
+      'beer',
+      'bigSmile',
+      'cascada',
+      'clap',
+      'cronometro',
+      'demon',
+      'fuego',
+      'fugaz',
+      'ghost',
+      'ghost2',
+      'greenApple',
+      'hira',
+      'invitado',
+      'kiwi',
+      'leprechaun',
+      'littleSmile',
+      'mandarina',
+      'mate',
+      'mendikus',
+      'miranda',
+      'miranda2',
+      'morido',
+      'netsplit',
+      'orange',
+      'peach',
+      'pera',
+      'redApple',
+      'sad1',
+      'sad2',
+      'shinningStar',
+      'silbando',
+      'tos',
+      'vicximus',
+      'vicximus2',
+      'vientomagico1',
+      'visitante',
+      'warrior',
+      'watermelon',
+      'waterwoman',
+      'zombie',
+      'zombie2'
     ];
 
     EmoteList.memes = [
