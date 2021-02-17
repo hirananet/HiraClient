@@ -34,7 +34,7 @@ export class RockolaService {
       console.log('rockola message: ', msg);
       // procesar mensaje
       if(msg.action === 'PLAYLIST') {
-        // this.onPlaylistGetted(msg.chann, msg.list);
+        console.log('Emitting playlist');
         this.list.emit(msg.list)
       } else if(msg.action === 'START') {
         this.play.emit(msg.song);
@@ -48,6 +48,10 @@ export class RockolaService {
     RockolaService.detectedPlaylist.subscribe(channel => {
       this.getPlaylist(channel);
     });
+  }
+
+  private clearChannelWatching() {
+    this.channelWatching = undefined;
   }
 
   private handlers() {

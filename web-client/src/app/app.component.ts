@@ -54,6 +54,9 @@ export class AppComponent implements AfterViewInit{
         this.requestForPlay = true;
       } else if(d?.channel === this.rockola.getChannelWatching()) {
         this.rockolaData = d;
+      } else if(!d.playing && !this.rockola.getChannelWatching()) {
+        this.rockolaData = d;
+        this.requestForPlay = true;
       }
     });
     this.rockola.play.subscribe((currentSong: string) => {
@@ -87,6 +90,8 @@ export class AppComponent implements AfterViewInit{
   leaveRockola() {
     this.playing = false;
     this.rockolaSync = false;
+    this.rockola.clearChannelWatching();
+    YTPlayer.stopVideo();
   }
 
   accept(nick: string) {
