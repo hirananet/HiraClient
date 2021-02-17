@@ -3,6 +3,10 @@ Requeridos:
 . al ser kickeado avisar, lo mismo que ser banneado.
 . al enviar mensaje a alguien que no existe avisar.
 . cartel de solo con invitación
+. handlear foco y blink para notificaciones.
+. kz2 convertir en emote también.
+. cachear los cards de los links una vez cargados.
+. limitar historicos de chats.
 
 . Autojoin-canales en desktop no anda
 - al actualizar en popup de user dar feedback al usuario de que se guardó.
@@ -15,7 +19,6 @@ Requeridos:
 
 . tabular incluir canales.
 . Poder desactivar logs en el desktop
-. blink de notificaciones en desktop.
 . el ping pone una coma de más
 . Remover al quotear el quote previo
 . link del chat
