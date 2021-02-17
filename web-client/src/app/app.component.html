@@ -13,7 +13,7 @@
     <button class="cancel" (click)="requestForPlay = false">Ignorar</button>
   </div>
   <div class="popup" *ngIf="kickedInfo">
-    Fuiste hechado del canal {{kickedInfo.channel}}
+    Fuiste hechado del canal {{kickedInfo.channel.channel}}
     <button class="cancel" (click)="kickedInfo = undefined">Aceptar</button>
   </div>
 </main>
