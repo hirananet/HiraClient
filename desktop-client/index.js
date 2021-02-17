@@ -22,7 +22,11 @@ if(runInHTTPServer) {
   const http = require('http');
   server = http.createServer((request, response) => {
 
-    const uri = url.parse(request.url).pathname, filename = path.join(process.cwd(), 'www', uri);
+    const uri = url.parse(request.url).pathname;
+    let filename = path.join(app.getAppPath(), 'www', uri);
+    if(!fs.existsSync(filename)) {
+      filename = path.join(app.getAppPath(), uri);
+    }
 
     if(fs.existsSync(filename)) {
       if (fs.statSync(filename).isDirectory()) filename += '/index.html';
