@@ -9,5 +9,5 @@ export const environment = {
   maxCommandHistory: 50,
   intervalWHOX: 10000,
   webIRCGateway: 'wss://wircg.tandilserver.com/webirc/websocket/',
-  rockola: 'ws://rockola.hirana.net'
+  rockola: 'ws://rockola.hirana.net:3091'
 };
