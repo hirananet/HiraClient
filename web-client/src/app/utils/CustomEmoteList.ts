@@ -160,7 +160,9 @@ export class CustomEmoteList {
       'watermelon',
       'waterwoman',
       'zombie',
-      'zombie2'
+      'zombie2',
+      'milk',
+      'arcoiris'
     ];
 
     EmoteList.memes = [
