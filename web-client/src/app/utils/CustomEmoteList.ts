@@ -238,6 +238,7 @@ export class CustomEmoteList {
       } else if (author === 'Alex' || author === 'Tulkalex' || author === 'Tulkalen') {
         if (name === 'kz2') {
           startEventEffectKz2s(); // Probando
+          return EmoteList.facesLocation + 'kiss' + EmoteList.facesExtension;
         }
         return undefined;
       }

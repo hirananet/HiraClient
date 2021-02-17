@@ -23,16 +23,21 @@ aside {
   position: fixed;
   bottom: 100px;
   right: 2vw;
-  svg.fa-times {
-    position: absolute;
-    top: -28px;
-    right: 4px;
-    width: 20px;
-    cursor: pointer;
+  header {
     color: var(--footer-color);
-    background: var(--menu-background);
-    padding: 0px 5px;
-    border-radius: 3px;
+    background: var(--nav-background);
+    padding: 7px;
+    font-weight: bold;
+    font-family: helvetica;
+    svg.fa-times {
+      position: absolute;
+      top: 2px;
+      right: 4px;
+      width: 20px;
+      cursor: pointer;
+      padding: 0px 5px;
+      border-radius: 3px;
+    }
   }
   ul {
     display: inline-block;
@@ -45,7 +50,7 @@ aside {
     border: 1px solid var(--menu-border-right);
     color: var(--footer-color);
     font-family: Helvetica;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 0px 5px 0px;
     list-style: none;
     overflow-y: auto;
     li {
