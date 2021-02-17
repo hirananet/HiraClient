@@ -3,20 +3,17 @@ Requeridos:
 . al ser kickeado avisar, lo mismo que ser banneado.
 . al enviar mensaje a alguien que no existe avisar.
 . cartel de solo con invitación
-. kz2 convertir en emote también.
 . cachear los cards de los links una vez cargados.
 . limitar historicos de chats.
 . corregir tamaño de los avatars
 
 . Autojoin-canales en desktop no anda
 - al actualizar en popup de user dar feedback al usuario de que se guardó.
-. sacar el emote list del IRCore
-/clear (borrar historico de canal)
-
-. achicar textos en embedded
 
 ================================================
 
+. achicar textos en embedded
+/clear (borrar historico de canal)
 . tabular incluir canales.
 . Poder desactivar logs en el desktop
 . el ping pone una coma de más
