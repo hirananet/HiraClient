@@ -49,12 +49,13 @@ export class AppComponent implements AfterViewInit{
       this.kickedInfo = d;
     });
     this.rockola.list.subscribe((d: RockolaData) => {
+      console.log(d, this.rockola.getChannelWatching(), this.playing)
       if(d?.playing && d?.channel !== this.rockola.getChannelWatching()) {
         this.rockolaData = d;
         this.requestForPlay = true;
       } else if(d?.channel === this.rockola.getChannelWatching()) {
         this.rockolaData = d;
-      } else if(!d.playing && !this.rockola.getChannelWatching()) {
+      } else if(d?.playing && !this.playing && !this.rockola.getChannelWatching()) {
         this.rockolaData = d;
         this.requestForPlay = true;
       }
