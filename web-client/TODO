@@ -3,7 +3,6 @@ Requeridos:
 . al enviar mensaje a alguien que no existe avisar.
 . cartel de solo con invitación
 . cachear los cards de los links una vez cargados.
-. corregir tamaño de los avatars
 . al actualizar en popup de user dar feedback al usuario de que se guardó.
 . Autojoin-canales en desktop no anda
 
