@@ -8,13 +8,15 @@ article {
   }
   aside {
     width: 6%;
+    height: 50px;
     display: inline-flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     vertical-align: top;
     img {
-      width: 80%;
+      max-height: 50px;
+      max-width: 80%;
     }
   }
   section {

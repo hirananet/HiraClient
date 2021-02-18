@@ -8,6 +8,7 @@ import { InfoPanelComponent } from 'src/app/sections/chat-parts/info-panel/info-
 import { VcardGetterService } from 'src/app/sections/chat-parts/message-item/link-vcard/vcard-getter.service';
 import { Title } from '@angular/platform-browser';
 import { ChannelsService, IRCoreService, ChannelData, GenericMessage, Quote } from 'ircore';
+import { ResizedEvent } from 'angular-resize-event';
 
 @Component({
   selector: 'app-chat',
@@ -85,12 +86,12 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   }
 
-  writeEmote(emote: string) {
-    if(!this.message) {
-      this.message = '';
+  resize(event: ResizedEvent) {
+    if(this.autoDownLocked) {
+      return;
     }
-    this.message += ' ' + emote;
-    this.emotePopupOpened = false;
+    console.log('RzGoDown');
+    this.goDown();
   }
 
   onScroll(evt) {
@@ -102,6 +103,14 @@ export class ChatComponent implements OnInit, OnDestroy {
     if(!this.autoDownLocked) {
       this.newMessages = false;
     }
+  }
+
+  writeEmote(emote: string) {
+    if(!this.message) {
+      this.message = '';
+    }
+    this.message += ' ' + emote;
+    this.emotePopupOpened = false;
   }
 
   ngOnInit(): void {

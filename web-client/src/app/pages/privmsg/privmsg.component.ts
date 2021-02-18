@@ -7,6 +7,7 @@ import { VcardGetterService } from 'src/app/sections/chat-parts/message-item/lin
 import { environment } from 'src/environments/environment';
 import { Title } from '@angular/platform-browser';
 import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, PrivmsgService, IRCoreService, UserInfoService } from 'ircore';
+import { ResizedEvent } from 'angular-resize-event';
 
 @Component({
   selector: 'app-privmsg',
@@ -87,6 +88,15 @@ export class PrivmsgComponent implements OnInit {
       }
     });
   }
+
+  resize(event: ResizedEvent) {
+    if(this.autoDownLocked) {
+      return;
+    }
+    console.log('RzGoDown');
+    this.goDown();
+  }
+
 
   writeEmote(emote: string) {
     if(!this.message) {

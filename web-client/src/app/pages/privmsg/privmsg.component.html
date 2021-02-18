@@ -26,7 +26,7 @@
     </div>
     <div class="messageBox">
       <ul id="listMessages" (scroll)="onScroll($event)">
-        <li>
+        <li (resized)="resize($event)">
           <app-message-item *ngFor="let message of privMsg.messages" messageType="0" [message]="message" (quote)="quotear($event)"></app-message-item>
         </li>
       </ul>
