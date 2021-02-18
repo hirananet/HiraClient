@@ -29,10 +29,12 @@ export class PrivmsgComponent implements OnInit {
   public message: string;
   public messageSubscription: Subscription;
   public awaySubscription: Subscription;
+  public nonExistSubscription: Subscription;
   public awayMessage: string;
   public lastAway: string;
   public gmodeSubscription: Subscription;
   public gmodeMessage: boolean;
+  public nonExistMessage: string;
 
   public privMsg: PrivmsgData = new PrivmsgData();
   public quote: Quote;
@@ -145,6 +147,14 @@ export class PrivmsgComponent implements OnInit {
         }, 5000);
       }
     });
+    this.nonExistSubscription = AwayHandler.nonExistantResponse.subscribe((d: Away) => {
+      if(d.author == this.nickTarget && d.message != this.lastAway) {
+        this.nonExistMessage = d.message;
+        setTimeout(d => {
+          this.nonExistMessage = undefined;
+        }, 5000);
+      }
+    })
     this.gmodeSubscription = IgnoreHandler.ignoreResponse.subscribe((nick: Away) => {
       if(this.nickTarget == nick.author) {
         this.gmodeMessage = true;
