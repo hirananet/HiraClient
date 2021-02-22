@@ -3,7 +3,7 @@ import { RockolaData, RockolaService } from 'src/app/rockola/rockola.service';
 import { environment } from './../environments/environment';
 import { Component, AfterViewInit } from '@angular/core';
 import { ParamParse } from './utils/ParamsParse';
-import { GmodeHandler, ServerMsgService, IRCoreService, AvatarHelper, KickHandler, KickInfo } from 'ircore';
+import { GmodeHandler, ServerMsgService, IRCoreService, AvatarHelper, KickHandler, KickInfo, UserInfoService } from 'ircore';
 import { ElectronSrvService } from './electron/electron-srv.service';
 
 declare var YTPlayer;
@@ -26,7 +26,13 @@ export class AppComponent implements AfterViewInit{
   playing: boolean;
   rockolaSync: boolean;
 
-  constructor(private srvSrv: ServerMsgService, private ircoreSrv: IRCoreService, private electronSrv: ElectronSrvService, private rockola: RockolaService) {
+  constructor(
+      private srvSrv: ServerMsgService,
+      private ircoreSrv: IRCoreService,
+      private electronSrv: ElectronSrvService,
+      private rockola: RockolaService,
+      private uiSrv: UserInfoService
+    ) {
     CustomEmoteList.setSpecialFaces();
     AvatarHelper.setAvatarURL(environment.hiranaTools + '/avatar?usr=');
     GmodeHandler.onPrivateRequest.subscribe(d => {
@@ -46,7 +52,9 @@ export class AppComponent implements AfterViewInit{
       document.body.classList.add(skin);
     }
     KickHandler.kicked.subscribe(d => {
-      this.kickedInfo = d;
+      if(d.userTarget.nick === this.uiSrv.getNick()) {
+        this.kickedInfo = d;
+      }
     });
     this.rockola.list.subscribe((d: RockolaData) => {
       console.log(d, this.rockola.getChannelWatching(), this.playing)
