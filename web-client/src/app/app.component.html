@@ -7,7 +7,7 @@
     <button (click)="accept(requestNick)">Aceptar</button>
     <button class="cancel" (click)="requestNick = undefined">Ignorar</button>
   </div>
-  <div class="popup" *ngIf="requestForPlay">
+  <div class="popup" *ngIf="requestForPlay && rockolaData" >
     Se inició una lista de videos en {{rockolaData.channel}}
     <button (click)="joinRockola(requestNick)">Unirme</button>
     <button class="cancel" (click)="requestForPlay = false">Ignorar</button>
