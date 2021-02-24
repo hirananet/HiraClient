@@ -130,6 +130,7 @@ export class PrivmsgComponent implements OnInit {
           });
         }
       }
+      this.preventOnScroll = true;
       MenuSelectorEvent.menuChange.emit({
         type: MenuType.PRIV_MSG,
         name: this.nickTarget

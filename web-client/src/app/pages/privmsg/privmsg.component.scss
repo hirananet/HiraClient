@@ -136,6 +136,17 @@ main {
       flex-flow: column nowrap;
       display: flex;
       position: relative;
+      > .newMessages {
+        padding: 10px;
+        background: #0e0e0e;
+        width: fit-content;
+        margin: 5px auto;
+        color: pink;
+        cursor: pointer;
+        &:hover {
+          background: #0e0e0e94;
+        }
+      }
       > svg {
         width: 2vw;
         position: absolute;
