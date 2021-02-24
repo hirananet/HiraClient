@@ -27,6 +27,9 @@ if(runInHTTPServer) {
     if(!fs.existsSync(filename)) {
       filename = path.join(app.getAppPath(), uri);
     }
+    if(!fs.existsSync(filename)) {
+      filename = path.join(__dirname, 'www', uri);
+    }
 
     if(fs.existsSync(filename)) {
       if (fs.statSync(filename).isDirectory()) filename += '/index.html';

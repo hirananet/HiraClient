@@ -86,6 +86,9 @@ export class AppComponent implements AfterViewInit{
   }
 
   joinRockola() {
+    if(!this.rockolaData) {
+      return;
+    }
     this.requestForPlay = false;
     this.rockola.watch(this.rockolaData.channel);
     YTPlayer.loadVideoById(this.rockolaData.currentSong);

@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="window">
+    <div class="raindrops">
+      <div class="borders">
+        <div class="border" *ngFor="let drop of drops"></div>
+      </div>
+      <div class="drops">
+        <div class="raindrop" [class.dark]="skin=='dark'" *ngFor="let drop of drops"></div>
+      </div>
+    </div>
+  </div>
+</div>
