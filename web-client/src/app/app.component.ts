@@ -85,6 +85,10 @@ export class AppComponent implements AfterViewInit{
     });
   }
 
+  removeRockola(id: string) {
+    this.ircoreSrv.sendMessageOrCommand('Rockola rid ' + id, this.rockolaData.channel);
+  }
+
   joinRockola() {
     if(!this.rockolaData) {
       return;
