@@ -1,4 +1,9 @@
 Requeridos:
+En context:
+. Kick
+. Ban
+. GLine
+. actualizaciones automáticas
 . cartel de solo con invitación
 . cachear los cards de los links una vez cargados.
 . al actualizar en popup de user dar feedback al usuario de que se guardó.
