@@ -112,10 +112,14 @@ main {
       > .newMessages {
         padding: 10px;
         background: #0e0e0e;
-        width: fit-content;
         margin: 5px auto;
         color: pink;
         cursor: pointer;
+        position: absolute;
+        bottom: 0px;
+        left: calc(50% - 150px);
+        width: 300px;
+        text-align: center;
         &:hover {
           background: #0e0e0e94;
         }

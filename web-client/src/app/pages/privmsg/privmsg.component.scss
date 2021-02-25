@@ -10,7 +10,9 @@ main {
   }
   .errorPopup {
     position: absolute;
-    width: 59%;
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
     left: 25%;
     bottom: 75px;
     padding: 5px;
@@ -27,6 +29,8 @@ main {
       vertical-align: bottom;
     }
     &.visible {
+      width: 59%;
+      height: fit-content;
       opacity: 1;
     }
   }
@@ -139,10 +143,14 @@ main {
       > .newMessages {
         padding: 10px;
         background: #0e0e0e;
-        width: fit-content;
         margin: 5px auto;
         color: pink;
         cursor: pointer;
+        position: absolute;
+        bottom: 0px;
+        left: calc(50% - 150px);
+        width: 300px;
+        text-align: center;
         &:hover {
           background: #0e0e0e94;
         }
