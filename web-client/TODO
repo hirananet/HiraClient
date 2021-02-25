@@ -10,6 +10,7 @@ En context:
 . Autojoin-canales en desktop no anda
 . tirar quote sin mensaje envia undefined
 . bug al cargar historial por znc
+. randomizar puerto para evitar multiple open.
 
 ================================================
 
