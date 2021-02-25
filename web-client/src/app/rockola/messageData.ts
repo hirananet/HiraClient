@@ -16,5 +16,6 @@ export enum WSEventType {
   LIST = 'list',
   WATCH = 'watch',
   UNWATCH = 'unwatch',
-  TIME = 'time'
+  TIME = 'time',
+  PING = 'ping'
 }

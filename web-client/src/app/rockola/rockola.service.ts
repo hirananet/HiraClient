@@ -23,6 +23,12 @@ export class RockolaService {
   public connect() {
     this.wsSrv.connect(environment.rockola);
     this.wsSrv.onConnected.subscribe(d => {
+      setInterval(() => {
+        this.wsSrv.send(new MessageData(
+          'PING',
+          WSEventType.PING
+        ));
+      }, 60000);
       this.connected = true;
       this.welcome();
     });
