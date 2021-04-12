@@ -55,7 +55,7 @@ export class CustomEmoteList {
       'oka',
       'rage',
       'siuu',
-      'sparkle',
+      'hechizo',
       'stickmagic',
       'stickmagic2',
       'trollface',
@@ -77,7 +77,7 @@ export class CustomEmoteList {
       'goatman',
       'hacker',
       'service',
-      'stick',
+      'varita',
       'wine',
       'wineBottle',
       'escoba',
@@ -93,7 +93,7 @@ export class CustomEmoteList {
       'eagle',
       'fatcat',
       'fox',
-      'handshake',
+      'amigos',
       'kiss',
       'rose',
       'tarta',
@@ -118,7 +118,7 @@ export class CustomEmoteList {
       'podium',
       'batido',
       'fresas',
-      'wizard',
+      'mago',
       'xane',
       'banana',
       'beer',
@@ -141,7 +141,7 @@ export class CustomEmoteList {
       'mate',
       'mendikus',
       'miranda',
-      'miranda2',
+      'stalker',
       'morido',
       'netsplit',
       'orange',
@@ -163,7 +163,8 @@ export class CustomEmoteList {
       'zombie',
       'zombie2',
       'milk',
-      'arcoiris'
+      'arcoiris',
+      'amor'
     ];
 
     EmoteList.memes = [
