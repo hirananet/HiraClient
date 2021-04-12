@@ -122,14 +122,6 @@ export class PrivmsgComponent implements OnInit {
     if(this.nickTarget) {
       this.privMsg = this.pmsgSrv.getPrivate(this.nickTarget);
       this.titleSrv.setTitle('@' + this.nickTarget + ' | HiraClient');
-      if(!this.privMsg.messages || this.privMsg.messages.length == 0) {
-        const msg = this.pmsgSrv.getHistory(this.privMsg.user);
-        if(msg) {
-          msg.forEach(m => {
-            this.privMsg.messages.push(m);
-          });
-        }
-      }
       this.preventOnScroll = true;
       MenuSelectorEvent.menuChange.emit({
         type: MenuType.PRIV_MSG,

@@ -114,14 +114,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     if(this.channelName) {
       this.channel = this.chanSrv.getChannel(this.channelName);
       this.titleSrv.setTitle('#' + this.channelName + ' | HiraClient');
-      if(!this.channel.messages || this.channel.messages.length == 0) {
-        const msg = this.chanSrv.getHistory(this.channelName);
-        if(msg) {
-          msg.forEach(m => {
-            this.channel.messages.push(m);
-          });
-        }
-      }
       this.preventOnScroll = true;
       // FIXME: mover a guard:
       MenuSelectorEvent.menuChange.emit({
