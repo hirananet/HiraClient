@@ -21,7 +21,8 @@ export class AppComponent implements AfterViewInit{
   requestNick = undefined;
 
   rockolaData: RockolaData;
-  requestForPlay: boolean;
+  requestForPlay: RockolaData;
+
   kickedInfo: KickInfo;
   playing: boolean;
   rockolaSync: boolean;
@@ -57,56 +58,55 @@ export class AppComponent implements AfterViewInit{
       }
     });
     this.rockola.list.subscribe((d: RockolaData) => {
-      console.log(d, this.rockola.getChannelWatching(), this.playing)
-      if(d?.playing && d?.channel !== this.rockola.getChannelWatching()) {
+      if(d.channel === this.rockolaData.channel) {
         this.rockolaData = d;
-        this.requestForPlay = true;
-      } else if(d?.channel === this.rockola.getChannelWatching()) {
-        this.rockolaData = d;
-      } else if(d?.playing && !this.playing && !this.rockola.getChannelWatching()) {
-        this.rockolaData = d;
-        this.requestForPlay = true;
       }
     });
-    this.rockola.play.subscribe((currentSong: string) => {
-      YTPlayer.loadVideoById(currentSong);
-      this.playing = true;
+    this.rockola.play.subscribe((playData: any) => {
+      if(playData.chann == this.rockolaData.channel) {
+        YTPlayer.loadVideoById(playData.song);
+        this.playing = true;
+      } else {
+        this.requestForPlay = this.rockola.getList(playData.chann);
+      }
     });
-    this.rockola.pause.subscribe(() => {
-      YTPlayer.stopVideo();
-      this.rockolaSync = false;
-      this.playing = false;
+    this.rockola.pause.subscribe((playData: any) => {
+      if(playData.chann == this.rockolaData.channel) {
+        YTPlayer.stopVideo();
+        this.rockolaSync = false;
+        this.playing = false;
+      }
     });
-    this.rockola.sync.subscribe(time => {
-      if(this.playing && !this.rockolaSync) {
-        YTPlayer.seekTo(time / 1000, true);
+    this.rockola.sync.subscribe((syncData) => {
+      if(this.playing && !this.rockolaSync && this.rockolaData.channel == syncData.chann) {
+        YTPlayer.seekTo(syncData.currentTime / 1000, true);
         this.rockolaSync = true;
       }
     });
   }
 
   removeRockola(id: string) {
-    this.ircoreSrv.sendMessageOrCommand('Rockola rid ' + id, this.rockolaData.channel);
+    this.ircoreSrv.sendMessageOrCommand('Rockola remove ' + id, this.rockolaData.channel);
   }
 
   joinRockola() {
-    if(!this.rockolaData) {
+    if(!this.requestForPlay) {
       return;
     }
-    this.requestForPlay = false;
-    this.rockola.watch(this.rockolaData.channel);
+    this.rockolaData = this.requestForPlay;
+    this.requestForPlay = undefined;
     YTPlayer.loadVideoById(this.rockolaData.currentSong);
     this.playing = true;
     this.rockolaSync = false;
     YTPlayingCallback = () => {
       this.rockola.getTime(this.rockolaData.channel);
-    }
+    };
   }
 
   leaveRockola() {
+    this.rockolaData = undefined;
     this.playing = false;
     this.rockolaSync = false;
-    this.rockola.clearChannelWatching();
     YTPlayer.stopVideo();
   }
 

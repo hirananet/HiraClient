@@ -10,13 +10,14 @@ import { MessageData, WSEventType } from './messageData';
 export class RockolaService {
 
   private connected: boolean;
-  private channelWatching: string;
 
-  public readonly play: EventEmitter<string> = new EventEmitter<string>();
+  public readonly play: EventEmitter<any> = new EventEmitter<any>();
+
   public readonly list: EventEmitter<RockolaData> = new EventEmitter<RockolaData>();
-  public readonly pause: EventEmitter<void> = new EventEmitter<void>();
-  public readonly sync: EventEmitter<number> = new EventEmitter<number>();
-  public static readonly detectedPlaylist: EventEmitter<string> = new EventEmitter<string>();
+  private lists: {[key: string]: RockolaData} = {};
+
+  public readonly pause: EventEmitter<any> = new EventEmitter<any>();
+  public readonly sync: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private wsSrv: WebSocketService, private uiSrv: UserInfoService) { }
 
@@ -40,24 +41,21 @@ export class RockolaService {
       console.log('rockola message: ', msg);
       // procesar mensaje
       if(msg.action === 'PLAYLIST') {
-        console.log('Emitting playlist');
+        this.lists[msg.chann] = msg.list;
         this.list.emit(msg.list)
       } else if(msg.action === 'START') {
-        this.play.emit(msg.song);
+        this.play.emit(msg);
       } else if(msg.action === 'PAUSE') {
-        this.pause.emit();
+        this.pause.emit(msg);
       } else if(msg.action === 'TIME') {
-        this.sync.emit(msg.currentTime);
+        this.sync.emit(msg);
       }
     });
     this.handlers();
-    RockolaService.detectedPlaylist.subscribe(channel => {
-      this.getPlaylist(channel);
-    });
   }
 
-  public clearChannelWatching() {
-    this.channelWatching = undefined;
+  public getList(chann: string): RockolaData {
+    return this.lists[chann];
   }
 
   private handlers() {
@@ -92,11 +90,6 @@ export class RockolaService {
 
   public watch(channel: string) {
     if(this.connected) {
-      // ya estoy watcheando algo?
-      if(this.channelWatching) {
-        this.unwatch(this.channelWatching);
-      }
-      this.channelWatching = channel;
       this.wsSrv.send(new MessageData(channel, WSEventType.WATCH));
     }
   }
@@ -109,13 +102,8 @@ export class RockolaService {
 
   public unwatch(channel: string) {
     if(this.connected) {
-      this.channelWatching = undefined;
       this.wsSrv.send(new MessageData(channel, WSEventType.UNWATCH));
     }
-  }
-
-  public getChannelWatching() {
-    return this.channelWatching;
   }
 
 }
