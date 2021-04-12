@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RainEvent } from './rain.event';
 
 @Component({
   selector: 'app-rain',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rain.component.scss']
 })
 export class RainComponent implements OnInit {
+
+  rainEffect: boolean = false;
 
   public drops = Array(250).fill(0); // .map((x,i)=>i)
 
@@ -19,6 +22,14 @@ export class RainComponent implements OnInit {
     } else {
       this.skin = 'light';
     }
+    RainEvent.rainShow.subscribe(r => {
+      this.rainEffect = r;
+      if(r) {
+        setTimeout(() => {
+          this.rainEffect = false;
+        }, 30000);
+      }
+    });
   }
 
 }

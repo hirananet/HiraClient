@@ -1,5 +1,5 @@
+import { RainEvent } from './rain/rain.event';
 import { EmoteList } from 'ircore';
-import { RockolaService } from '../rockola/rockola.service';
 
 declare var startEventEffect: any;
 declare var startEventEffectRegalo: any;
@@ -226,9 +226,15 @@ export class CustomEmoteList {
         if (name === 'lluvia') {
           startEventEffectMeteor();
         }
+        if (name === 'gotitas') {
+          RainEvent.rainShow.emit(true);
+        }
         if (name === 'kz2') {
           startEventEffectKz2s();
           return EmoteList.facesLocation + 'kiss' + EmoteList.facesExtension;
+        }
+        if (name === 'gotitas') {
+          RainEvent.rainShow.emit(true);
         }
         return undefined;
       } else if (author === 'Alex' || author === 'Tulkalex' || author === 'Tulkalen') {

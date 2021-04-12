@@ -1,4 +1,5 @@
 - fixing rockolla.
 - fixing multi-quotes.
 - adding @all mention.
-- 
+- fixing history.
+- efecto gotitas de lluvia.
