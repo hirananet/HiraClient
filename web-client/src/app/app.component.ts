@@ -63,18 +63,19 @@ export class AppComponent implements AfterViewInit{
       }
     });
     this.rockola.newplaylist.subscribe((channel) => {
+      console.log('New playlist: ', channel);
       if(channel !== this.rockolaData?.channel) {
         this.requestForPlay = this.rockola.getList(channel);
       }
     });
     this.rockola.play.subscribe((playData: any) => {
-      if(playData.chann == this.rockolaData.channel) {
+      if(playData.chann == this.rockolaData?.channel) {
         YTPlayer.loadVideoById(playData.song);
         this.playing = true;
       }
     });
     this.rockola.pause.subscribe((playData: any) => {
-      if(playData.chann == this.rockolaData.channel) {
+      if(playData.chann == this.rockolaData?.channel) {
         YTPlayer.stopVideo();
         this.rockolaSync = false;
         this.playing = false;

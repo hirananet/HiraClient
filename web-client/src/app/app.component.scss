@@ -98,6 +98,7 @@ footer {
 
 .popup {
   position: fixed;
+  z-index: 1;
   bottom: 75px;
   right: 5px;
   background: var(--popup-bg);

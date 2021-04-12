@@ -43,12 +43,17 @@ export class RockolaService {
       console.log('rockola message: ', msg);
       // procesar mensaje
       if(msg.action === 'PLAYLIST') {
-        let newPlaylist = !this.lists[msg.chann];
-        this.lists[msg.chann] = msg.list;
-        if(newPlaylist) {
-          this.newplaylist.emit(msg.chann);
-        } else {
-          this.list.emit(msg.chann)
+        const chann = msg.list?.channel;
+        console.log('chann?', chann);
+        if(chann && msg.list.playing) {
+          let newPlaylist = !this.lists[chann];
+          console.log('NEW LIST? ', newPlaylist);
+          this.lists[chann] = msg.list;
+          if(newPlaylist) {
+            this.newplaylist.emit(chann);
+          } else {
+            this.list.emit(chann)
+          }
         }
       } else if(msg.action === 'NEW_PLAYLIST') {
         this.lists[msg.chann] = msg.list;
@@ -72,6 +77,7 @@ export class RockolaService {
     JoinHandler.joinResponse.subscribe(d => {
       if(this.uiSrv.getNick() === d.user.nick) {
         this.getPlaylist(d.channel.channel);
+        this.watch(d.channel.channel);
       }
     });
     PartHandler.partResponse.subscribe(d => {
