@@ -10,7 +10,7 @@
   <div class="popup" *ngIf="requestForPlay" >
     Se inició una lista de videos en {{requestForPlay.channel}}
     <button (click)="joinRockola()">Unirme</button>
-    <button class="cancel" (click)="requestForPlay = undefined">Ignorar</button>
+    <button class="cancel" (click)="ignoreRockola()">Ignorar</button>
   </div>
   <div class="popup" *ngIf="kickedInfo">
     Fuiste hechado del canal {{kickedInfo.channel.channel}}

@@ -57,17 +57,20 @@ export class AppComponent implements AfterViewInit{
         this.kickedInfo = d;
       }
     });
-    this.rockola.list.subscribe((d: RockolaData) => {
-      if(d.channel === this.rockolaData.channel) {
-        this.rockolaData = d;
+    this.rockola.list.subscribe((channel: string) => {
+      if(channel === this.rockolaData.channel) {
+        this.rockolaData = this.rockola.getList(channel);;
+      }
+    });
+    this.rockola.newplaylist.subscribe((channel) => {
+      if(channel !== this.rockolaData?.channel) {
+        this.requestForPlay = this.rockola.getList(channel);
       }
     });
     this.rockola.play.subscribe((playData: any) => {
       if(playData.chann == this.rockolaData.channel) {
         YTPlayer.loadVideoById(playData.song);
         this.playing = true;
-      } else {
-        this.requestForPlay = this.rockola.getList(playData.chann);
       }
     });
     this.rockola.pause.subscribe((playData: any) => {
@@ -101,6 +104,10 @@ export class AppComponent implements AfterViewInit{
     YTPlayingCallback = () => {
       this.rockola.getTime(this.rockolaData.channel);
     };
+  }
+
+  ignoreRockola() {
+    this.requestForPlay = undefined;
   }
 
   leaveRockola() {

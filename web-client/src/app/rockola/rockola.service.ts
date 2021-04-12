@@ -13,7 +13,9 @@ export class RockolaService {
 
   public readonly play: EventEmitter<any> = new EventEmitter<any>();
 
-  public readonly list: EventEmitter<RockolaData> = new EventEmitter<RockolaData>();
+  public readonly newplaylist: EventEmitter<string> = new EventEmitter<string>();
+  public readonly list: EventEmitter<string> = new EventEmitter<string>();
+
   private lists: {[key: string]: RockolaData} = {};
 
   public readonly pause: EventEmitter<any> = new EventEmitter<any>();
@@ -41,9 +43,17 @@ export class RockolaService {
       console.log('rockola message: ', msg);
       // procesar mensaje
       if(msg.action === 'PLAYLIST') {
+        let newPlaylist = !this.lists[msg.chann];
         this.lists[msg.chann] = msg.list;
-        this.list.emit(msg.list)
-      } else if(msg.action === 'START') {
+        if(newPlaylist) {
+          this.newplaylist.emit(msg.chann);
+        } else {
+          this.list.emit(msg.chann)
+        }
+      } else if(msg.action === 'NEW_PLAYLIST') {
+        this.lists[msg.chann] = msg.list;
+        this.newplaylist.emit(msg.chann);
+      } else if(msg.action === 'PLAY') {
         this.play.emit(msg);
       } else if(msg.action === 'PAUSE') {
         this.pause.emit(msg);
