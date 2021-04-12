@@ -68,5 +68,34 @@
         <!-- lista de canales conectados: -->
       </footer>
     </article>
+    <article *ngIf="geoIP">
+      <header>Geocoding {{geoIP.query}}</header>
+      <section>
+        <div class="data-set" *ngIf="geoIP.country">
+          <label>Country:</label>
+          <span style="font-size: 12px;">{{geoIP.country}}</span>
+        </div>
+        <div class="data-set" *ngIf="geoIP.countryCode">
+          <label>Flag:</label>
+          <span style="font-size: 12px;">{{geoIP.countryCode}} <img style="vertical-align: middle;" src="https://flagcdn.com/32x24/{{geoIP.countryCode.toLowerCase()}}.png" /></span>
+        </div>
+        <div class="data-set" *ngIf="geoIP.regionName">
+          <label>Region:</label>
+          <span style="font-size: 12px;">{{geoIP.regionName}}</span>
+        </div>
+        <div class="data-set" *ngIf="geoIP.regionName">
+          <label>City:</label>
+          <span style="font-size: 12px;">{{geoIP.city}}</span>
+        </div>
+        <div class="data-set" *ngIf="geoIP.timezone">
+          <label>Timezone:</label>
+          <span style="font-size: 12px;">{{geoIP.timezone}}</span>
+        </div>
+        <div class="data-set" *ngIf="geoIP.isp">
+          <label>ISP:</label>
+          <span style="font-size: 12px;">{{geoIP.isp}}</span>
+        </div>
+      </section>
+    </article>
   </section>
 </main>

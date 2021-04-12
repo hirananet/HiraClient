@@ -3,3 +3,5 @@
 - adding @all mention.
 - fixing history.
 - efecto gotitas de lluvia.
+- gecoding ip
+- whoisdata

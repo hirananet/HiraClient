@@ -4,6 +4,7 @@ import { Channel, WhoIsData, WhoIsHandler, IRCoreService, ChannelsService } from
 import { Subscription } from 'rxjs';
 import { ListElement } from 'src/app/sections/list/list.component';
 import { environment } from 'src/environments/environment';
+import { IPApiData, IPGeocodeService } from '../utils/ipgeocode.service';
 
 @Component({
   selector: 'app-whois',
@@ -24,11 +25,14 @@ export class WhoisComponent implements OnInit {
 
   public searchWho: string;
 
+  public geoIP: IPApiData;
+
   constructor(
     private router: Router,
     route: ActivatedRoute,
     private ircSrv: IRCoreService,
-    private cSrv: ChannelsService
+    private cSrv: ChannelsService,
+    private geoSrv: IPGeocodeService
   ) {
     this.routeSubscription = this.router.events.subscribe(d => {
       this.currentWhoNick = route.snapshot.params.nick;
@@ -59,6 +63,9 @@ export class WhoisComponent implements OnInit {
 
   showCurrent(allWhos) {
     this.currentWho = allWhos[this.currentWhoNick];
+    if(this.currentWho.connectedFrom) {
+      this.showGeolocat(this.currentWho.connectedFrom);
+    }
     this.currentImage = environment.hiranaTools + '/avatar?usr=' + this.currentWho.username;
     this.channels = [];
     if(allWhos[this.currentWhoNick].channelList) {
@@ -98,6 +105,19 @@ export class WhoisComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
+  }
+
+  showGeolocat(from: string) {
+    const ips = from.split('@')[1].split(' ');
+    const lastIP = ips[ips.length - 1].trim();
+    if(!this.geoIP || this.geoIP.query != lastIP) {
+      this.geoIP = {query: lastIP};
+      this.geoSrv.getIpApi(lastIP).subscribe(d => {
+        this.geoIP = d;
+      }, e => {
+        console.error('Error geocoding', e);
+      });
+    }
   }
 
 }
