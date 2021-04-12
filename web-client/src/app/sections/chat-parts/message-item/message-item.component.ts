@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { GenericMessage, Quote } from 'ircore';
+import { GenericMessage, Quote, ValidRegex } from 'ircore';
 import { MenuElementData } from '../../context-menu/context-menu.component';
 
 @Component({
@@ -24,6 +24,10 @@ export class MessageItemComponent implements OnInit {
     const q = new Quote();
     q.author = this.message.author.user;
     q.quote = this.message.message;
+    const prevQuote = ValidRegex.quoteRegex(this.message.message);
+    if(prevQuote) {
+      q.quote = prevQuote[3];
+    }
     this.quote.emit(q);
   }
 
