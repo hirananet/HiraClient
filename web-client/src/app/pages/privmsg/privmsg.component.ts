@@ -247,12 +247,7 @@ export class PrivmsgComponent implements OnInit {
     const fr = new FileReader();
     fr.onloadend = () => {
       this.vcg.uploadImage((fr.result as string).split('base64,')[1]).subscribe(d => {
-        const cboxI = (document.getElementById('messageInput') as any);
-        if (cboxI.value.length > 0) {
-          cboxI.value = (document.getElementById('messageInput') as any).value.trim() + ' ';
-        }
-        cboxI.value += d.image;
-        cboxI.focus();
+        this.ircSrv.sendMessageOrCommand(d.image, this.nickTarget);
         this.imageLoading = false;
       }, err => {
         this.imageLoading = false;
