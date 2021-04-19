@@ -164,7 +164,16 @@ export class CustomEmoteList {
       'zombie2',
       'milk',
       'arcoiris',
-      'amor'
+      'amor',
+      'magia',
+      'invierno',
+      'verano',
+      'otono',
+      'primavera',
+      'lluvia',
+      'gotitas',
+      'regalos',
+      'cabritas'
     ];
 
     EmoteList.memes = [
@@ -232,20 +241,15 @@ export class CustomEmoteList {
         }
         if (name === 'kz2') {
           startEventEffectKz2s();
-          return EmoteList.facesLocation + 'kiss' + EmoteList.facesExtension;
         }
         if (name === 'gotitas') {
           RainEvent.rainShow.emit(true);
         }
-        return undefined;
       } else if (author === 'Alex' || author === 'Tulkalex' || author === 'Tulkalen') {
         if (name === 'kz2') {
           startEventEffectKz2s(); // Probando
-          return EmoteList.facesLocation + 'kiss' + EmoteList.facesExtension;
         }
-        return undefined;
       }
-      return undefined;
     };
 
   }

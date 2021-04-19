@@ -3,6 +3,7 @@
     - drag-drop más grande.
     - comando /hc roto. (rebuild)
     - fix otoño
+    - emotes de efectos: invierno, verano, primavera, otono, regalos, gotitas, lluvia, magia
 
 * pending:
     - rockola en ventana minimizable/maximizable, ignore recover.
