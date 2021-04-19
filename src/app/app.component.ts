@@ -63,7 +63,6 @@ export class AppComponent implements AfterViewInit{
       }
     });
     this.rockola.newplaylist.subscribe((channel) => {
-      console.log('New playlist: ', channel);
       if(channel !== this.rockolaData?.channel) {
         this.requestForPlay = this.rockola.getList(channel);
       }
