@@ -11,3 +11,6 @@
     - fix otoño
     - rangos
     - botón para ver archivos de logs en desktop
+    - agregar a los tabs los canales.
+    - history por chat (flechita arriba)
+    - custom ranges?
