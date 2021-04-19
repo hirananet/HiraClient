@@ -1,14 +1,14 @@
 * done:
     - Imagenes se mandan directamente
+    - drag-drop más grande.
+    - comando /hc roto. (rebuild)
+    - fix otoño
 
 * pending:
-    - drag-drop más grande.
     - rockola en ventana minimizable/maximizable, ignore recover.
-    - comando /hc roto.
     - enviar texto multilinea en cuadro de texto (considerar los saltos).
     - server message notification.
     - arreglar scroll-lock
-    - fix otoño
     - rangos
     - botón para ver archivos de logs en desktop
     - agregar a los tabs los canales.

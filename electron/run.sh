@@ -1,4 +1,4 @@
-cd ../web-client
-ng build --output-path ../desktop-client/www --configuration electron --base-href .
-cd ../desktop-client
+cd ..
+ng build --output-path ./electron/www --configuration electron --base-href .
+cd electron
 npm start
