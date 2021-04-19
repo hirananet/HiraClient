@@ -21,7 +21,9 @@
       </li>
     </ul>
   </header>
-  <section>
+  <section
+    (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)">
     <div class="messageBox">
       <ul id="listMessages" (scroll)="onScroll($event)">
         <li (resized)="resize($event)">
