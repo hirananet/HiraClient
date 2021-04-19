@@ -1,7 +1,7 @@
 import { CustomEmoteList } from './utils/CustomEmoteList';
 import { RockolaData, RockolaService } from 'src/app/rockola/rockola.service';
 import { environment } from './../environments/environment';
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, HostListener } from '@angular/core';
 import { ParamParse } from './utils/ParamsParse';
 import { GmodeHandler, ServerMsgService, IRCoreService, AvatarHelper, KickHandler, KickInfo, UserInfoService } from 'ircore';
 import { ElectronSrvService } from './electron/electron-srv.service';
@@ -128,6 +128,39 @@ export class AppComponent implements AfterViewInit{
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  }
+
+  public topDrag: string;
+  public leftDrag: string;
+  public isDragged: boolean = false;
+  public isDragging: boolean = false;
+
+  public offsetDX;
+  public offsetDY;
+
+  dragStart(evt) {
+    console.log('start', evt);
+    var rect = evt.target.getBoundingClientRect();
+    this.offsetDX = evt.clientX - rect.left; //x position within the element.
+    this.offsetDY = evt.clientY - rect.top;  //y position within the element
+    this.topDrag = (evt.clientY - this.offsetDY) + 'px';
+    this.leftDrag = (evt.clientX - this.offsetDX) + 'px';
+    this.isDragged = true;
+    this.isDragging = true;
+  }
+
+  dragEnd(evt) {
+    console.log('stop', evt);
+    this.topDrag = (evt.clientY - this.offsetDY) + 'px';
+    this.leftDrag = (evt.clientX - this.offsetDX) + 'px';
+    this.isDragging = false;
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  mouseMove(evt) {
+    if(this.isDragging) {
+      console.log('moving', evt);
+    }
   }
 
 }

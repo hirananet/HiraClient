@@ -23,7 +23,18 @@ aside {
   position: fixed;
   bottom: 100px;
   right: 2vw;
+  width: fit-content;
+  &.dragged {
+    bottom: initial;
+    right: initial;
+  }
+  &.dragging {
+    header {
+      cursor: grabbing;
+    }
+  }
   header {
+    cursor: grab;
     color: var(--footer-color);
     background: var(--nav-background);
     padding: 7px;
