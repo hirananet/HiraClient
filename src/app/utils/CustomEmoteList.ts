@@ -173,7 +173,9 @@ export class CustomEmoteList {
       'lluvia',
       'gotitas',
       'regalos',
-      'cabritas'
+      'cabritas',
+      'underc0de',
+      'bicho'
     ];
 
     EmoteList.memes = [

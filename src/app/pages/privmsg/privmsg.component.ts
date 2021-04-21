@@ -164,8 +164,14 @@ export class PrivmsgComponent implements OnInit {
   }
 
   kp(event) {
-    if(event.keyCode === 13) {
+    if(event.keyCode === 13 && !event.shiftKey) {
       this.send();
+    }
+  }
+
+  ku(event) {
+    if(event.keyCode === 13 && !event.shiftKey) {
+      event.target.value = ''
     }
   }
 

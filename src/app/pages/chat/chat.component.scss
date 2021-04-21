@@ -235,18 +235,20 @@ main {
         cursor: pointer;
       }
     }
-    input {
+    input, textarea {
       width: calc(100% - 130px - 38px);
       margin: 18px;
-      height: 28px;
+      max-height: 28px;
       border: 1px solid var(--chat-footer-input-border);
       border-radius: 3px;
       background: var(--chat-footer-input-bg);
-      padding-left: 0.5vw;
+      padding: 8px;
       color: var(--chat-footer-input-color);
       display: inline-block;
       margin-right: 0px;
       outline: none;
+      vertical-align: middle;
+      resize: none;
     }
     button {
       width: 30px;

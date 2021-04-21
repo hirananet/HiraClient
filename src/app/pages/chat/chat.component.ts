@@ -149,8 +149,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   kp(event) {
-    if(event.keyCode === 13) {
+    if(event.keyCode === 13 && !event.shiftKey) {
       this.send();
+    }
+  }
+
+  ku(event) {
+    if(event.keyCode === 13 && !event.shiftKey) {
+      event.target.value = ''
     }
   }
 
@@ -197,7 +203,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
     this.messageSubscription.unsubscribe();
-    this.rockolaSubs.unsubscribe();
+    this.rockolaSubs?.unsubscribe();
     clearInterval(this.timmer_whox);
   }
 
