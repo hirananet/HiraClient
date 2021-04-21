@@ -63,6 +63,7 @@ export class RockolaService {
         this.play.emit(msg);
       } else if(msg.action === 'PAUSE') {
         this.pause.emit(msg);
+        this.lists[msg.chann].playing = false;
       } else if(msg.action === 'TIME') {
         this.sync.emit(msg);
       }

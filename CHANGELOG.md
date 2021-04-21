@@ -5,9 +5,9 @@
     - fix otoño
     - emotes de efectos: invierno, verano, primavera, otono, regalos, gotitas, lluvia, magia.
     - la rockola se puede mover de ubicación.
+    - poder volver a mostrar popup de playlist.
 
 * pending:
-    - poder volver a mostrar popup de playlist.
     - enviar texto multilinea en cuadro de texto (considerar los saltos).
     - server message notification.
     - arreglar scroll-lock
