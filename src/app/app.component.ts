@@ -86,6 +86,11 @@ export class AppComponent implements AfterViewInit{
         this.rockolaSync = true;
       }
     });
+    this.rockola.forcePlaylist.subscribe((channel) => {
+      this.requestForPlay = this.rockola.getList('#'+channel);
+      YTPlayer.stopVideo();
+      this.joinRockola();
+    })
   }
 
   removeRockola(id: string) {

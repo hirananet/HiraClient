@@ -1,3 +1,4 @@
+import { RockolaData, RockolaService } from 'src/app/rockola/rockola.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
@@ -33,6 +34,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   public emotePopupOpened: boolean;
   public timmer_whox: any;
 
+  private rockolaSubs: Subscription;
+  public rockolaData: RockolaData;
+
   @ViewChild('infoPanel', {static: true}) appInfoPanel: InfoPanelComponent;
 
   constructor(
@@ -42,7 +46,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       private ircSrv: IRCoreService,
       private vcg: VcardGetterService,
       private hmcSrv: HistoryMessageCursorService,
-      private titleSrv: Title
+      private titleSrv: Title,
+      private rockola: RockolaService
   ) {
     this.routeSubscription = this.router.events.subscribe(d => {
       if(this.channelName != route.snapshot.params.channel) {
@@ -122,6 +127,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       });
       this.sendWHOX();
       this.goDown();
+
+      this.rockolaData = this.rockola.getList('#'+this.channelName)
     } else if(this.chanSrv.getChannels().length > 0) {
       this.router.navigateByUrl('/chat/' + this.chanSrv.getChannels()[0].name);
     } else {
@@ -190,6 +197,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
     this.messageSubscription.unsubscribe();
+    this.rockolaSubs.unsubscribe();
     clearInterval(this.timmer_whox);
   }
 
@@ -246,5 +254,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   onDragOver(event) {
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  openPlaylist() {
+    this.rockola.forceOpenPLaylist(this.channelName)
   }
 }

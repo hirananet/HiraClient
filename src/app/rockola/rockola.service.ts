@@ -20,6 +20,7 @@ export class RockolaService {
 
   public readonly pause: EventEmitter<any> = new EventEmitter<any>();
   public readonly sync: EventEmitter<any> = new EventEmitter<any>();
+  public readonly forcePlaylist: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private wsSrv: WebSocketService, private uiSrv: UserInfoService) { }
 
@@ -69,8 +70,13 @@ export class RockolaService {
     this.handlers();
   }
 
-  public getList(chann: string): RockolaData {
-    return this.lists[chann];
+  public getList(chann?: string): RockolaData {
+    const list = this.lists[chann];;
+    if(list) {
+      return list;
+    } else {
+      console.log(list, chann, this.lists);
+    }
   }
 
   private handlers() {
@@ -120,6 +126,10 @@ export class RockolaService {
     if(this.connected) {
       this.wsSrv.send(new MessageData(channel, WSEventType.UNWATCH));
     }
+  }
+
+  public forceOpenPLaylist(channel: string) {
+    this.forcePlaylist.emit(channel);
   }
 
 }

@@ -20,6 +20,7 @@
         Copiar link del chat
       </li>
     </ul>
+    <img *ngIf="rockolaData && rockolaData.playing" src="assets/specials/playlist.png" class="floatingPlaylist" title="Rockola" (click)="openPlaylist()"/>
   </header>
   <section
     (drop)="onDrop($event)"

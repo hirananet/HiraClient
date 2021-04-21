@@ -101,6 +101,44 @@ main {
         }
       }
     }
+
+    .floatingPlaylist {
+      position: absolute;
+      top: 85px;
+      right: 20px;
+      z-index: 1;
+      width: 50px;
+      cursor: pointer;
+      animation: tururun 5s linear infinite;
+    }
+
+    @keyframes tururun {
+      0% {
+        transform: rotate(0deg);
+      }
+      30% {
+        transform: rotate(0deg);
+      }
+      35% {
+        transform: rotate(-25deg);
+      }
+      40% {
+        transform: rotate(0deg);
+      }
+      45% {
+        transform: rotate(25deg);
+      }
+      50% {
+        transform: rotate(0deg);
+      }
+      55% {
+        transform: rotate(-25deg);
+      }
+      60% {
+        transform: rotate(0deg);
+      }
+    }
+
   }
   section {
     height: calc(100vh - 75px - 65px);
