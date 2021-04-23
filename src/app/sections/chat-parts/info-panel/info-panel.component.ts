@@ -49,27 +49,27 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
       }
       if(user.mode == UModes.ADMIN) {
         this.uSrv.update(user.nick, channel, {
-          name: 'Founder',
-          background: '#4b3526',
-          color: '#dea777',
+          name: 'Admin',
+          background: '#3d264b',
+          color: '#a977de',
           isLocal: true
         });
         member.color = '#009bd8';
       }
       if(user.mode == UModes.OPER) {
         this.uSrv.update(user.nick, channel, {
-          name: 'Founder',
-          background: '#4b3526',
-          color: '#dea777',
+          name: 'Oper',
+          background: '#2c4b26',
+          color: '#79d87d',
           isLocal: true
         });
         member.color = '#009bd8';
       }
       if(user.mode == UModes.HALFOPER) {
         this.uSrv.update(user.nick, channel, {
-          name: 'Founder',
-          background: '#4b3526',
-          color: '#dea777',
+          name: 'Half-oper',
+          background: '#26344b',
+          color: '#779fde',
           isLocal: true
         });
         member.color = '#009bd8';
