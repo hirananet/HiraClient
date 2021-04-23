@@ -13,6 +13,7 @@ import { ResizedEvent } from 'angular-resize-event';
 import { filter } from 'rxjs/operators';
 import { LocalLabels } from 'src/app/utils/LocalLabels';
 import { UsersService } from 'src/app/utils/users.service';
+import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
 
 @Component({
   selector: 'app-chat',
@@ -52,7 +53,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       private titleSrv: Title,
       private rockola: RockolaService,
       private uSrv: UsersService,
-      private uInfo: UserInfoService
+      private uInfo: UserInfoService,
+      private electronSrv: ElectronSrvService
   ) {
     this.routeSubscription = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(d => {
       if(this.channelName != route.snapshot.params.channel) {
@@ -224,7 +226,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   public isElectron = environment.electron;
 
   openLogFolder() {
-
+    this.electronSrv.openLogsFolder();
   }
 
   ngOnDestroy() {

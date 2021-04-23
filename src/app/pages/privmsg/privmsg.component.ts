@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, PrivmsgService, IRCoreService, UserInfoService } from 'ircore';
 import { ResizedEvent } from 'angular-resize-event';
 import { filter } from 'rxjs/operators';
+import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
 
 @Component({
   selector: 'app-privmsg',
@@ -49,7 +50,8 @@ export class PrivmsgComponent implements OnInit {
     private hmcSrv: HistoryMessageCursorService,
     private vcg: VcardGetterService,
     private uis: UserInfoService,
-    private titleSrv: Title
+    private titleSrv: Title,
+    private electronSrv: ElectronSrvService
 ) {
   this.routeSubscription = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(d => {
     if(this.nickTarget != route.snapshot.params.nick) {
@@ -279,6 +281,16 @@ export class PrivmsgComponent implements OnInit {
   onDragOver(event) {
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  gmode(event) {
+    this.ircSrv.sendMessageOrCommand('/umode +g');
+  }
+
+  public isElectron: boolean = environment.electron;
+
+  openLogFolder(event) {
+    this.electronSrv.openLogsFolder();
   }
 
 }
