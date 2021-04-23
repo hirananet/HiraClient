@@ -22,9 +22,9 @@
     - history por chat (flechita arriba)
     - reduce random server messages.
     - autocomplete channels in tab
+    - nuevos detalles en el whois RealN. IsRegistered.
       
 * pending:
-    - topic edit if i'm > half-op
     - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
     - buscador de emotes
     - arreglar scroll-lock / resize dep optimization bailouts

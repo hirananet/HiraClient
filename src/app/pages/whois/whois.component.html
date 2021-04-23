@@ -46,6 +46,10 @@
           <span *ngIf="!currentWho.isGOP" class="label no">NO</span>
         </div>
         <div class="data-set" *ngIf="currentWho.modes">
+          <label>Real Name:</label>
+          <span>{{currentWho.realn}}</span>
+        </div>
+        <div class="data-set" *ngIf="currentWho.modes">
           <label>Modos de usuario:</label>
           <span>{{currentWho.modes}}</span>
         </div>
@@ -62,6 +66,12 @@
           <label>Último login:</label>
           <span>{{currentWho.getLastLogin()}}</span>
         </div>
+        <div class="data-set">
+          <label>Nick registrado:</label>
+          <span *ngIf="currentWho.registered" class="label yes">SI</span>
+          <span *ngIf="!currentWho.registered" class="label no">NO</span>
+        </div>
+
       </section>
       <footer *ngIf="channels">
         <app-menu-list title="Canales" [elements]="channels" (elemSelected)="joinC($event);" type="chat"></app-menu-list>
