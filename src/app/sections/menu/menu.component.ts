@@ -2,13 +2,13 @@ import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
 import { ChannelsService, UserInfoService, IRCoreService, PrivmsgService, ValidRegex, JoinHandler, Join, ChannelData } from 'ircore';
 import { MenuElement, MenuSelectorEvent, MenuType } from './menu-selector.event';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy, Host, HostListener } from '@angular/core';
-import { ListElement } from '../list/list.component';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Title } from '@angular/platform-browser';
 import { AudioService } from 'src/app/utils/audio.service';
 import { MenuElementData } from '../context-menu/context-menu.component';
+import { ListElement } from '../list/list.types';
 
 @Component({
   selector: 'app-menu',

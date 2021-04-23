@@ -5,9 +5,13 @@
   <section>
     <header>
       <b class="nick" (click)="openPM(message.author.user)" (contextmenu)="contextMenu($event, message.author.user)">{{message.author.user}}</b>
+      <div class="badges" *ngIf="this.getBadges(message.author.user) && this.getBadges(message.author.user).length > 0">
+        <div class="badge" *ngFor="let label of this.getBadges(message.author.user)" [style.color]="label.color" [style.borderColor]="label.color" [style.backgroundColor]="label.background">
+          {{label.name}}
+        </div>
+      </div>
       <span>
         {{message.date}}
-        <!-- 12/01/2021 17:26:47 -->
       </span>
     </header>
     <q *ngIf="message.messageWithMetadata?.quote">

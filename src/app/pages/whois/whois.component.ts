@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Channel, WhoIsData, WhoIsHandler, IRCoreService, ChannelsService } from 'ircore';
 import { Subscription } from 'rxjs';
-import { ListElement } from 'src/app/sections/list/list.component';
+import { ListElement } from 'src/app/sections/list/list.types';
 import { environment } from 'src/environments/environment';
 import { IPApiData, IPGeocodeService } from '../utils/ipgeocode.service';
 

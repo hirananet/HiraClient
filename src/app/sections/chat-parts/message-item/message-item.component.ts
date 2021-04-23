@@ -1,7 +1,9 @@
+import { UsersService } from 'src/app/utils/users.service';
 import { Router } from '@angular/router';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GenericMessage, Quote, ValidRegex } from 'ircore';
 import { MenuElementData } from '../../context-menu/context-menu.component';
+import { Label } from '../../list/list.types';
 
 @Component({
   selector: 'app-message-item',
@@ -14,8 +16,9 @@ export class MessageItemComponent implements OnInit {
   @Input() message: GenericMessage;
   @Output() quote: EventEmitter<Quote> = new EventEmitter<Quote>();
   public menuElement: MenuElementData;
+  public badges: Label[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private uSrv: UsersService) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +38,13 @@ export class MessageItemComponent implements OnInit {
     this.router.navigateByUrl('/priv/' + nick);
   }
 
+  getBadges(user: string): Label[] {
+    if(!this.badges) {
+      this.badges = this.uSrv.getUserLabel(user, this.message.target ? this.message.target : '$private');
+    } else {
+      return this.badges;
+    }
+  }
 
   contextMenu(evt, target) {
     evt.preventDefault();

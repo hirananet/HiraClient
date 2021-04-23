@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { WhoStatusService } from 'ircore';
+import { ListElement } from './list.types';
 
 @Component({
   selector: 'app-menu-list',
@@ -47,18 +48,3 @@ export class ListComponent implements OnInit {
 
 }
 
-export class ListElement {
-  name: string;
-  notify: boolean;
-  warn: boolean;
-  image?: string;
-  active: boolean;
-  labels?: Label[];
-  color?: string;
-}
-
-export interface Label {
-  name: string;
-  color: string;
-  background: string;
-}

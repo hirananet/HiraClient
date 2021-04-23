@@ -15,7 +15,8 @@ export const environment = {
   webIRCGateway: 'wss://wircg.tandilserver.com/webirc/websocket/',
   // rockola: 'ws://127.0.0.1:3001'
   rockola: 'wss://rockola.hirana.net',
-  ipstackApiKey: ''
+  ipstackApiKey: '',
+  cacheLabels: 180000 // 3 minutos
 };
 
 /*

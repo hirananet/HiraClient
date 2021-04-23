@@ -79,7 +79,6 @@ export class PrivmsgComponent implements OnInit {
     }
     this.messageSubscription = this.pmsgSrv.messagesReceived.subscribe(d => {
 
-      console.log('AutoGoDown', d.author.user === this.nickTarget, this.newMessages);
       if(d.author.user === this.nickTarget) {
         this.newMessages = false;
         if(this.autoDownLocked) {
@@ -95,7 +94,6 @@ export class PrivmsgComponent implements OnInit {
     if(this.autoDownLocked) {
       return;
     }
-    console.log('RzGoDown');
     this.goDown();
   }
 

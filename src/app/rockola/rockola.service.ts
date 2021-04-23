@@ -41,14 +41,11 @@ export class RockolaService {
     });
     this.wsSrv.onMessage.subscribe(d => {
       const msg = JSON.parse(d);
-      console.log('rockola message: ', msg);
       // procesar mensaje
       if(msg.action === 'PLAYLIST') {
         const chann = msg.list?.channel;
-        console.log('chann?', chann);
         if(chann && msg.list.playing) {
           let newPlaylist = !this.lists[chann];
-          console.log('NEW LIST? ', newPlaylist);
           this.lists[chann] = msg.list;
           if(newPlaylist) {
             this.newplaylist.emit(chann);
@@ -75,8 +72,6 @@ export class RockolaService {
     const list = this.lists[chann];;
     if(list) {
       return list;
-    } else {
-      console.log(list, chann, this.lists);
     }
   }
 

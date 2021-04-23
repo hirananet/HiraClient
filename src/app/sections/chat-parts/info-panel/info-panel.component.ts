@@ -1,9 +1,10 @@
 import { Subscription } from 'rxjs';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { ListElement } from 'src/app/sections/list/list.component';
 import { environment } from 'src/environments/environment';
-import { User, UModes, ChannelsService, IRCoreService } from 'ircore';
+import { User, UModes, ChannelsService } from 'ircore';
 import { MenuElementData } from '../../context-menu/context-menu.component';
+import { UsersService } from 'src/app/utils/users.service';
+import { ListElement } from '../../list/list.types';
 
 @Component({
   selector: 'app-info-panel',
@@ -18,7 +19,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
   private memberSubscription: Subscription;
   public menuElement: MenuElementData;
 
-  constructor(chanSrv: ChannelsService) {
+  constructor(chanSrv: ChannelsService, private uSrv: UsersService) {
     this.memberSubscription = chanSrv.membersChanged.subscribe((d: {channel: string, users: User[]}) => {
       if(d.channel === this.channelName) {
         this.recalcUsers(d.users);
@@ -35,46 +36,42 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
     users.sort((a: User, b: User) => a.nick.localeCompare(b.nick)).forEach(user => {
       const member = new ListElement();
       member.name = user.nick;
-      member.labels = [];
+      member.labels = this.uSrv.getUserLabel(user.nick, this.channelName);
       member.image = environment.hiranaTools + '/avatar?usr=' + user.nick;
       if(user.mode == UModes.FOUNDER) {
-        member.labels.push(
-          {
-            name: 'Founder',
-            background: '#4b3526',
-            color: '#dea777'
-          }
-        );
+        this.uSrv.update(user.nick, this.channelName, {
+          name: 'Founder',
+          background: '#4b3526',
+          color: '#dea777',
+          isLocal: true
+        });
         member.color = '#009bd8';
       }
       if(user.mode == UModes.ADMIN) {
-        member.labels.push(
-          {
-            name: 'Admin',
-            background: '#3d264b',
-            color: '#a977de'
-          }
-        );
+        this.uSrv.update(user.nick, this.channelName, {
+          name: 'Founder',
+          background: '#4b3526',
+          color: '#dea777',
+          isLocal: true
+        });
         member.color = '#009bd8';
       }
       if(user.mode == UModes.OPER) {
-        member.labels.push(
-          {
-            name: 'Oper',
-            background: '#2c4b26',
-            color: '#79d87d'
-          }
-        );
+        this.uSrv.update(user.nick, this.channelName, {
+          name: 'Founder',
+          background: '#4b3526',
+          color: '#dea777',
+          isLocal: true
+        });
         member.color = '#009bd8';
       }
       if(user.mode == UModes.HALFOPER) {
-        member.labels.push(
-          {
-            name: 'Half-oper',
-            background: '#26344b',
-            color: '#779fde'
-          }
-        );
+        this.uSrv.update(user.nick, this.channelName, {
+          name: 'Founder',
+          background: '#4b3526',
+          color: '#dea777',
+          isLocal: true
+        });
         member.color = '#009bd8';
       }
       if(user.mode == UModes.VOICE) {

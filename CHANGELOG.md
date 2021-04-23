@@ -8,6 +8,7 @@
     - poder volver a mostrar popup de playlist.
     - nuevos emotes, bicho, underc0de
     - soporte multilinea.
+    - MacOS in about.
 
 * pending:
     - server message notification.
@@ -16,3 +17,4 @@
     - botón para ver archivos de logs en desktop
     - custom ranges?
     - arreglar scroll-lock
+    - buscador de emotes
