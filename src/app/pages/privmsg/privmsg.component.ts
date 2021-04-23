@@ -6,7 +6,7 @@ import { HistoryMessageCursorService } from '../../utils/history-message-cursor.
 import { VcardGetterService } from 'src/app/sections/chat-parts/message-item/link-vcard/vcard-getter.service';
 import { environment } from 'src/environments/environment';
 import { Title } from '@angular/platform-browser';
-import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, PrivmsgService, IRCoreService, UserInfoService } from 'ircore';
+import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, PrivmsgService, IRCoreService, UserInfoService, ChannelsService } from 'ircore';
 import { ResizedEvent } from 'angular-resize-event';
 import { filter } from 'rxjs/operators';
 import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
@@ -51,7 +51,8 @@ export class PrivmsgComponent implements OnInit {
     private vcg: VcardGetterService,
     private uis: UserInfoService,
     private titleSrv: Title,
-    private electronSrv: ElectronSrvService
+    private electronSrv: ElectronSrvService,
+    private cSrv: ChannelsService
 ) {
   this.routeSubscription = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(d => {
     if(this.nickTarget != route.snapshot.params.nick) {
@@ -184,10 +185,22 @@ export class PrivmsgComponent implements OnInit {
       const curPos = event.target.selectionStart;
       const partial = this.message.substr(0, curPos).split(' ');
       const search = partial[partial.length-1];
-      const user = [this.privMsg.user, this.uis.getNick()].find(user => user.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) == 0);
-      if(user) {
+      let completeString = '';
+      const searchChann = (_search) => {
+        completeString = this.cSrv.getChannels().find(channel => channel.name.toLocaleLowerCase().indexOf(_search.toLocaleLowerCase()) == 0)?.name;
+        return completeString ? '#' + completeString : undefined;
+      };
+      if(search[0] == '#') {
+        completeString = searchChann(search.slice(1));
+      } else {
+        completeString = [this.privMsg.user, this.uis.getNick()].find(user => user.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) == 0);
+        if(!completeString) {
+          completeString = searchChann(search);
+        }
+      }
+      if(completeString) {
         const startPos = curPos - search.length;
-        this.message = this.message.substr(0, startPos) + user + this.message.substr(curPos) + ' ';
+        this.message = this.message.substr(0, startPos) + completeString + this.message.substr(curPos) + ' ';
       }
     }
     if(event.keyCode == 38) { // arrow up

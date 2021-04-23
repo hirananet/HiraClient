@@ -175,10 +175,22 @@ export class ChatComponent implements OnInit, OnDestroy {
       const curPos = event.target.selectionStart;
       const partial = this.message.substr(0, curPos).split(' ');
       const search = partial[partial.length-1];
-      const user = this.channel.users.find(user => user.nick.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) == 0);
-      if(user) {
+      let completeString = '';
+      const searchChann = (_search) => {
+        completeString = this.chanSrv.getChannels().find(channel => channel.name.toLocaleLowerCase().indexOf(_search.toLocaleLowerCase()) == 0)?.name;
+        return completeString ? '#' + completeString : undefined;
+      };
+      if(search[0] == '#') {
+        completeString = searchChann(search.slice(1));
+      } else {
+        completeString = this.channel.users.find(user => user.nick.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) == 0)?.nick;
+        if(!completeString) {
+          completeString = searchChann(search);
+        }
+      }
+      if(completeString) {
         const startPos = curPos - search.length;
-        this.message = this.message.substr(0, startPos) + user.nick + this.message.substr(curPos) + ' ';
+        this.message = this.message.substr(0, startPos) + completeString + this.message.substr(curPos) + ' ';
       }
     }
     if(event.keyCode == 38) { // arrow up

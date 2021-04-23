@@ -9,7 +9,7 @@
     - nuevos emotes, bicho, underc0de
     - soporte multilinea.
     - MacOS in about.
-    - custom ranges (badges)
+    - custom titles (badges)
     - server message notification.
     - context buttons
       * Channels: Ban (if i'm > half-op)
@@ -21,9 +21,9 @@
       * All: botón para ver archivos de logs en desktop
     - history por chat (flechita arriba)
     - reduce random server messages.
+    - autocomplete channels in tab
       
 * pending:
-    - agregar a los tabs los canales.
     - topic edit if i'm > half-op
     - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
     - buscador de emotes
