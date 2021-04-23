@@ -21,13 +21,13 @@
       * All: botón para ver archivos de logs en desktop
       
 * pending:
-    - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
     - history por chat (flechita arriba)
+    - reduce random server messages.
     - agregar a los tabs los canales.
+    - topic edit if i'm > half-op
+    - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
     - buscador de emotes
     - arreglar scroll-lock
     - Optimizations: Chat-LazyLoading
     - menú izq plegable
     - menú derecho achicable
-    - topic edit if i'm > half-op
-    - reduce random server messages.

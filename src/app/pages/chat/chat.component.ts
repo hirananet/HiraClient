@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
-import { HistoryMessageCursorService } from '../utils/history-message-cursor.service';
+import { HistoryMessageCursorService } from '../../utils/history-message-cursor.service';
 import { InfoPanelComponent } from 'src/app/sections/chat-parts/info-panel/info-panel.component';
 import { VcardGetterService } from 'src/app/sections/chat-parts/message-item/link-vcard/vcard-getter.service';
 import { Title } from '@angular/platform-browser';

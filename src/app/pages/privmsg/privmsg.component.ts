@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
-import { HistoryMessageCursorService } from '../utils/history-message-cursor.service';
+import { HistoryMessageCursorService } from '../../utils/history-message-cursor.service';
 import { VcardGetterService } from 'src/app/sections/chat-parts/message-item/link-vcard/vcard-getter.service';
 import { environment } from 'src/environments/environment';
 import { Title } from '@angular/platform-browser';

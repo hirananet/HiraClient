@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Channel, WhoIsData, WhoIsHandler, IRCoreService, ChannelsService } from 'ircore';
 import { Subscription } from 'rxjs';
 import { ListElement } from 'src/app/sections/list/list.types';
+import { IPApiData, IPGeocodeService } from 'src/app/utils/ipgeocode.service';
 import { environment } from 'src/environments/environment';
-import { IPApiData, IPGeocodeService } from '../utils/ipgeocode.service';
 
 @Component({
   selector: 'app-whois',
