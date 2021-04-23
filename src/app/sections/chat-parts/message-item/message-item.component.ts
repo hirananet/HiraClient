@@ -1,9 +1,10 @@
 import { UsersService } from 'src/app/utils/users.service';
 import { Router } from '@angular/router';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { GenericMessage, Quote, ValidRegex } from 'ircore';
+import { GenericMessage, Quote, UserInfoService, ValidRegex } from 'ircore';
 import { Label } from '../../list/list.types';
-import { MenuElementData } from '../../context-menu/context.types';
+import { ContextElements, ContextElementsTypes, MenuElementData } from '../../context-menu/context.types';
+import { LocalLabels } from 'src/app/utils/LocalLabels';
 
 @Component({
   selector: 'app-message-item',
@@ -17,8 +18,9 @@ export class MessageItemComponent implements OnInit {
   @Output() quote: EventEmitter<Quote> = new EventEmitter<Quote>();
   public menuElement: MenuElementData;
   public badges: Label[];
+  public contextActions: ContextElements[] = [{type: ContextElementsTypes.WHOIS}];
 
-  constructor(private router: Router, private uSrv: UsersService) { }
+  constructor(private router: Router, private uSrv: UsersService, private uInfo: UserInfoService) { }
 
   ngOnInit(): void {
   }
@@ -48,6 +50,13 @@ export class MessageItemComponent implements OnInit {
 
   contextMenu(evt, target) {
     evt.preventDefault();
+    this.contextActions = [{type: ContextElementsTypes.WHOIS}];
+    if(this.message.target) { // channel?
+      const labels = this.uSrv.getCachedOnly(this.uInfo.getNick(), this.message.target).filter(label => label.isLocal);
+      if(labels.length > 0 && (labels[0].name == LocalLabels.FOUNDER || labels[0].name == LocalLabels.ADMIN || labels[0].name == LocalLabels.OPER || labels[0].name == LocalLabels.HOPER)) {
+        this.contextActions = [{type: ContextElementsTypes.BAN}, {type: ContextElementsTypes.KICK, data: {channel: this.message.target}}, {type: ContextElementsTypes.VOICE, data: {channel: this.message.target}}, {type: ContextElementsTypes.WHOIS, data: {channel: this.message.target}}]
+      }
+    }
     this.menuElement = {
       target: target,
       posX: evt.clientX - 130,
