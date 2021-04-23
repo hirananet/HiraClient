@@ -2,7 +2,7 @@ import { RockolaData, RockolaService } from 'src/app/rockola/rockola.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { HistoryMessageCursorService } from '../utils/history-message-cursor.service';
 import { InfoPanelComponent } from 'src/app/sections/chat-parts/info-panel/info-panel.component';
@@ -10,6 +10,7 @@ import { VcardGetterService } from 'src/app/sections/chat-parts/message-item/lin
 import { Title } from '@angular/platform-browser';
 import { ChannelsService, IRCoreService, ChannelData, GenericMessage, Quote } from 'ircore';
 import { ResizedEvent } from 'angular-resize-event';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat',
@@ -49,7 +50,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       private titleSrv: Title,
       private rockola: RockolaService
   ) {
-    this.routeSubscription = this.router.events.subscribe(d => {
+    this.routeSubscription = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(d => {
       if(this.channelName != route.snapshot.params.channel) {
         this.channelName = route.snapshot.params.channel;
         this.ngOnInit();

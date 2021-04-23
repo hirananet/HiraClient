@@ -1,9 +1,10 @@
 import { AudioService } from 'src/app/utils/audio.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
-import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil, WhoIsHandler, WhoIsData, StatusHandler, NickChange } from 'ircore';
+import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil, WhoIsHandler, WhoIsData, StatusHandler, NickChange, ServerMsgService } from 'ircore';
 import { ParamParse } from 'src/app/utils/ParamsParse';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav',
@@ -21,7 +22,15 @@ export class NavComponent implements OnInit {
   public skin: string;
   public embedded: boolean;
 
-  constructor(private router: Router, private ircSrv: IRCoreService, private uiSrv: UserInfoService, private audioSrv: AudioService) {
+  public serverNews: boolean;
+  public isInServWindow: boolean;
+
+  constructor(private router: Router,
+              private ircSrv: IRCoreService,
+              private uiSrv: UserInfoService,
+              private audioSrv: AudioService,
+              private servMsgSrv: ServerMsgService,
+              private route: ActivatedRoute) {
     this.embedded = ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true');
   }
 
@@ -56,6 +65,14 @@ export class NavComponent implements OnInit {
     }
     WhoIsHandler.onWhoisResponse.subscribe((d: WhoIsData) => {
       this.router.navigateByUrl('/whois/' + d.username);
+    });
+    this.servMsgSrv.newMessage.subscribe(d => {
+      if(!this.isInServWindow) {
+        this.serverNews = true;
+      }
+    });
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((d: NavigationEnd) => {
+      this.isInServWindow = d.url == '/server';
     });
   }
 

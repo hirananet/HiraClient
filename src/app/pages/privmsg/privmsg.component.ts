@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { HistoryMessageCursorService } from '../utils/history-message-cursor.service';
@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Title } from '@angular/platform-browser';
 import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, PrivmsgService, IRCoreService, UserInfoService } from 'ircore';
 import { ResizedEvent } from 'angular-resize-event';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-privmsg',
@@ -50,7 +51,7 @@ export class PrivmsgComponent implements OnInit {
     private uis: UserInfoService,
     private titleSrv: Title
 ) {
-  this.routeSubscription = this.router.events.subscribe(d => {
+  this.routeSubscription = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(d => {
     if(this.nickTarget != route.snapshot.params.nick) {
       this.nickTarget = route.snapshot.params.nick;
       this.image = environment.hiranaTools + '/avatar?usr=' + this.nickTarget;
