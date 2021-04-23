@@ -10,7 +10,6 @@ import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, P
 import { ResizedEvent } from 'angular-resize-event';
 import { filter } from 'rxjs/operators';
 import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
-import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-privmsg',

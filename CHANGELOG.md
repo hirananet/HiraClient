@@ -20,9 +20,9 @@
       * Privados: Restringir privados (+G)
       * All: botón para ver archivos de logs en desktop
     - history por chat (flechita arriba)
+    - reduce random server messages.
       
 * pending:
-    - reduce random server messages.
     - agregar a los tabs los canales.
     - topic edit if i'm > half-op
     - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
