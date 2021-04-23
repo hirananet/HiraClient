@@ -48,6 +48,13 @@ export class ElectronSrvService {
     electronApi.setLogRoute(route);
   }
 
+  openLogsFolder(): void {
+    if(!environment.electron) {
+      return;
+    }
+    electronApi.sendOpenLogs();
+  }
+
   sendPing(): void {
     if(!environment.electron) {
       return;
@@ -74,4 +81,5 @@ interface ElectronApi {
   getLogRoute(): void;
   sendPing(): void;
   sendBlink(): void;
+  sendOpenLogs(): void;
 }

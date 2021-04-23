@@ -25,5 +25,8 @@ const electronApi = {
   },
   sendBlink: function(data) {
     ipcRenderer.send('blink', data);
+  },
+  sendOpenLogs: function(data) {
+    ipcRenderer.send('openLogs', data);
   }
 };

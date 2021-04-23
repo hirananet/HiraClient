@@ -8,9 +8,11 @@ import { HistoryMessageCursorService } from '../utils/history-message-cursor.ser
 import { InfoPanelComponent } from 'src/app/sections/chat-parts/info-panel/info-panel.component';
 import { VcardGetterService } from 'src/app/sections/chat-parts/message-item/link-vcard/vcard-getter.service';
 import { Title } from '@angular/platform-browser';
-import { ChannelsService, IRCoreService, ChannelData, GenericMessage, Quote } from 'ircore';
+import { ChannelsService, IRCoreService, ChannelData, GenericMessage, Quote, UserInfoService } from 'ircore';
 import { ResizedEvent } from 'angular-resize-event';
 import { filter } from 'rxjs/operators';
+import { LocalLabels } from 'src/app/utils/LocalLabels';
+import { UsersService } from 'src/app/utils/users.service';
 
 @Component({
   selector: 'app-chat',
@@ -48,7 +50,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       private vcg: VcardGetterService,
       private hmcSrv: HistoryMessageCursorService,
       private titleSrv: Title,
-      private rockola: RockolaService
+      private rockola: RockolaService,
+      private uSrv: UsersService,
+      private uInfo: UserInfoService
   ) {
     this.routeSubscription = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(d => {
       if(this.channelName != route.snapshot.params.channel) {
@@ -199,6 +203,28 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.ircSrv.sendMessageOrCommand(this.message, '#'+this.channelName);
     this.message = '';
     document.getElementById('messageInput').focus();
+  }
+
+  public isHalfOrSuper: boolean;
+  moderatedMode() {
+    this.ircSrv.sendMessageOrCommand('/mode #'+ this.channelName + ' +m');
+  }
+
+  openAltMenu() {
+    this.altMenu = true;
+    const labels = this.uSrv.getCachedOnly(this.uInfo.getNick(), this.channelName).filter(label => label.isLocal);
+    this.isHalfOrSuper =  labels.length > 0 && (
+                          labels[0].name == LocalLabels.FOUNDER ||
+                          labels[0].name == LocalLabels.ADMIN ||
+                          labels[0].name == LocalLabels.OPER ||
+                          labels[0].name == LocalLabels.HOPER
+                        );
+  }
+
+  public isElectron = environment.electron;
+
+  openLogFolder() {
+
   }
 
   ngOnDestroy() {

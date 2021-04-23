@@ -7,6 +7,7 @@ const { autoUpdater } = require("electron-updater");
 const { session } = require('electron')
 const path = require('path');
 const url = require("url");
+const { shell } = require('electron')
 
 /// HTTP SERVER ///
 const runInHTTPServer = true;
@@ -33,15 +34,15 @@ if(runInHTTPServer) {
 
     if(fs.existsSync(filename)) {
       if (fs.statSync(filename).isDirectory()) filename += '/index.html';
-  
+
       fs.readFile(filename, "binary", function(err, file) {
-        if(err) {        
+        if(err) {
           response.writeHead(500, {"Content-Type": "text/plain"});
           response.write(err + "\n");
           response.end();
           return;
         }
-  
+
         var headers = {};
         var contentType = contentTypesByExtension[path.extname(filename)];
         if (contentType) headers["Content-Type"] = contentType;
@@ -121,7 +122,7 @@ function createWindow () {
     const flocation = logsSave + '/log-'+fname+'.txt';
     fs.writeFile(flocation, data.message, { flag: "a+" }, (err) => {
       if (err) throw err;
-    }); 
+    });
   });
   ipcMain.on('getLogRoute', async(evt, data) => {
     win.webContents.send('logRoute', logsSave)
@@ -151,6 +152,9 @@ function createWindow () {
     if(!win.isFocused() || win.isMinimized() || !win.isVisible()) {
       win.flashFrame(true);
     }
+  });
+  ipcMain.on('openLogs', async(evt, data) => {
+    shell.openPath(logsSave)
   });
 }
 
