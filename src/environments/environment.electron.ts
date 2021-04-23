@@ -10,5 +10,6 @@ export const environment = {
   intervalWHOX: 10000,
   webIRCGateway: 'wss://wircg.tandilserver.com/webirc/websocket/',
   rockola: 'wss://rockola.hirana.net',
-  ipstackApiKey: ''
+  ipstackApiKey: '',
+  cacheLabels: 180000 // 3 minutos
 };
