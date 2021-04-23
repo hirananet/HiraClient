@@ -38,6 +38,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
       member.name = user.nick;
       member.labels = this.uSrv.getUserLabel(user.nick, channel);
       member.image = environment.hiranaTools + '/avatar?usr=' + user.nick;
+      const voiceColor = '#4ecbe8';
       if(user.mode == UModes.FOUNDER) {
         this.uSrv.update(user.nick, channel, {
           name: 'Founder',
@@ -45,7 +46,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
           color: '#dea777',
           isLocal: true
         });
-        member.color = '#009bd8';
+        member.color = voiceColor;
       }
       if(user.mode == UModes.ADMIN) {
         this.uSrv.update(user.nick, channel, {
@@ -54,7 +55,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
           color: '#a977de',
           isLocal: true
         });
-        member.color = '#009bd8';
+        member.color = voiceColor;
       }
       if(user.mode == UModes.OPER) {
         this.uSrv.update(user.nick, channel, {
@@ -63,7 +64,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
           color: '#79d87d',
           isLocal: true
         });
-        member.color = '#009bd8';
+        member.color = voiceColor;
       }
       if(user.mode == UModes.HALFOPER) {
         this.uSrv.update(user.nick, channel, {
@@ -72,10 +73,10 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
           color: '#779fde',
           isLocal: true
         });
-        member.color = '#009bd8';
+        member.color = voiceColor;
       }
       if(user.mode == UModes.VOICE) {
-        member.color = '#009bd8';
+        member.color = voiceColor;
       }
       this.members.push(member);
     });
