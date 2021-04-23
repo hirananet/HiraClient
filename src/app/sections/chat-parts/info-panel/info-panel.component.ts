@@ -22,7 +22,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
   constructor(chanSrv: ChannelsService, private uSrv: UsersService) {
     this.memberSubscription = chanSrv.membersChanged.subscribe((d: {channel: string, users: User[]}) => {
       if(d.channel === this.channelName) {
-        this.recalcUsers(d.users);
+        this.recalcUsers(d.users, this.channelName);
       }
     })
   }
@@ -31,15 +31,15 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
 
   }
 
-  public recalcUsers(users: User[]) {
+  public recalcUsers(users: User[], channel: string) {
     this.members = [];
     users.sort((a: User, b: User) => a.nick.localeCompare(b.nick)).forEach(user => {
       const member = new ListElement();
       member.name = user.nick;
-      member.labels = this.uSrv.getUserLabel(user.nick, this.channelName);
+      member.labels = this.uSrv.getUserLabel(user.nick, channel);
       member.image = environment.hiranaTools + '/avatar?usr=' + user.nick;
       if(user.mode == UModes.FOUNDER) {
-        this.uSrv.update(user.nick, this.channelName, {
+        this.uSrv.update(user.nick, channel, {
           name: 'Founder',
           background: '#4b3526',
           color: '#dea777',
@@ -48,7 +48,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
         member.color = '#009bd8';
       }
       if(user.mode == UModes.ADMIN) {
-        this.uSrv.update(user.nick, this.channelName, {
+        this.uSrv.update(user.nick, channel, {
           name: 'Founder',
           background: '#4b3526',
           color: '#dea777',
@@ -57,7 +57,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
         member.color = '#009bd8';
       }
       if(user.mode == UModes.OPER) {
-        this.uSrv.update(user.nick, this.channelName, {
+        this.uSrv.update(user.nick, channel, {
           name: 'Founder',
           background: '#4b3526',
           color: '#dea777',
@@ -66,7 +66,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
         member.color = '#009bd8';
       }
       if(user.mode == UModes.HALFOPER) {
-        this.uSrv.update(user.nick, this.channelName, {
+        this.uSrv.update(user.nick, channel, {
           name: 'Founder',
           background: '#4b3526',
           color: '#dea777',

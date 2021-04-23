@@ -135,7 +135,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.ircSrv.join('main');
     }
     document.getElementById('messageInput').focus();
-    this.appInfoPanel.recalcUsers(this.channel.users);
+    this.appInfoPanel.recalcUsers(this.channel.users, this.channel.name);
     this.autoGoDown();
   }
 

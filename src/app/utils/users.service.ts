@@ -16,6 +16,9 @@ export class UsersService {
   constructor(private httpC: HttpClient) { }
 
   public getUserLabel(user: string, chn: string): Label[] {
+
+    console.log('GUL', user, chn, this.usersLabels[user]);
+
     if(!this.usersLabels[user]) {
       this.usersLabels[user] = {};
       this.expireLabels[user] = {};
@@ -31,6 +34,7 @@ export class UsersService {
       this.expireLabels[user][chn] = (new Date()).getTime() + environment.cacheLabels;
       this.httpC.get(environment.hiranaTools + '/customr?usr='+user+'&chn='+chn).pipe(first()).subscribe((d: {exists: boolean, results: {color: string, rango: string}[]}) => {
         if(!d.exists) return;
+
         // clean:
         const len = this.usersLabels[user][chn].length - 1;
         for(let i = len; i>=0; i--) {
@@ -38,6 +42,7 @@ export class UsersService {
             this.usersLabels[user][chn].splice(i,1);
           }
         }
+
         // add news:
         d.results.forEach(dN => {
           if(this.usersLabels[user][chn].findIndex(qN => qN.name == dN.rango) < 0) {
