@@ -9,12 +9,12 @@
     - nuevos emotes, bicho, underc0de
     - soporte multilinea.
     - MacOS in about.
+    - custom ranges (badges)
 
 * pending:
     - server message notification.
     - history por chat (flechita arriba)
     - agregar a los tabs los canales.
     - botón para ver archivos de logs en desktop
-    - custom ranges?
     - arreglar scroll-lock
     - buscador de emotes
