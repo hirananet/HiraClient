@@ -15,12 +15,12 @@
       * Channels: Ban (if i'm > half-op)
       * Channels: Kick (if i'm > half-op)
       * Channels: Voice (if i'm > half-op)
-      
-* pending:
     - Menu Configs
       * Channel: moderated mode (if i'm > half-op)
       * Privados: Restringir privados (+G)
       * All: botón para ver archivos de logs en desktop
+      
+* pending:
     - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
     - history por chat (flechita arriba)
     - agregar a los tabs los canales.
