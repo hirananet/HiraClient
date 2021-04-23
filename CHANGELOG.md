@@ -19,15 +19,15 @@
       * Channel: moderated mode (if i'm > half-op)
       * Privados: Restringir privados (+G)
       * All: botón para ver archivos de logs en desktop
+    - history por chat (flechita arriba)
       
 * pending:
-    - history por chat (flechita arriba)
     - reduce random server messages.
     - agregar a los tabs los canales.
     - topic edit if i'm > half-op
     - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
     - buscador de emotes
-    - arreglar scroll-lock
+    - arreglar scroll-lock / resize dep optimization bailouts
     - Optimizations: Chat-LazyLoading
     - menú izq plegable
     - menú derecho achicable

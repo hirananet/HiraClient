@@ -7,30 +7,35 @@ import { environment } from 'src/environments/environment';
 export class HistoryMessageCursorService {
 
   private cursor = 0;
-  private historyMesage: string[] = [];
+  private historyMesage: {[key: string]: string[]} = {};
 
   constructor() { }
 
-  prev(): string {
-    if (this.historyMesage.length - this.cursor > 0) {
+  prev(key: string): string {
+    if(!this.historyMesage[key]) return;
+    if (this.historyMesage[key].length - this.cursor > 0) {
       this.cursor++;
     }
-    return this.historyMesage[this.historyMesage.length - this.cursor];
+    return this.historyMesage[key][this.historyMesage[key].length - this.cursor];
   }
 
-  next(): string {
+  next(key: string): string {
+    if(!this.historyMesage[key]) return;
     if (this.cursor > 1) {
       this.cursor--;
-      return this.historyMesage[this.historyMesage.length - this.cursor];
+      return this.historyMesage[key][this.historyMesage[key].length - this.cursor];
     } else {
       return '';
     }
   }
 
-  save(message: string) {
-    this.historyMesage.push(message);
-    if (this.historyMesage.length > environment.maxCommandHistory) {
-      this.historyMesage.splice(0, 1);
+  save(message: string, key: string) {
+    if(!this.historyMesage[key]) {
+      this.historyMesage[key] = [];
+    }
+    this.historyMesage[key].push(message);
+    if (this.historyMesage[key].length > environment.maxCommandHistory) {
+      this.historyMesage[key].splice(0, 1);
     }
     this.cursor = 0;
   }

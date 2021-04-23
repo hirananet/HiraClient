@@ -182,10 +182,10 @@ export class ChatComponent implements OnInit, OnDestroy {
       }
     }
     if(event.keyCode == 38) { // arrow up
-      this.message = this.hmcSrv.prev();
+      this.message = this.hmcSrv.prev('chan-' + this.channelName);
     }
     if(event.keyCode == 40) { // arrow down
-      this.message = this.hmcSrv.next();
+      this.message = this.hmcSrv.next('chan-' + this.channelName);
     }
   }
 
@@ -201,7 +201,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.message = '<'+this.quote.author+'> '+this.quote.quote+' |' + this.message;
       this.quote = undefined;
     }
-    this.hmcSrv.save(this.message);
+    this.hmcSrv.save(this.message, 'chan-' + this.channelName);
     this.ircSrv.sendMessageOrCommand(this.message, '#'+this.channelName);
     this.message = '';
     document.getElementById('messageInput').focus();

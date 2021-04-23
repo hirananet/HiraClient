@@ -10,6 +10,7 @@ import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, P
 import { ResizedEvent } from 'angular-resize-event';
 import { filter } from 'rxjs/operators';
 import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
+import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-privmsg',
@@ -191,10 +192,10 @@ export class PrivmsgComponent implements OnInit {
       }
     }
     if(event.keyCode == 38) { // arrow up
-      this.message = this.hmcSrv.prev();
+      this.message = this.hmcSrv.prev('priv-' + this.nickTarget);
     }
     if(event.keyCode == 40) { // arrow down
-      this.message = this.hmcSrv.next();
+      this.message = this.hmcSrv.next('priv-' + this.nickTarget);
     }
   }
 
@@ -210,7 +211,7 @@ export class PrivmsgComponent implements OnInit {
       this.message = '<'+this.quote.author+'> '+this.quote.quote+' |' + this.message;
       this.quote = undefined;
     }
-    this.hmcSrv.save(this.message);
+    this.hmcSrv.save(this.message, 'priv-' + this.nickTarget);
     this.ircSrv.sendMessageOrCommand(this.message, this.nickTarget);
     this.message = '';
     document.getElementById('messageInput').focus();
