@@ -4,17 +4,31 @@
     - comando /hc roto. (rebuild)
     - fix otoño
     - emotes de efectos: invierno, verano, primavera, otono, regalos, gotitas, lluvia, magia.
-    - la rockola se puede mover de ubicación.
+    - Rockola: se puede mover de ubicación.
     - poder volver a mostrar popup de playlist.
     - nuevos emotes, bicho, underc0de
     - soporte multilinea.
     - MacOS in about.
     - custom ranges (badges)
+    - server message notification.
 
 * pending:
-    - server message notification.
+    - context buttons
+      * Channels: Ban (if i'm > half-op)
+      * Channels: Kick (if i'm > half-op)
+      * Channels: Voice (if i'm > half-op)
+      * Privados: Ignore
+    - Menu Configs
+      * Channel: moderated mode (if i'm > half-op)
+      * Privados: Restringir privados (+G)
+      * All: botón para ver archivos de logs en desktop
+    - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
     - history por chat (flechita arriba)
     - agregar a los tabs los canales.
-    - botón para ver archivos de logs en desktop
-    - arreglar scroll-lock
     - buscador de emotes
+    - arreglar scroll-lock
+    - Optimizations: Chat-LazyLoading
+    - Rockola zoom in/zoom out.
+    - menú izq plegable
+    - menú derecho achicable
+    - topic edit if i'm > half-op
