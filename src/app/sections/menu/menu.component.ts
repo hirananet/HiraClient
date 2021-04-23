@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Title } from '@angular/platform-browser';
 import { AudioService } from 'src/app/utils/audio.service';
-import { MenuElementData } from '../context-menu/context-menu.component';
 import { ListElement } from '../list/list.types';
+import { MenuElementData } from '../context-menu/context.types';
 
 @Component({
   selector: 'app-menu',

@@ -8,6 +8,6 @@
   </header>
   <main>
     <app-menu-list title="Miembros del canal" [elements]="members" path="priv/" type="members" (contextMenu)="contextMenu($event)"></app-menu-list>
-    <app-context-menu *ngIf="menuElement" [posX]="menuElement.posX" [posY]="menuElement.posY" [target]="menuElement.target" [elements]="['whois']" (close)="menuElement = undefined"></app-context-menu>
+    <app-context-menu *ngIf="menuElement" [posX]="menuElement.posX" [posY]="menuElement.posY" [target]="menuElement.target" [elements]="contextElements" (close)="menuElement = undefined"></app-context-menu>
   </main>
 </aside>

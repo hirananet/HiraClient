@@ -63,5 +63,9 @@ export class UsersService {
     }
   }
 
+  public getCachedOnly(user: string, chn: string) {
+    return this.usersLabels[user][chn];
+  }
+
 
 }

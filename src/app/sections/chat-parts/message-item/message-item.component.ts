@@ -2,8 +2,8 @@ import { UsersService } from 'src/app/utils/users.service';
 import { Router } from '@angular/router';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GenericMessage, Quote, ValidRegex } from 'ircore';
-import { MenuElementData } from '../../context-menu/context-menu.component';
 import { Label } from '../../list/list.types';
+import { MenuElementData } from '../../context-menu/context.types';
 
 @Component({
   selector: 'app-message-item',

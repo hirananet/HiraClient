@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IRCoreService } from 'ircore';
+import { ContextElements, ContextElementsTypes } from './context.types';
 
 @Component({
   selector: 'app-context-menu',
@@ -19,9 +20,19 @@ export class ContextMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  elementClicked(elem) {
-    if(elem === ContextElements.WHOIS) {
+  elementClicked(elem: ContextElements) {
+    if(elem.type === ContextElementsTypes.WHOIS) {
       this.whois(this.target);
+    }
+    if(elem.type === ContextElementsTypes.BAN) {
+      const reason = prompt('Message for user');
+      this.ircSrv.sendMessageOrCommand('/cs BAN #' + elem.data.channel + ' ' + this.target + ' ' + reason);
+    }
+    if(elem.type === ContextElementsTypes.KICK) {
+      this.ircSrv.sendMessageOrCommand('/kick #' + elem.data.channel + ' ' + this.target);
+    }
+    if(elem.type === ContextElementsTypes.VOICE) {
+      this.ircSrv.sendMessageOrCommand('/cs flags #' + elem.data.channel + ' ' + this.target + ' +V');
     }
   }
 
@@ -29,14 +40,4 @@ export class ContextMenuComponent implements OnInit {
     this.ircSrv.sendMessageOrCommand('/whois ' + nick);
   }
 
-}
-
-export enum ContextElements {
-  WHOIS = 'whois'
-}
-
-export class MenuElementData {
-  target: string;
-  posX: number;
-  posY: number;
 }

@@ -1,10 +1,11 @@
 import { Subscription } from 'rxjs';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { User, UModes, ChannelsService } from 'ircore';
-import { MenuElementData } from '../../context-menu/context-menu.component';
+import { User, UModes, ChannelsService, UserInfoService } from 'ircore';
 import { UsersService } from 'src/app/utils/users.service';
 import { ListElement } from '../../list/list.types';
+import { LocalLabels } from 'src/app/utils/LocalLabels';
+import { ContextElements, ContextElementsTypes, MenuElementData } from '../../context-menu/context.types';
 
 @Component({
   selector: 'app-info-panel',
@@ -18,8 +19,9 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
 
   private memberSubscription: Subscription;
   public menuElement: MenuElementData;
+  public contextElements: ContextElements[] = [{type: ContextElementsTypes.WHOIS}];
 
-  constructor(chanSrv: ChannelsService, private uSrv: UsersService) {
+  constructor(chanSrv: ChannelsService, private uSrv: UsersService, private uInfo: UserInfoService) {
     this.memberSubscription = chanSrv.membersChanged.subscribe((d: {channel: string, users: User[]}) => {
       if(d.channel === this.channelName) {
         this.recalcUsers(d.users, this.channelName);
@@ -41,7 +43,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
       const voiceColor = '#4ecbe8';
       if(user.mode == UModes.FOUNDER) {
         this.uSrv.update(user.nick, channel, {
-          name: 'Founder',
+          name: LocalLabels.FOUNDER,
           background: '#4b3526',
           color: '#dea777',
           isLocal: true
@@ -50,7 +52,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
       }
       if(user.mode == UModes.ADMIN) {
         this.uSrv.update(user.nick, channel, {
-          name: 'Admin',
+          name: LocalLabels.ADMIN,
           background: '#3d264b',
           color: '#a977de',
           isLocal: true
@@ -59,7 +61,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
       }
       if(user.mode == UModes.OPER) {
         this.uSrv.update(user.nick, channel, {
-          name: 'Oper',
+          name: LocalLabels.OPER,
           background: '#2c4b26',
           color: '#79d87d',
           isLocal: true
@@ -68,7 +70,7 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
       }
       if(user.mode == UModes.HALFOPER) {
         this.uSrv.update(user.nick, channel, {
-          name: 'Half-oper',
+          name: LocalLabels.HOPER,
           background: '#26344b',
           color: '#779fde',
           isLocal: true
@@ -88,6 +90,13 @@ export class InfoPanelComponent implements OnInit, OnDestroy {
 
   contextMenu(evt) {
     evt.ctx.preventDefault();
+    console.log('context name: ', evt.elem.name);
+    const labels = this.uSrv.getCachedOnly(this.uInfo.getNick(), this.channelName).filter(label => label.isLocal);
+    if(labels.length > 0 && (labels[0].name == LocalLabels.FOUNDER || labels[0].name == LocalLabels.ADMIN || labels[0].name == LocalLabels.OPER || labels[0].name == LocalLabels.HOPER)) {
+      this.contextElements = [{type: ContextElementsTypes.BAN}, {type: ContextElementsTypes.KICK, data: {channel: this.channelName}}, {type: ContextElementsTypes.VOICE, data: {channel: this.channelName}}, {type: ContextElementsTypes.WHOIS, data: {channel: this.channelName}}]
+    } else {
+      this.contextElements = [{type: ContextElementsTypes.WHOIS}];
+    }
     this.menuElement = {
       target: evt.elem.name,
       posX: evt.ctx.clientX - 130,

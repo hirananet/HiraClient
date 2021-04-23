@@ -11,13 +11,12 @@
     - MacOS in about.
     - custom ranges (badges)
     - server message notification.
-
-* pending:
     - context buttons
       * Channels: Ban (if i'm > half-op)
       * Channels: Kick (if i'm > half-op)
       * Channels: Voice (if i'm > half-op)
-      * Privados: Ignore
+      
+* pending:
     - Menu Configs
       * Channel: moderated mode (if i'm > half-op)
       * Privados: Restringir privados (+G)
@@ -28,7 +27,7 @@
     - buscador de emotes
     - arreglar scroll-lock
     - Optimizations: Chat-LazyLoading
-    - Rockola zoom in/zoom out.
     - menú izq plegable
     - menú derecho achicable
     - topic edit if i'm > half-op
+    - reduce random server messages.
