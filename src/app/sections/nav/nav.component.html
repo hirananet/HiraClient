@@ -46,32 +46,37 @@
     </div>
     <div class="popup" *ngIf="popupOpened">
       <h3>Configuraciones</h3>
-      <div class="formGroup">
-        <label>Nick</label>
-        <input type="text" placeholder="nick" [(ngModel)]="nick" (keypress)="kp($event)" id="popupNick"/>
+      <div class="cfgs" *ngIf="connected">
+        <div class="formGroup">
+          <label>Nick</label>
+          <input type="text" placeholder="nick" [(ngModel)]="nick" (keypress)="kp($event)" id="popupNick"/>
+        </div>
+        <div class="formGroup">
+          <label>Theme</label>
+          <select (change)="changeSkin()" [(ngModel)]="skin">
+            <option value="light">
+              Light
+            </option>
+            <option value="dark">
+              Dark
+            </option>
+          </select>
+        </div>
+        <div class="formGroup">
+          <label>Cambiar avatar</label>
+          <button (click)="openFile()" *ngIf="!imageLoading">Subir</button>
+          <span *ngIf="imageLoading">Cargando...</span>
+          <input type="file" style="display: none" accept="image/*" id="fileInput" (change)="onFileSelected($event)"/>
+        </div>
+        <div class="formGroup" *ngIf="isElectron">
+          <label>Logs en</label>
+          <input type="text" placeholder="cargando..." [(ngModel)]="logs" id="popupNick"/>
+        </div>
+        <button>Guardar</button>
       </div>
-      <div class="formGroup">
-        <label>Theme</label>
-        <select (change)="changeSkin()" [(ngModel)]="skin">
-          <option value="light">
-            Light
-          </option>
-          <option value="dark">
-            Dark
-          </option>
-        </select>
+      <div class="cfgs" *ngIf="!connected" style="text-align: center;margin: 5px 0px;color: pink;">
+        Para poder cambiar tu configuración debes estar conectado a la red.
       </div>
-      <div class="formGroup">
-        <label>Cambiar avatar</label>
-        <button (click)="openFile()" *ngIf="!imageLoading">Subir</button>
-        <span *ngIf="imageLoading">Cargando...</span>
-        <input type="file" style="display: none" accept="image/*" id="fileInput" (change)="onFileSelected($event)"/>
-      </div>
-      <div class="formGroup" *ngIf="isElectron">
-        <label>Logs en</label>
-        <input type="text" placeholder="cargando..." [(ngModel)]="logs" id="popupNick"/>
-      </div>
-      <button>Guardar</button>
     </div>
   </footer>
 </nav>
