@@ -63,7 +63,8 @@
       </div>
       <div class="formGroup">
         <label>Cambiar avatar</label>
-        <button (click)="openFile()">Subir</button>
+        <button (click)="openFile()" *ngIf="!imageLoading">Subir</button>
+        <span *ngIf="imageLoading">Cargando...</span>
         <input type="file" style="display: none" accept="image/*" id="fileInput" (change)="onFileSelected($event)"/>
       </div>
       <div class="formGroup" *ngIf="isElectron">

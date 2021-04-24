@@ -1,11 +1,12 @@
 import { environment } from './../../../environments/environment.electron';
 import { AudioService } from 'src/app/utils/audio.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil, WhoIsHandler, WhoIsData, StatusHandler, NickChange, ServerMsgService } from 'ircore';
 import { ParamParse } from 'src/app/utils/ParamsParse';
 import { filter } from 'rxjs/operators';
+import { VcardGetterService } from '../chat-parts/message-item/link-vcard/vcard-getter.service';
 
 @Component({
   selector: 'app-nav',
@@ -33,7 +34,7 @@ export class NavComponent implements OnInit {
               private uiSrv: UserInfoService,
               private audioSrv: AudioService,
               private servMsgSrv: ServerMsgService,
-              private route: ActivatedRoute) {
+              private vcg: VcardGetterService) {
     this.embedded = ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true');
   }
 
@@ -101,12 +102,33 @@ export class NavComponent implements OnInit {
     this.popupOpened = false;
   }
 
-  openFile(evt) {
+  public imageLoading: boolean;
 
+  openFile(evt) {
+    if(this.imageLoading) return;
+    document.getElementById('fileInput').click();
   }
 
-  onFileSelected(evt) {
+  onFileSelected(event) {
+    this.uploadFile(event.srcElement.files[0]);
+  }
 
+  uploadFile(file) {
+    const fr = new FileReader();
+    fr.onloadend = () => {
+      this.vcg.uploadImage((fr.result as string).split('base64,')[1]).subscribe(d => {
+        this.ircSrv.sendMessageOrCommand('avatar ' + d.image, 'HiranaBot');
+        alert('Comando enviado al HiranaBot');
+        this.imageLoading = false;
+      }, err => {
+        this.imageLoading = false;
+        alert('Oops, ocurrió un error');
+      });
+    };
+    if (file) {
+      this.imageLoading = true;
+      fr.readAsDataURL(file);
+    }
   }
 
 }
