@@ -1,4 +1,3 @@
-import { environment } from './../../../environments/environment.electron';
 import { AudioService } from 'src/app/utils/audio.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
@@ -7,6 +6,7 @@ import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData,
 import { ParamParse } from 'src/app/utils/ParamsParse';
 import { filter } from 'rxjs/operators';
 import { VcardGetterService } from '../chat-parts/message-item/link-vcard/vcard-getter.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-nav',
