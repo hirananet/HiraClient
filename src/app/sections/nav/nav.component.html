@@ -45,15 +45,32 @@
       <img src="https://thira.tandilserver.com/avatar?usr={{nick}}" />
     </div>
     <div class="popup" *ngIf="popupOpened">
-      <input type="text" placeholder="nick" [(ngModel)]="nick" (keypress)="kp($event)" id="popupNick"/>
-      <select (change)="changeSkin()" [(ngModel)]="skin">
-        <option value="light">
-          Light
-        </option>
-        <option value="dark">
-          Dark
-        </option>
-      </select>
+      <h3>Configuraciones</h3>
+      <div class="formGroup">
+        <label>Nick</label>
+        <input type="text" placeholder="nick" [(ngModel)]="nick" (keypress)="kp($event)" id="popupNick"/>
+      </div>
+      <div class="formGroup">
+        <label>Theme</label>
+        <select (change)="changeSkin()" [(ngModel)]="skin">
+          <option value="light">
+            Light
+          </option>
+          <option value="dark">
+            Dark
+          </option>
+        </select>
+      </div>
+      <div class="formGroup">
+        <label>Cambiar avatar</label>
+        <button (click)="openFile()">Subir</button>
+        <input type="file" style="display: none" accept="image/*" id="fileInput" (change)="onFileSelected($event)"/>
+      </div>
+      <div class="formGroup" *ngIf="isElectron">
+        <label>Logs en</label>
+        <input type="text" placeholder="cargando..." [(ngModel)]="logs" id="popupNick"/>
+      </div>
+      <button>Guardar</button>
     </div>
   </footer>
 </nav>

@@ -23,11 +23,14 @@
     - reduce random server messages.
     - autocomplete channels in tab
     - nuevos detalles en el whois RealN. IsRegistered.
+    - FIX: prevenimos subir mas imagenes mientras ya se sube una.
+    - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
       
 * pending:
-    - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
     - buscador de emotes
     - arreglar scroll-lock / resize dep optimization bailouts
     - Optimizations: Chat-LazyLoading
     - menú izq plegable
     - menú derecho achicable
+    - notificaciones en minimizado?
+    - mejorar los links

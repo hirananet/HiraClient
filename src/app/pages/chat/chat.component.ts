@@ -287,10 +287,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   openFile() {
+    if(this.imageLoading) return;
     document.getElementById('fileInput').click();
   }
 
   onDrop(event) {
+    if(this.imageLoading) return;
     const file = event.dataTransfer.files[0];
     if (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg') {
       this.uploadFile(file);

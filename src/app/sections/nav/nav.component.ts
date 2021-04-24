@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.electron';
 import { AudioService } from 'src/app/utils/audio.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
@@ -20,10 +21,12 @@ export class NavComponent implements OnInit {
   public popupOpened: boolean = false;
   public nick: string;
   public skin: string;
+  public logs: string;
   public embedded: boolean;
 
   public serverNews: boolean;
   public isInServWindow: boolean;
+  public isElectron: boolean = environment.electron;
 
   constructor(private router: Router,
               private ircSrv: IRCoreService,
@@ -96,6 +99,14 @@ export class NavComponent implements OnInit {
     document.body.classList.add(this.skin);
     localStorage.setItem('skinSelected', this.skin);
     this.popupOpened = false;
+  }
+
+  openFile(evt) {
+
+  }
+
+  onFileSelected(evt) {
+
   }
 
 }

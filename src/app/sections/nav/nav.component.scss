@@ -119,20 +119,27 @@ nav {
       }
     }
     .popup {
-      width: 200px;
-      background: #363d45;
+      width: 18vw;
+      background: var(--user-form-bg);
       position: absolute;
       bottom: 13px;
       left: 60px;
-      padding: 3px;
       border-radius: 3px;
       box-shadow: 0px 0px 5px black;
+      z-index: 2;
+      padding: 8px;
+      text-align: left;
+      h3 {
+        margin: 0px;
+        font-family: Helvetica;
+        color: var(--user-form-header-color);
+      }
       &::before {
         content: "";
         display: block;
         width: 10px;
         height: 10px;
-        background: #363d45;
+        background: var(--user-form-bg);
         transform: rotate(45deg);
         position: absolute;
         bottom: 4px;
@@ -140,28 +147,55 @@ nav {
         border-left: 1px solid #13171b;
         border-bottom: 1px solid #12151a;
       }
-      input {
-        width: 100%;
-        box-sizing: border-box;
+      .formGroup {
+        margin: 5px 0px;
+        label {
+          display: block;
+          font-family: Helvetica;
+          color: var(--user-label-color);
+        }
+        input {
+          width: 100%;
+          box-sizing: border-box;
+          border-radius: 3px;
+          border: none;
+          padding: 3px;
+          background: var(--user-input-bg);
+          border: 1px solid var(--user-input-border);
+          color: #7a7f83;
+          outline: none;
+          z-index: 1;
+          position: relative;
+          padding: 6px;
+          border-radius: 3px;
+        }
+        select {
+          width: 100%;
+          box-sizing: border-box;
+          margin-top: 5px;
+          background: var(--user-input-bg);
+          border: 1px solid var(--user-input-border);
+          color: #7a7f83;
+          outline: none;
+          padding: 3px;
+          z-index: 1;
+          position: relative;
+          padding: 6px;
+          border-radius: 3px;
+        }
+      }
+      button {
+        padding: 5px;
+        font-family: Helvetcia;
         border-radius: 3px;
         border: none;
-        padding: 3px;
-        background: #14181d;
-        color: #7a7f83;
-        outline: none;
-        z-index: 1;
-        position: relative;
-      }
-      select {
-        width: 100%;
-        box-sizing: border-box;
-        margin-top: 5px;
-        background: #14181d;
-        color: #7a7f83;
-        outline: none;
-        padding: 3px;
-        z-index: 1;
-        position: relative;
+        background: var(--user-footer-button);
+        color: var(--user-footer-color);
+        cursor: pointer;
+        width: 80%;
+        display: block;
+        margin: 6px auto;
+        box-shadow: 0px 0px 4px black;
       }
     }
   }
