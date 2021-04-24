@@ -7,6 +7,7 @@ import { ParamParse } from 'src/app/utils/ParamsParse';
 import { filter } from 'rxjs/operators';
 import { VcardGetterService } from '../chat-parts/message-item/link-vcard/vcard-getter.service';
 import { environment } from 'src/environments/environment';
+import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
 
 @Component({
   selector: 'app-nav',
@@ -22,7 +23,7 @@ export class NavComponent implements OnInit {
   public popupOpened: boolean = false;
   public nick: string;
   public skin: string;
-  public logs: string;
+  public logsRoute: string;
   public embedded: boolean;
 
   public serverNews: boolean;
@@ -34,7 +35,8 @@ export class NavComponent implements OnInit {
               private uiSrv: UserInfoService,
               private audioSrv: AudioService,
               private servMsgSrv: ServerMsgService,
-              private vcg: VcardGetterService) {
+              private vcg: VcardGetterService,
+              private eSrv: ElectronSrvService) {
     this.embedded = ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true');
   }
 
@@ -53,6 +55,11 @@ export class NavComponent implements OnInit {
         this.timmer = setInterval(() => {
           this.ircSrv.sendRaw('PING IRCoreWS');
         }, 60000); // autoping
+        if(this.isElectron) {
+          this.eSrv.getLogRoute().then(route => {
+            this.logsRoute = route;
+          });
+        }
       }
       if(status.status == ConnectionStatus.DISCONNECTED || status.status === ConnectionStatus.ERROR) {
         this.error = true;
@@ -93,6 +100,21 @@ export class NavComponent implements OnInit {
       this.ircSrv.setNick(this.nick);
       this.popupOpened = false;
     }
+  }
+
+  kpLogs(event) {
+    if(event.keyCode == 13 && this.logsRoute) {
+      this.eSrv.setLogRoute(this.logsRoute);
+      this.popupOpened = false;
+    }
+  }
+
+  save() {
+    this.ircSrv.setNick(this.nick);
+    if(this.logsRoute && this.isElectron) {
+      this.eSrv.setLogRoute(this.logsRoute);
+    }
+    this.popupOpened = false;
   }
 
   changeSkin() {
