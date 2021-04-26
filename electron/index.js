@@ -118,7 +118,8 @@ function createWindow () {
     require('electron').shell.openExternal(url);
   });
   ipcMain.on('savelog', async (evt, data) => {
-    const fname = data.target[0] == '#' ? ('channel-' + data.target.slice(1)) : ('privmsg-' + data.target);
+    let fname = data.target[0] == '#' ? ('channel-' + data.target.slice(1)) : ('privmsg-' + data.target);
+    fname = fname.replace(/[^a-zA-Z0-9\s]/g, '-');
     const flocation = logsSave + '/log-'+fname+'.txt';
     fs.writeFile(flocation, data.message, { flag: "a+" }, (err) => {
       if (err) throw err;

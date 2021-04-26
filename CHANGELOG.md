@@ -25,8 +25,11 @@
     - nuevos detalles en el whois RealN. IsRegistered.
     - FIX: prevenimos subir mas imagenes mientras ya se sube una.
     - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
+    - FIX: corregimos error desktop cuando se recibe un status de znc por privado *status
       
 * pending:
+    - BUG: flechitas pausadas con multilinea
+    - BUG: emote con multilinea
     - buscador de emotes
     - arreglar scroll-lock / resize dep optimization bailouts
     - Optimizations: Chat-LazyLoading
