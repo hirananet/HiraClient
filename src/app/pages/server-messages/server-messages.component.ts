@@ -47,11 +47,6 @@ export class ServerMessagesComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('document:logRoute', ['$event'])
-  getLogRoute(evt) {
-    this.electronSrv.oglr(evt);
-  }
-
   send() {
     if(environment.electron && this.serverCommand.indexOf('/log_route') === 0) {
       const route = this.serverCommand.replace('/log_route', '').trim();

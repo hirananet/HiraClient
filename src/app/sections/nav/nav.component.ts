@@ -1,5 +1,5 @@
 import { AudioService } from 'src/app/utils/audio.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { IRCoreService, UserInfoService, ConnectionStatus, ConnectionStatusData, WebSocketUtil, WhoIsHandler, WhoIsData, StatusHandler, NickChange, ServerMsgService } from 'ircore';
@@ -38,6 +38,11 @@ export class NavComponent implements OnInit {
               private vcg: VcardGetterService,
               private eSrv: ElectronSrvService) {
     this.embedded = ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true');
+  }
+
+  @HostListener('document:logRoute', ['$event'])
+  getLogRoute(evt) {
+    this.eSrv.oglr(evt);
   }
 
   ngOnInit(): void {
