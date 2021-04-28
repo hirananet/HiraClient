@@ -1,6 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuSelectorEvent, MenuType } from 'src/app/sections/menu/menu-selector.event';
 import { Title } from '@angular/platform-browser';
 import { IRCMessage, ServerMsgService, IRCoreService } from 'ircore';
