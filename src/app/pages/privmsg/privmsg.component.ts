@@ -10,7 +10,7 @@ import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, P
 import { ResizedEvent } from 'angular-resize-event';
 import { filter } from 'rxjs/operators';
 import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
-import { uuid } from 'uuidv4'
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-privmsg',
@@ -319,7 +319,7 @@ export class PrivmsgComponent implements OnInit {
   }
 
   sendPINGX() {
-    this.ircSrv.sendRaw('PING ' + uuid());
+    this.ircSrv.sendRaw('PING ' + uuid.v4());
   }
 
 }
