@@ -24,7 +24,7 @@
     - autocomplete channels in tab
     - nuevos detalles en el whois RealN. IsRegistered.
     - FIX: prevenimos subir mas imagenes mientras ya se sube una.
-    - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
+    - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar y click afuera para cerrar
     - FIX: corregimos error desktop cuando se recibe un status de znc por privado *status
     - FIX: emote spaces
     - FIX: flechitas pausadas con multilinea
@@ -38,9 +38,7 @@
         [15:44:26] <ronin> buena rola! |Gracias amigo, está genial la música española 
         [15:44:26] Gracias amigo, está genial la música española 
     - buscador de emotes y click afuera
-    - click afuera en box de configuración de perfil
     - arreglar scroll-lock / resize dep optimization bailouts
-    
     - menú izq plegable
     - menú derecho achicable
     - notificaciones en minimizado?

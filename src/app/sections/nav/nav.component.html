@@ -45,6 +45,7 @@
       <img src="https://thira.tandilserver.com/avatar?usr={{nick}}" />
     </div>
     <div class="popup" *ngIf="popupOpened">
+      <div class="closeUmbrella" (click)="popupOpened = false"></div>
       <h3>Configuraciones</h3>
       <div class="cfgs" *ngIf="connected">
         <div class="formGroup">
