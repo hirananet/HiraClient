@@ -166,9 +166,14 @@ export class PrivmsgComponent implements OnInit {
     document.getElementById('messageInput').focus();
   }
 
+  private multilineText: boolean;
+
   kp(event) {
     if(event.keyCode === 13 && !event.shiftKey) {
       this.send();
+      this.multilineText = false;
+    } else if(event.keyCode === 13 && event.shiftKey) {
+      this.multilineText = true;
     }
   }
 
@@ -204,10 +209,10 @@ export class PrivmsgComponent implements OnInit {
         this.message = this.message.substr(0, startPos) + completeString + this.message.substr(curPos) + ' ';
       }
     }
-    if(event.keyCode == 38) { // arrow up
+    if(event.keyCode == 38 && !this.multilineText) { // arrow up
       this.message = this.hmcSrv.prev('priv-' + this.nickTarget);
     }
-    if(event.keyCode == 40) { // arrow down
+    if(event.keyCode == 40 && !this.multilineText) { // arrow down
       this.message = this.hmcSrv.next('priv-' + this.nickTarget);
     }
   }
