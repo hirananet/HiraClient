@@ -31,16 +31,17 @@
     - FIX: desconexiones continuas en idle privados.
     - Se agrega cartel de error al haber un error de conexión
     - Optimizations: Chat-LazyLoading
+    - buscador de emotes y click fuera del popup para cerrar.
       
 * pending:
-    - mejorar los links
     - parsear mensajes old de znc: 
         [15:44:26] <ronin> buena rola! |Gracias amigo, está genial la música española 
         [15:44:26] Gracias amigo, está genial la música española 
-    - buscador de emotes y click afuera
+    
     - arreglar scroll-lock / resize dep optimization bailouts
     - menú izq plegable
     - menú derecho achicable
     - notificaciones en minimizado?
+    - mejorar los links
 
 
