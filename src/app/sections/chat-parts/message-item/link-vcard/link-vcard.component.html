@@ -1,5 +1,5 @@
 <a class="vcard" href="{{link}}" target="_blank">
-  <img src="{{favicon}}" *ngIf="favicon" />
+  <img src="{{favicon}}" *ngIf="favicon" loading="lazy"/>
   <div class="loading" *ngIf="!loaded"></div>
   <span class="title" *ngIf="loaded">{{title}}</span>
   <span>{{link}}</span>
