@@ -10,6 +10,7 @@ import { IgnoreHandler, Away, AwayHandler, GenericMessage, Quote, PrivmsgData, P
 import { ResizedEvent } from 'angular-resize-event';
 import { filter } from 'rxjs/operators';
 import { ElectronSrvService } from 'src/app/electron/electron-srv.service';
+import { uuid } from 'uuidv4'
 
 @Component({
   selector: 'app-privmsg',
@@ -37,6 +38,7 @@ export class PrivmsgComponent implements OnInit {
   public gmodeSubscription: Subscription;
   public gmodeMessage: boolean;
   public nonExistMessage: string;
+  public timmer_pingx: any;
 
   public privMsg: PrivmsgData = new PrivmsgData();
   public quote: Quote;
@@ -61,6 +63,9 @@ export class PrivmsgComponent implements OnInit {
       this.ngOnInit();
     }
   });
+  this.timmer_pingx = setInterval(() => {
+    this.sendPINGX();
+  }, environment.intervalWHOX);
 }
 
   @HostListener('window:resize', ['$event'])
@@ -247,6 +252,7 @@ export class PrivmsgComponent implements OnInit {
     this.messageSubscription.unsubscribe();
     this.gmodeSubscription.unsubscribe();
     this.awaySubscription.unsubscribe();
+    clearInterval(this.timmer_pingx);
   }
 
   copyChat(evt) {
@@ -310,6 +316,10 @@ export class PrivmsgComponent implements OnInit {
 
   openLogFolder(event) {
     this.electronSrv.openLogsFolder();
+  }
+
+  sendPINGX() {
+    this.ircSrv.sendRaw('PING ' + uuid());
   }
 
 }

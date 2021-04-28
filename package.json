@@ -23,6 +23,7 @@
     "ircore": "^0.1.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "uuidv4": "^6.2.7",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

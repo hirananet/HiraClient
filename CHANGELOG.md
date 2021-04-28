@@ -27,10 +27,10 @@
     - Popup perfil, Modificar avatar, Modificar nick, Cambiar theme, desktop: cambiar url logs/deshabilitar
     - FIX: corregimos error desktop cuando se recibe un status de znc por privado *status
     - FIX: emote spaces
+    - FIX: flechitas pausadas con multilinea
+    - FIX: desconexiones continuas en idle privados.
       
 * pending:
-    - BUG: flechitas pausadas con multilinea
-    - FIX: desconexiones continuas en idle privados.
     - buscador de emotes
     - arreglar scroll-lock / resize dep optimization bailouts
     - Optimizations: Chat-LazyLoading
