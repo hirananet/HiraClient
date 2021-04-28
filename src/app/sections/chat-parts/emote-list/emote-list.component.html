@@ -1,4 +1,8 @@
+<div class="closeUmbrella" (click)="closePopup.emit()"></div>
 <div class="emotePopup">
+  <header>
+    <input type="text" placeholder="buscar..." />
+  </header>
   <nav>
     <div class="tab" (click)="list = 1">
       Emotes
@@ -10,13 +14,13 @@
   <ul class="emotes" *ngIf="list === 1">
     <li *ngFor="let face of faces" (click)="writeEmote.emit(':'+face+':')">
       <span>:{{face}}:</span>
-      <img [src]="facesLocation+face+facesExtensions" class="{{face}}" alt=":{{face}}:"/>
+      <img [src]="facesLocation+face+facesExtensions" class="{{face}}" alt=":{{face}}:" loading="lazy"/>
     </li>
   </ul>
   <ul class="memes" *ngIf="list === 2">
     <li *ngFor="let meme of memes" (click)="writeEmote.emit(';'+meme+';')">
       <span>;{{meme}};</span>
-      <img [src]="memesLocation+meme+memesExtensions" class="{{meme}}" alt=";{{meme}};"/>
+      <img [src]="memesLocation+meme+memesExtensions" class="{{meme}}" alt=";{{meme}};" loading="lazy"/>
     </li>
   </ul>
 </div>

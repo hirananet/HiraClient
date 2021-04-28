@@ -16,6 +16,7 @@ export class EmoteListComponent implements OnInit {
   public readonly memesExtensions: string = EmoteList.memesExtension;
 
   @Output() writeEmote: EventEmitter<string> = new EventEmitter<string>();
+  @Output() closePopup: EventEmitter<void> = new EventEmitter<void>();
 
   public list: number = 1;
 

@@ -99,7 +99,8 @@ export class AppComponent implements AfterViewInit{
         this.connectionError = undefined;
       }
       if(status.status == ConnectionStatus.ERROR) {
-        this.connectionError = status.data.err;
+        this.connectionError = 'Code: '+status.data.err.code+' ';
+        // console.error('WSDetail: ', WebSocketUtil.wss.onerror(status.data.err));
       }
     });
   }

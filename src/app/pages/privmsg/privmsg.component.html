@@ -50,7 +50,7 @@
       </div>
     </div>
   </section>
-  <app-emote-list *ngIf="emotePopupOpened" (writeEmote)="writeEmote($event)"></app-emote-list>
+  <app-emote-list *ngIf="emotePopupOpened" (writeEmote)="writeEmote($event)" (closePopup)="emotePopupOpened = false"></app-emote-list>
   <footer
     (drop)="onDrop($event)"
     (dragover)="onDragOver($event)">

@@ -1,5 +1,6 @@
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import { Observable, Subject } from 'rxjs';
+import { delay, retryWhen, tap } from 'rxjs/operators';
 
 export class WebSocketHDLR {
 
@@ -15,7 +16,16 @@ export class WebSocketHDLR {
           openObserver: this.onOpenSubject,
           closeObserver: this.onCloseSubject
         });
-        return this.wss.asObservable();
+        return this.wss.asObservable().pipe(
+          retryWhen(errors =>
+            errors.pipe(
+              tap(err => {
+                console.error('Got error', err);
+              }),
+              delay(1000)
+            )
+          )
+        );
     }
 
     public send(msg: string): void {
