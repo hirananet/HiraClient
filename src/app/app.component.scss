@@ -142,6 +142,15 @@ footer {
       color: var(--popup-cancel-button-color);
     }
   }
+  &.error {
+    background-color: #d4bdbd;
+    border: 1px solid #5a0000;
+    border-left: 3px solid #5a0000;
+    color: #270000;
+    b {
+      color: #5a0000;
+    }
+  }
 }
 
 

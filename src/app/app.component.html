@@ -16,6 +16,9 @@
     Fuiste hechado del canal <b>{{kickedInfo.channel.channel}}</b>
     <button class="cancel" (click)="kickedInfo = undefined">Aceptar</button>
   </div>
+  <div class="popup error">
+    <b>Error de conexión</b> ocurrió un error tremendo!
+  </div>
 </main>
 
 <aside [style.display]="playing ? 'block' : 'none'" [style.top]="topDrag" [style.left]="leftDrag" [class.dragged]="isDragged" [class.dragging]="isDragging">
