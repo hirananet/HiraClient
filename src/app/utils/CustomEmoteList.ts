@@ -176,7 +176,9 @@ export class CustomEmoteList {
       'regalos',
       'cabritas',
       'underc0de',
-      'bicho'
+      'bicho',
+      'b612',
+      'fenix'
     ];
 
     EmoteList.memes = [

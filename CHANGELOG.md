@@ -32,6 +32,7 @@
     - Se agrega cartel de error al haber un error de conexión
     - Optimizations: Chat-LazyLoading
     - buscador de emotes y click fuera del popup para cerrar.
+    - emotes de versiones b612, fenix
       
 * pending:
     - parsear mensajes old de znc: 
