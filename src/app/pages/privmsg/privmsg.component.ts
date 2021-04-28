@@ -107,6 +107,7 @@ export class PrivmsgComponent implements OnInit {
       this.message = '';
     }
     this.message += ' ' + emote;
+    this.message = this.message.trim();
     this.emotePopupOpened = false;
   }
 

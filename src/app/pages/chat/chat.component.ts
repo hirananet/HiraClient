@@ -119,6 +119,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.message = '';
     }
     this.message += ' ' + emote;
+    this.message = this.message.trim();
     this.emotePopupOpened = false;
   }
 
