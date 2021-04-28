@@ -2,7 +2,7 @@
     - Imagenes se mandan directamente
     - drag-drop más grande.
     - comando /hc roto. (rebuild)
-    - fix otoño
+    - Fix otoño
     - emotes de efectos: invierno, verano, primavera, otono, regalos, gotitas, lluvia, magia.
     - Rockola: se puede mover de ubicación.
     - poder volver a mostrar popup de playlist.
@@ -31,8 +31,8 @@
     - FIX: desconexiones continuas en idle privados.
       
 * pending:
-    - buscador de emotes
     - arreglar scroll-lock / resize dep optimization bailouts
+    - buscador de emotes
     - Optimizations: Chat-LazyLoading
     - menú izq plegable
     - menú derecho achicable

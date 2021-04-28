@@ -95,6 +95,7 @@ export class CustomEmoteList {
       'fox',
       'amigos',
       'kiss',
+      'kz2',
       'rose',
       'tarta',
       'te',
