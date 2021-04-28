@@ -29,12 +29,20 @@
     - FIX: emote spaces
     - FIX: flechitas pausadas con multilinea
     - FIX: desconexiones continuas en idle privados.
+    - Se agrega cartel de error al haber un error de conexión
+    - Optimizations: Chat-LazyLoading
       
 * pending:
+    - mejorar los links
+    - parsear mensajes old de znc: 
+        [15:44:26] <ronin> buena rola! |Gracias amigo, está genial la música española 
+        [15:44:26] Gracias amigo, está genial la música española 
+    - buscador de emotes y click afuera
+    - click afuera en box de configuración de perfil
     - arreglar scroll-lock / resize dep optimization bailouts
-    - buscador de emotes
-    - Optimizations: Chat-LazyLoading
+    
     - menú izq plegable
     - menú derecho achicable
     - notificaciones en minimizado?
-    - mejorar los links
+
+

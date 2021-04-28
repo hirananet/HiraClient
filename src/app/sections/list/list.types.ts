@@ -11,6 +11,6 @@ export class ListElement {
 export interface Label {
   name: string;
   color: string;
-  background: string;
+  background?: string;
   isLocal: boolean;
 }

@@ -65,6 +65,7 @@ article {
         display: inline-block;
         margin-left: 3px;
         .badge {
+          background-color: var(--default-custom-badge-bg);
           margin-right: 3px;
           padding: 1px 3px;
           border: 1px solid;

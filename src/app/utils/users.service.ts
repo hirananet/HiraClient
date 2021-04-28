@@ -44,7 +44,6 @@ export class UsersService {
         d.results.forEach(dN => {
           if(this.usersLabels[user][chn].findIndex(qN => qN.name == dN.rango) < 0) {
             this.usersLabels[user][chn].push({
-              background: 'black',
               color: dN.color,
               name: dN.rango,
               isLocal: false

@@ -3,7 +3,7 @@ import { RockolaData, RockolaService } from 'src/app/rockola/rockola.service';
 import { environment } from './../environments/environment';
 import { Component, AfterViewInit } from '@angular/core';
 import { ParamParse } from './utils/ParamsParse';
-import { GmodeHandler, ServerMsgService, IRCoreService, AvatarHelper, KickHandler, KickInfo, UserInfoService } from 'ircore';
+import { GmodeHandler, ServerMsgService, IRCoreService, AvatarHelper, KickHandler, KickInfo, UserInfoService, WebSocketUtil, ConnectionStatusData, ConnectionStatus } from 'ircore';
 import { ElectronSrvService } from './electron/electron-srv.service';
 
 declare var YTPlayer;
@@ -26,6 +26,8 @@ export class AppComponent implements AfterViewInit{
   kickedInfo: KickInfo;
   playing: boolean;
   rockolaSync: boolean;
+
+  connectionError: string;
 
   constructor(
       private srvSrv: ServerMsgService,
@@ -91,6 +93,15 @@ export class AppComponent implements AfterViewInit{
       YTPlayer.stopVideo();
       this.joinRockola();
     })
+
+    WebSocketUtil.statusChanged.subscribe((status: ConnectionStatusData<any>) => {
+      if(status.status == ConnectionStatus.CONNECTED) {
+        this.connectionError = undefined;
+      }
+      if(status.status == ConnectionStatus.ERROR) {
+        this.connectionError = status.data.err;
+      }
+    });
   }
 
   removeRockola(id: string) {
