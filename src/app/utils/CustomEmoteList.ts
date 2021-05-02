@@ -9,6 +9,7 @@ declare var startEventEffectPrimavera: any;
 declare var startEventEffectVerano: any;
 declare var startEventEffectOtono: any;
 declare var startEventEffectKz2s: any;
+declare var startEventEffectGatosPerros: any;
 
 export class CustomEmoteList {
 
@@ -178,7 +179,8 @@ export class CustomEmoteList {
       'underc0de',
       'bicho',
       'b612',
-      'fenix'
+      'fenix',
+      'batalla'
     ];
 
     EmoteList.memes = [
@@ -234,6 +236,9 @@ export class CustomEmoteList {
         }
         if (name === 'cabritas') {
           startEventEffectCabritas();
+        }
+        if (name === 'batalla') {
+          startEventEffectGatosPerros();
         }
         if (name === 'regalos') {
           startEventEffectRegalo();
