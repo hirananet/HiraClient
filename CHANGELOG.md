@@ -35,14 +35,15 @@
     - emotes de versiones b612, fenix
       
 * pending:
+    - corregir links del chat.
     - parsear mensajes old de znc: 
         [15:44:26] <ronin> buena rola! |Gracias amigo, está genial la música española 
         [15:44:26] Gracias amigo, está genial la música española 
     - efecto de invierno.
     - arreglar scroll-lock / resize dep optimization bailouts
+      - esta minimizado, y te escriben en privado.
     - menú izq plegable
     - menú derecho achicable
-    - notificaciones en minimizado?
     - mejorar los links
     - efecto de perritos y gatitos
     - efecto de barquito
