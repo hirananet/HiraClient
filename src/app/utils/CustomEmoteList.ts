@@ -10,6 +10,8 @@ declare var startEventEffectVerano: any;
 declare var startEventEffectOtono: any;
 declare var startEventEffectKz2s: any;
 declare var startEventEffectGatosPerros: any;
+declare var startEventEffectBarkito: any;
+declare var addBarkitoEffect: any;
 
 export class CustomEmoteList {
 
@@ -180,7 +182,8 @@ export class CustomEmoteList {
       'bicho',
       'b612',
       'fenix',
-      'batalla'
+      'batalla',
+      'olita'
     ];
 
     EmoteList.memes = [
@@ -255,10 +258,19 @@ export class CustomEmoteList {
         if (name === 'gotitas') {
           RainEvent.rainShow.emit(true);
         }
+        if (name === 'olita') {
+          startEventEffectBarkito();
+        }
       } else if (author === 'Alex' || author === 'Tulkalex' || author === 'Tulkalen') {
         if (name === 'kz2') {
           startEventEffectKz2s(); // Probando
         }
+        if (name === 'olita') {
+          startEventEffectBarkito();
+        }
+      }
+      if(name === 'barco') {
+        addBarkitoEffect();
       }
     };
 

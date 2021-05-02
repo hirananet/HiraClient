@@ -32,8 +32,35 @@ body, html {
 
 .cabritaEff {
   position: fixed;
+  transition: opacity 0.5s;
+  &.hidden {
+    opacity: 0;
+  }
+  &.barkito {
+    opacity: 1;
+  }
+  &.oleaje {
+    animation: oleaje 2.7s linear infinite;
+  }
 }
 
+@keyframes oleaje {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 
 @font-face {
   font-family: 'Chata Normal';

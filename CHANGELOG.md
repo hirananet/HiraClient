@@ -34,11 +34,11 @@
     - buscador de emotes y click fuera del popup para cerrar.
     - emotes de versiones b612, fenix
     - fix copy link chat localhost -> web.hirana.net
+    - efecto de perritos y gatitos
+    - efecto olitas / emote olita
       
 * pending:
-    - efecto de perritos y gatitos
     - novedades web.
-    - efecto de barquito
     - parsear mensajes old de znc: 
         [15:44:26] <ronin> buena rola! |Gracias amigo, está genial la música española 
         [15:44:26] Gracias amigo, está genial la música española 
