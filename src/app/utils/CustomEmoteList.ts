@@ -183,7 +183,7 @@ export class CustomEmoteList {
       'b612',
       'fenix',
       'batalla',
-      'olita'
+      'olitas'
     ];
 
     EmoteList.memes = [
@@ -240,9 +240,6 @@ export class CustomEmoteList {
         if (name === 'cabritas') {
           startEventEffectCabritas();
         }
-        if (name === 'batalla') {
-          startEventEffectGatosPerros();
-        }
         if (name === 'regalos') {
           startEventEffectRegalo();
         }
@@ -255,17 +252,17 @@ export class CustomEmoteList {
         if (name === 'kz2') {
           startEventEffectKz2s();
         }
-        if (name === 'gotitas') {
-          RainEvent.rainShow.emit(true);
-        }
-        if (name === 'olita') {
+        if (name === 'olitas') {
           startEventEffectBarkito();
+        }
+        if (name === 'batalla') {
+          startEventEffectGatosPerros();
         }
       } else if (author === 'Alex' || author === 'Tulkalex' || author === 'Tulkalen') {
         if (name === 'kz2') {
           startEventEffectKz2s(); // Probando
         }
-        if (name === 'olita') {
+        if (name === 'olitas') {
           startEventEffectBarkito();
         }
       }

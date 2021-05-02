@@ -70,7 +70,8 @@ class barkitoEffect {
 
   createBarkito(posX, posY) {
     const elem = document.createElement('img');
-    elem.src = 'assets/eess/barco.png';
+    const barcoNumero = Math.round(Math.random() * 3) + 1
+    elem.src = 'assets/eess/barco'+barcoNumero+'.png';
     elem.classList.add('cabritaEff', 'hidden');
     elem.style.top = (window.innerHeight - posY) + 'px';
     elem.style.width = '150px';
