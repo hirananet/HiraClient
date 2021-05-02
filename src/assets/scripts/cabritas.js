@@ -28,8 +28,7 @@ class cabritasEffect {
   }
 
   initialPositionGoats() {
-    const maxY = window.innerHeight - 200;
-    const maxX = window.innerWidth;
+    const maxY = window.innerHeight - 150;
 
     const right = Math.random() > 0.5;
     let rotation = '0deg';
