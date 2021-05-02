@@ -22,7 +22,7 @@ class barkitoEffect {
       if(this.barkitos == 0) {
         this.clear();
       }
-    }, 3000)
+    }, 4000)
   }
 
   createOla(posX, posY, zetta) {
