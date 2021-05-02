@@ -2,6 +2,7 @@ import { globalData } from './version';
 
 export const environment = {
   production: true,
+  prodEndpoint: 'https://web.hirana.net',
   electron: true,
   version: globalData.version+'-e',
   codename: globalData.codename,

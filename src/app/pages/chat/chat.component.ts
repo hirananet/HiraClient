@@ -266,7 +266,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   copyLinkChat(evt) {
-    const url = window.location.protocol + '//' + window.location.host + '/user#chat=' + this.channelName;
+    const url = environment.prodEndpoint + '/user#chat=' + this.channelName;
     navigator.clipboard.writeText(url).then(d => {
 
     });

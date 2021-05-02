@@ -268,7 +268,9 @@ export class PrivmsgComponent implements OnInit {
 
   copyLinkChat(evt) {
     // evt.stopPropagation();
+    navigator.clipboard.writeText(environment.prodEndpoint).then(d => {
 
+    });
   }
 
   onFileSelected(event) {

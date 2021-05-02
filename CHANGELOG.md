@@ -33,9 +33,9 @@
     - Optimizations: Chat-LazyLoading
     - buscador de emotes y click fuera del popup para cerrar.
     - emotes de versiones b612, fenix
+    - fix copy link chat localhost -> web.hirana.net
       
 * pending:
-    - corregir links del chat.
     - parsear mensajes old de znc: 
         [15:44:26] <ronin> buena rola! |Gracias amigo, está genial la música española 
         [15:44:26] Gracias amigo, está genial la música española 

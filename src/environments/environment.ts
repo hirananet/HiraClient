@@ -6,6 +6,7 @@ import { globalData } from './version';
 
 export const environment = {
   production: false,
+  prodEndpoint: 'https://web.hirana.net',
   electron: false,
   version: globalData.version+'-DEV',
   codename: globalData.codename,
