@@ -44,7 +44,7 @@ export class CustomEmoteList {
       'b612',
       'banana',
       'barco',
-      'baskervielle',
+      'baskerville',
       'batalla',
       'batido',
       'bicho',
