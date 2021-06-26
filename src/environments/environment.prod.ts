@@ -9,6 +9,7 @@ export const environment = {
   hiranaTools: 'https://thira.tandilserver.com',
   maxCommandHistory: 50,
   intervalWHOX: 10000,
+  intervalPRIVPING: 60000,
   webIRCGateway: 'wss://wircg.tandilserver.com/webirc/websocket/',
   rockola: 'wss://rockola.hirana.net',
   ipstackApiKey: '',

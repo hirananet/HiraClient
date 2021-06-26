@@ -65,7 +65,7 @@ export class PrivmsgComponent implements OnInit {
   });
   this.timmer_pingx = setInterval(() => {
     this.sendPINGX();
-  }, environment.intervalWHOX);
+  }, environment.intervalPRIVPING);
 }
 
   @HostListener('window:resize', ['$event'])
