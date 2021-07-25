@@ -29,7 +29,9 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private subscription_status: Subscription;
   public embedded: boolean;
-
+  public compact: boolean = false;
+  public compactChannel: string;
+  public compactWithPass: boolean = false;
 
   constructor(private ircSrv: IRCoreService, private router: Router, private titleSrv: Title, private rockolaSrv: RockolaService) {
     this.embedded = ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true');
@@ -57,6 +59,23 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if(ParamParse.parametria['compact']) {
+      const chat = ParamParse.parametria['compact'][0] != '#' ? '#' +ParamParse.parametria['compact'] : ParamParse.parametria['compact'];
+      this.canales = [
+        chat
+      ];
+      this.compact = true;
+      this.compactChannel = chat;
+    }
+    if(ParamParse.parametria['compactpassword']) {
+      const chat = ParamParse.parametria['compactpassword'][0] != '#' ? '#' +ParamParse.parametria['compactpassword'] : ParamParse.parametria['compactpassword'];
+      this.canales = [
+        chat
+      ];
+      this.compact = true;
+      this.compactChannel = chat;
+      this.compactWithPass = true;
+    }
     if(ParamParse.parametria['chat']) {
       const chat = ParamParse.parametria['chat'][0] != '#' ? '#' +ParamParse.parametria['chat'] : ParamParse.parametria['chat'];
       this.canales = [
@@ -92,7 +111,7 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
     if(ParamParse.parametria['connect'] && ParamParse.parametria['connect'] == 'yes') {
       this.connect();
     }
-    if(localStorage.getItem('cHost')) {
+    if(localStorage.getItem('cHost') && !this.compact) {
       this.host = localStorage.getItem('cHost');
       if(!ParamParse.parametria['nick'] && !ParamParse.parametria['apodo'] && !ParamParse.parametria['requestNick']) {
         this.nick = localStorage.getItem('cNick');

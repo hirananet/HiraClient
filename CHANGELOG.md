@@ -3,6 +3,7 @@
     - multilinea manda solo 1 mensaje.
     - Corregir los mensajes de cobot  (externos al canal)
     - poner foco en el menú de emotes.
+    - URL de acceso: #compact=channel #compactpassword=channel
 
 * pending:
     - novedades web.

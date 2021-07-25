@@ -1,4 +1,4 @@
-<main [class.embedded]="embedded">
+<main [class.embedded]="embedded" *ngIf="!compact">
   <section id="fullPopup">
     <header>
       Datos de conexión
@@ -81,6 +81,41 @@
       <button (click)="connect()" *ngIf="!error && !connected">Conectar</button>
       <button (click)="connect()" *ngIf="error && !connected">Reconectar</button>
       <button (click)="changeNick()" *ngIf="connected">Cambiar nick</button>
+    </footer>
+  </section>
+</main>
+<main [class.embedded]="embedded" *ngIf="compact">
+  <section id="compactPopup">
+    <header>
+      Accede a irc.hirana.net{{compactChannel}}
+    </header>
+    <p class="error" *ngIf="error">
+      {{error}}
+    </p>
+    <div id="apodo">
+      <label>
+        Tu nick
+        <span>Después se puede cambiar con /nick</span>
+      </label>
+      <input type="text" id="nickInput" [(ngModel)]="nick"/>
+    </div>
+    <div id="auth" *ngIf="compactWithPass">
+      <label>
+        Password <i>(opcional)</i>
+      </label>
+      <span>
+        Tipo login:
+        <select [(ngModel)]="tipoLogin">
+          <option value="NONE">Ninguno</option>
+          <option value="NS">Nickserv (/ns identify)</option>
+          <option value="PASS">Bouncer ZNC (/pass)</option>
+        </select>
+      </span>
+      <input type="password" placeholder="password" [(ngModel)]="password" [disabled]="tipoLogin === 'NONE'"/>
+    </div>
+    <footer>
+      <button (click)="connect()" *ngIf="!error && !connected">Conectar</button>
+      <button (click)="connect()" *ngIf="error && !connected">Reconectar</button>
     </footer>
   </section>
 </main>

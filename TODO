@@ -1,5 +1,4 @@
 # 2.1.1
-- Enlace directo a canales, solo poniendo nick
 - Efectos olitas: poner stop, velocidades random y hacerlo mas transparente para que se pueda ver lo que se escribe detrás.
 - revisar inicio de rockola que a veces no arranca con la lista
 - aparentemente si falla el subir imagen no te deja escribir más. (o algo así)

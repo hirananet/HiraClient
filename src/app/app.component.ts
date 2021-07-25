@@ -45,12 +45,11 @@ export class AppComponent implements AfterViewInit{
     if(ParamParse.parametria['embedded'] && (ParamParse.parametria['embedded'] == 'yes' || ParamParse.parametria['embedded'] == 'true')) {
       document.body.classList.add('embedded');
     }
-    if(!ParamParse.parametria['skin'] || ParamParse.parametria['skin'] === 'light') {
+    if(ParamParse.parametria['skin'] === 'light') {
 
     } else if(ParamParse.parametria['skin'] === 'dark') {
       document.body.classList.add('dark');
-    }
-    if(localStorage.getItem('skinSelected')) {
+    } else if(localStorage.getItem('skinSelected')) {
       const skin = localStorage.getItem('skinSelected');
       document.body.classList.add(skin);
     }
