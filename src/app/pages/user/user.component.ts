@@ -27,7 +27,7 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   public error: string;
   public connected: boolean;
 
-  private subscription_status: Subscription;
+  private subscription_status: any;
   public embedded: boolean;
   public compact: boolean = false;
   public compactChannel: string;
@@ -230,6 +230,10 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription_status.unsubscribe();
+  }
+
+  keyUpCompact(evt) {
+    this.nickSecundario = evt.srcElement.value + '__';
   }
 
 }

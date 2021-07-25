@@ -97,7 +97,7 @@
         Tu nick
         <span>Después se puede cambiar con /nick</span>
       </label>
-      <input type="text" id="nickInput" [(ngModel)]="nick"/>
+      <input type="text" id="nickInput" [(ngModel)]="nick" (keyup)="keyUpCompact($event)"/>
     </div>
     <div id="auth" *ngIf="compactWithPass">
       <label>
