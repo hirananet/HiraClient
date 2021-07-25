@@ -3,6 +3,10 @@ article {
   font-family: helvetica;
   color: var(--message-color);
   padding: 2px;
+  &.notice {
+    border-left: 4px solid var(--menu-list-warn);
+    margin-left: -5px;
+  }
   &.fromHistory {
     opacity: 0.3;
   }

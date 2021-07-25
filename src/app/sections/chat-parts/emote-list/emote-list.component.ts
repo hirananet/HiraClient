@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, AfterViewInit } from '@angular/core';
 import { EmoteList } from 'ircore';
 
 @Component({
@@ -6,7 +6,7 @@ import { EmoteList } from 'ircore';
   templateUrl: './emote-list.component.html',
   styleUrls: ['./emote-list.component.scss']
 })
-export class EmoteListComponent implements OnInit {
+export class EmoteListComponent implements OnInit, AfterViewInit {
 
   public faces: string[] = EmoteList.faces;
   public readonly _faces: string[] = EmoteList.faces;
@@ -27,6 +27,10 @@ export class EmoteListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    document.getElementById('input_emote_popup').focus();
   }
 
   ku(evt) {

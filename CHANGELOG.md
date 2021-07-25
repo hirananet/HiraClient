@@ -1,8 +1,9 @@
 * done:
     - Tandil bouncer se rompe y se ven 10 users.
     - multilinea manda solo 1 mensaje.
-    
-      
+    - Corregir los mensajes de cobot  (externos al canal)
+    - poner foco en el menú de emotes.
+
 * pending:
     - novedades web.
     - parsear mensajes old de znc: 

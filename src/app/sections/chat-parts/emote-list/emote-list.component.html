@@ -1,7 +1,7 @@
 <div class="closeUmbrella" (click)="closePopup.emit()"></div>
 <div class="emotePopup">
   <header>
-    <input type="text" placeholder="buscar..." [(ngModel)]="searchQuery" (keyup)="ku($event)"/>
+    <input type="text" placeholder="buscar..." [(ngModel)]="searchQuery" (keyup)="ku($event)" id="input_emote_popup"/>
   </header>
   <nav>
     <div class="tab" (click)="list = 1">

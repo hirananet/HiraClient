@@ -1,4 +1,4 @@
-<article class="user" *ngIf="!message.special && !message.notify" [class.fromHistory]="message.fromHistory">
+<article class="user" *ngIf="!message.special && !message.notify" [class.fromHistory]="message.fromHistory" [class.notice]="message.externalNotice">
   <aside>
     <img [src]="message.author.image" (contextmenu)="contextMenu($event, message.author.user)" loading="lazy"/>
   </aside>
