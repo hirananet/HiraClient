@@ -234,7 +234,8 @@ export class PrivmsgComponent implements OnInit {
       this.message = '<'+this.quote.author+'> '+this.quote.quote+' |' + this.message;
       this.quote = undefined;
     }
-    const lines = this.message.split('\r\n');
+    const lines = this.message.split('\n');
+    console.log(lines, this.message);
     lines.forEach(line => {
       this.hmcSrv.save(line, 'priv-' + this.nickTarget);
       this.ircSrv.sendMessageOrCommand(line, this.nickTarget);

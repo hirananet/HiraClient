@@ -219,7 +219,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.message = '<'+this.quote.author+'> '+this.quote.quote+' |' + this.message;
       this.quote = undefined;
     }
-    const lines = this.message.split('\r\n');
+    const lines = this.message.split('\n');
     lines.forEach(line => {
       this.hmcSrv.save(line, 'chan-' + this.channelName);
       this.ircSrv.sendMessageOrCommand(line, '#'+this.channelName);
