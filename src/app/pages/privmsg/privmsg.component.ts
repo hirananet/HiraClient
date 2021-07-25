@@ -234,8 +234,11 @@ export class PrivmsgComponent implements OnInit {
       this.message = '<'+this.quote.author+'> '+this.quote.quote+' |' + this.message;
       this.quote = undefined;
     }
-    this.hmcSrv.save(this.message, 'priv-' + this.nickTarget);
-    this.ircSrv.sendMessageOrCommand(this.message, this.nickTarget);
+    const lines = this.message.split('\r\n');
+    lines.forEach(line => {
+      this.hmcSrv.save(line, 'priv-' + this.nickTarget);
+      this.ircSrv.sendMessageOrCommand(line, this.nickTarget);
+    });
     this.message = '';
     document.getElementById('messageInput').focus();
 

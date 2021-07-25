@@ -1,3 +1,14 @@
+# 2.1.1
+- Corregir los mensajes de cobot  (externos al canal)
+- Enlace directo a canales, solo poniendo nick
+- Efectos olitas: poner stop, velocidades random y hacerlo mas transparente para que se pueda ver lo que se escribe detrás.
+- revisar inicio de rockola que a veces no arranca con la lista
+- poner foco en el menú de emotes.
+- aparentemente si falla el subir imagen no te deja escribir más. (o algo así)
+- corregir horas del mensaje de znc
+
+out: aliviar carga de srta hirana cuando pasan link de cosas muy pesadas
+
 Requeridos:
 En context:
 . Kick

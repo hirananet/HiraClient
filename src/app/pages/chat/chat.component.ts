@@ -219,8 +219,11 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.message = '<'+this.quote.author+'> '+this.quote.quote+' |' + this.message;
       this.quote = undefined;
     }
-    this.hmcSrv.save(this.message, 'chan-' + this.channelName);
-    this.ircSrv.sendMessageOrCommand(this.message, '#'+this.channelName);
+    const lines = this.message.split('\r\n');
+    lines.forEach(line => {
+      this.hmcSrv.save(line, 'chan-' + this.channelName);
+      this.ircSrv.sendMessageOrCommand(line, '#'+this.channelName);
+    });
     this.message = '';
     document.getElementById('messageInput').focus();
   }
