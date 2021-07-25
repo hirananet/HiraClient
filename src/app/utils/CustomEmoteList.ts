@@ -277,7 +277,7 @@ export class CustomEmoteList {
         }
       }
       if(name === 'barco') {
-        addBarkitoEffect();
+        addBarkitoEffect(author);
       }
     };
 
