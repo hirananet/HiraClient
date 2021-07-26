@@ -96,10 +96,11 @@ class barkitoEffect {
     return [elem, label];
   }
 
-  getRandomVel() {
-    const min = 3;
-    const max = 5;
-    return Math.random() * (max - min + 1) + min;
+  async getRandomVel(spawner) {
+    // traer desde el backend de thira
+    const response = await fetch(`https://thira.tandilserver.com/nick-data/velocity?nick=${spawner}`);
+    const data = await response.text();
+    return parseFloat(data);
   }
 
   addBarkito(spawner) {
@@ -125,21 +126,22 @@ class barkitoEffect {
         clearInterval(barkitoEffDown);
         barkito.classList.add('oleaje');
         iterations = 0;
-        const velocity = this.getRandomVel();
-        const movement = setInterval(() => {
-          iterations++;
-          barkito.style.left = (parseInt(barkito.getAttribute('posx')) + velocity*iterations) + 'px';
-          label.style.left = barkito.style.left;
-          if(iterations*velocity > window.innerWidth) {
-            clearInterval(movement);
-            barkito.remove();
-            label.remove();
-            this.barkitos--;
-            if(this.barkitos == 0) {
-              this.clear();
+        this.getRandomVel(spawner).then(vel => {
+          const movement = setInterval(() => {
+            iterations++;
+            barkito.style.left = (parseInt(barkito.getAttribute('posx')) + vel*iterations) + 'px';
+            label.style.left = barkito.style.left;
+            if(iterations*vel > window.innerWidth) {
+              clearInterval(movement);
+              barkito.remove();
+              label.remove();
+              this.barkitos--;
+              if(this.barkitos == 0) {
+                this.clear();
+              }
             }
-          }
-        }, 50)
+          }, 50)
+        });
       }
     }, 50);
   }
